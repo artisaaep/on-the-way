@@ -12,7 +12,7 @@ dp = Dispatcher()
 
 
 @dp.message(CommandStart())
-async def start(message: Message):
+async def start(message: types.Message):
     markup = ReplyKeyboardMarkup(
         keyboard=[[KeyboardButton(web_app=WebAppInfo(url="https://vk.com"))]]
     )
