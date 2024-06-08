@@ -1,3 +1,5 @@
+import asyncio
+
 from config_reader import config
 from aiogram import Bot, Dispatcher, types
 from aiogram.types.reply_keyboard_markup import ReplyKeyboardMarkup
@@ -14,14 +16,15 @@ dp = Dispatcher()
 @dp.message(CommandStart())
 async def start(message: types.Message):
     markup = ReplyKeyboardMarkup(
-        keyboard=[[KeyboardButton(web_app=WebAppInfo(url="https://vk.com"))]]
+        keyboard=[[KeyboardButton(text="kfkfkf",web_app=WebAppInfo(url="https://vk.com"))]]
     )
     await message.answer("Привет!", reply_markup=markup)
 
 
-
+async def main() -> None:
+    await dp.start_polling(bot)
 
 if __name__ == "__main__":
-    dp.start_polling(bot)
+    asyncio.run(main())
 
 
