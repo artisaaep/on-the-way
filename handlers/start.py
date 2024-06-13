@@ -1,15 +1,17 @@
 from aiogram import Router
 from aiogram.filters import CommandStart
 from aiogram import types
-from database import exists
+from database import Database
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 router = Router()
 
+db = Database("db.db")
+
 
 @router.message(CommandStart())
 async def start(message: types.Message):
-    user_exists = await exists(message.from_user.id)
+    user_exists = await db.exists(message.from_user.id)
     if not user_exists:
         text = "Привет!\n\nЭто сервис по поиску попутчиков <b>on the way</b> \U0001F699. \
 Здесь вы можете найти с кем добраться до пункта назначения или создать поездку как водитель и найти пассажиров. \

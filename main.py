@@ -1,5 +1,6 @@
 import asyncio
 
+import form
 from config_reader import config
 from aiogram import Bot, Dispatcher
 from handlers import start
@@ -12,6 +13,7 @@ dp = Dispatcher()
 async def main():
     dp.include_routers(
         start.router,
+        form.router
     )
     await dp.start_polling(bot)
 
