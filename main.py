@@ -1,13 +1,8 @@
 import asyncio
 
 import form
-from config_reader import config
-from aiogram import Bot, Dispatcher
 from handlers import start
-
-bot = Bot(token=config.bot_token.get_secret_value())
-
-dp = Dispatcher()
+from bot_init import dp, bot
 
 
 async def main():

@@ -2,6 +2,8 @@ from aiogram import Router
 from aiogram.filters import CommandStart
 from aiogram import types
 from database import Database
+from form import Form
+from aiogram.fsm.context import FSMContext
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 router = Router()
@@ -10,7 +12,7 @@ db = Database("db.db")
 
 
 @router.message(CommandStart())
-async def start(message: types.Message):
+async def start(message: types.Message, state: FSMContext):
     user_exists = await db.exists(message.from_user.id)
     if not user_exists:
         text = "Привет!\n\nЭто сервис по поиску попутчиков <b>on the way</b> \U0001F699. \
@@ -23,6 +25,7 @@ async def start(message: types.Message):
             resize_keyboard=True,
             one_time_keyboard=True,
         )
+        await state.set_state(Form.name)
         await message.answer(text, reply_markup=markup, parse_mode='html')
     else:
         text = "Привет!\n\nЭто сервис по поиску попутчиков <b>on the way</b>. \

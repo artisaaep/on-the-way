@@ -10,9 +10,9 @@ class Database:
             return bool(len(result))
 
 
-    async def create_profile(self, user_id, name=None, age=None, sex=None, photo=None, bio=None) -> None:
+    async def create_profile(self, user_id, name="", age=0, sex=-1, photo=-1, bio="", alias="") -> None:
         with self.connection:
-            self.cursor.execute(f'INSERT INTO Users (ID, Name, Age, Sex, Photo, Bio) VALUES ({user_id}, "{name}", {age}, {sex}, {photo}, "{bio}")')
+            self.cursor.execute(f'INSERT INTO Users (ID, Name, Age, Sex, Photo, Bio, Alias) VALUES ({user_id}, "{name}", {age}, {sex}, "{photo}", "{bio}", "@{alias}")')
 
 
     async def update_profile(self, user_id, name=None, age=None, sex=None, photo=None, bio=None) -> None:
@@ -24,9 +24,10 @@ class Database:
             if sex is not None:
                 self.cursor.execute(f'UPDATE Users SET sex = {sex} WHERE id = {user_id}')
             if photo is not None:
-                self.cursor.execute(f'UPDATE Users SET photo = {photo} WHERE id = {user_id}')
+                self.cursor.execute(f'UPDATE Users SET photo = "{photo}" WHERE id = {user_id}')
             if bio is not None:
                 self.cursor.execute(f'UPDATE Users SET bio = "{bio}" WHERE id = {user_id}')
 
-
-
+    async def get_photo(self, user_id) -> str:
+        with self.connection:
+            return self.cursor.execute(f"SELECT Photo FROM Users WHERE id = {user_id}").fetchall()[0][0]
