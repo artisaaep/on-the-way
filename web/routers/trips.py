@@ -25,3 +25,13 @@ async def get_trip(_id: int):
 @router.delete("/{id}", response_model=List[int])
 async def delete_trip(_id: int, is_canceled: bool):
     pass
+
+
+@router.put("/{id}/driver", response_model=None)
+async def update_trip(_id: int, trip: Trip):
+    pass
+
+
+@router.put("/{id}/rider", response_model=None)
+async def attach_rider(_id: int, trip: Trip):
+    pass
