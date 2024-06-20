@@ -1,7 +1,7 @@
 import asyncio
 
-import form
-from handlers import start
+from telegram import form
+from telegram.handlers import start
 from bot_init import dp, bot
 
 
