@@ -1,9 +1,7 @@
-from random import random
-
 from aiogram import Router
 from aiogram import types
 from bot_init import bot
-from database import Database
+from shared.database import Database
 from aiogram.types.web_app_info import WebAppInfo
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup

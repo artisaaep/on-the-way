@@ -2,18 +2,6 @@ from pydantic import BaseModel
 from typing import List, Optional
 
 
-class Trip(BaseModel):
-    id: int
-    driver: 'Driver'
-    passengers: List['Passenger']
-    start_location: str
-    end_location: str
-    departure_time: str
-    available_seats: Optional[int]
-    has_child_seat: Optional[bool]
-    car: Optional[str]
-
-
 class NewTrip(BaseModel):
     driver_id: int
     start_location: str
@@ -43,6 +31,18 @@ class Passenger(BaseModel):
     has_luggage: Optional[int]
     has_kids: Optional[int]
     has_pets: Optional[int]
+
+
+class Trip(BaseModel):
+    id: int
+    driver: Driver
+    passengers: List[Passenger]
+    start_location: str
+    end_location: str
+    departure_time: str
+    available_seats: Optional[int]
+    has_child_seat: Optional[bool]
+    car: Optional[str]
 
 
 class User(BaseModel):
