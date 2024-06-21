@@ -21,22 +21,21 @@ class Form(StatesGroup):
 
 @router.message(Form.name)
 async def create(message: types.Message, state: FSMContext):
-    await db.create_profile(message.from_user.id, alias=message.from_user.username)
-    await message.answer("Укажи своё имя:", reply_markup=ReplyKeyboardRemove())
+    await message.answer("Укажите Ваше имя\U0001f607", reply_markup=ReplyKeyboardRemove())
     await state.set_state(Form.age)
 
 
 @router.message(Form.age)
 async def set_name(message: types.Message, state: FSMContext):
-    await db.update_profile(user_id=message.from_user.id, name=message.text)
-    await message.answer("Прекрасно, а теперь укажите ваш возраст\u263a\ufe0f", reply_markup=ReplyKeyboardRemove())
+    await state.update_data(name=message.text)
+    await message.answer("Прекрасно, а теперь укажите Ваш возраст\u263a\ufe0f", reply_markup=ReplyKeyboardRemove())
     await state.set_state(Form.sex)
 
 
 @router.message(Form.sex)
 async def set_age(message: types.Message, state: FSMContext):
     try:
-        await db.update_profile(user_id=message.from_user.id, age=int(message.text))
+        await state.update_data(age=int(message.text))
         markup = ReplyKeyboardMarkup(
             keyboard=[
                 [KeyboardButton(text="Мужской")], [KeyboardButton(text="Женский")]
@@ -44,7 +43,7 @@ async def set_age(message: types.Message, state: FSMContext):
             resize_keyboard=True,
             one_time_keyboard=True,
         )
-        await message.answer("Укажите ваш пол", reply_markup=markup)
+        await message.answer("Укажите Ваш пол", reply_markup=markup)
         await state.set_state(Form.photo)
     except:
         await message.answer("Введеный возраст некорректен, разрешены только цифры")
@@ -56,17 +55,19 @@ async def set_sex(message: types.Message, state: FSMContext):
     if message.text != "Мужской" and message.text != "Женский":
         await state.set_state(Form.photo)
     elif message.text == "Мужской":
-        await db.update_profile(user_id=message.from_user.id, sex=0)
+        await state.update_data(sex=0)
     elif message.text == "Женский":
-        await db.update_profile(user_id=message.from_user.id, sex=1)
+        await state.update_data(sex=1)
 
-    await message.answer("Пришлите фото, которое будет отображаться в профиле",
+    await message.answer("Теперь отправьте фото, которое будет отображаться в профиле",
                          reply_markup=ReplyKeyboardRemove())
     await state.set_state(Form.finish)
 
 
 @router.message(Form.finish)
 async def set_photo(message: types.Message, state: FSMContext):
+    data = await state.get_data()
+    await db.create_profile(user_id=message.from_user.id, alias=message.from_user.username, name=data['name'], age=data['age'], sex=data['sex'])
     if message.photo is not None:
         await bot.download(message.photo[-1], destination=f"photos/{message.from_user.id}.jpg")
     else:
@@ -74,13 +75,12 @@ async def set_photo(message: types.Message, state: FSMContext):
     markup = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="Создать поездку",
-                            web_app=WebAppInfo(url="https://artisaaep.github.io"))], [
+                            web_app=WebAppInfo(url="https://artisaaep.github.io/availabletrips.html"))], [
                 KeyboardButton(text="Найти поездку",
-                               web_app=WebAppInfo(url="https://artisaaep.github.io"))]
+                               web_app=WebAppInfo(url="https://artisaaep.github.io/availabletrips.html"))]
         ],
         resize_keyboard=True,
         one_time_keyboard=True,
     )
     await message.answer("Отлично!\U0001f973 Анкета создана, можете начать ваше чудесное путешествие\U0001f699",
                          reply_markup=markup)
-
