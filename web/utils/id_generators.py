@@ -2,7 +2,8 @@ from shared.base_models import Trip
 from shared.database import get_db
 
 
-def trip_generator():
+def generator(cls_orm):
     db = next(get_db())
-    _id = db.query(Trip).order_by(Trip.id.desc()).first()
+    _id = db.query(cls_orm).order_by(cls_orm.id.desc()).first()
     return _id.id + 1 if _id else 1
+
