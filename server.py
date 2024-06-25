@@ -1,3 +1,4 @@
+from uvicorn import run
 from fastapi import FastAPI
 
 from web.routers import trips, users, cars
@@ -23,3 +24,6 @@ async def startup_event():
 async def shutdown_event():
     print("Shutting down...")
 
+
+if __name__ == "__main__":
+    run(app)

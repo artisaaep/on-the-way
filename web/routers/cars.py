@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, Response, status
 from sqlalchemy.orm import Session
-from ..data_models import Car
+from ..data_models import NewCar, Car
 from shared.database import get_db
 from shared.base_models import Car as SQLCar
 from ..utils.id_generators import generator
@@ -10,18 +10,17 @@ router = APIRouter(
 )
 
 
-@router.get("/{id}")
-async def get_trips(_id: int, db: Session = Depends(get_db)):
+@router.get("/{_id}", response_model=Car)
+async def get_car(_id: int, db: Session = Depends(get_db)):
     car = db.query(SQLCar).filter(SQLCar.id == _id).first()
     if not car:
         raise HTTPException(status_code=404, detail="Car not found")
-    return Response(status_code=status.HTTP_204_NO_CONTENT)
+    return Car.from_orm(car)
 
 
-@router.post("/{id}", response_model=int)
-async def create_trip(_id: int,
-                      new: Car,
-                      db: Session = Depends(get_db)):
+@router.post("/", response_model=int)
+async def create_car(new: NewCar,
+                     db: Session = Depends(get_db)):
     car = SQLCar(
         id=generator(SQLCar),
         owner_id=new.owner_id,
@@ -35,8 +34,8 @@ async def create_trip(_id: int,
     return car.id
 
 
-@router.delete("/{id}")
-async def delete_trip(_id: int, db: Session = Depends(get_db), is_canceled: bool = True):
+@router.delete("/{_id}")
+async def delete_car(_id: int, db: Session = Depends(get_db)):
     car = db.query(SQLCar).filter(SQLCar.id == _id).first()
     if car is None:
         raise HTTPException(status_code=404, detail="Trip not found")

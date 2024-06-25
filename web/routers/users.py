@@ -18,7 +18,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     user = db.query(UserModel).filter(UserModel.id == user_id).first()
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
-    return user
+    return User.from_orm(user)
 
 
 @router.get("/{user_id}/photo")
