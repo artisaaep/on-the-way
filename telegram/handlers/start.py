@@ -8,7 +8,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 router = Router()
 
-db = Database("db.db")
+db = Database()
 
 
 @router.message(CommandStart())

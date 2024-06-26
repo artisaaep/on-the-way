@@ -8,7 +8,7 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 
 router = Router()
-db = Database("db.db")
+db = Database()
 
 
 class Form(StatesGroup):
