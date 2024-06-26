@@ -13,7 +13,7 @@ db = Database()
 
 @router.message(CommandStart())
 async def start(message: types.Message, state: FSMContext):
-    user_exists = await db.exists(message.from_user.id)
+    user_exists = db.exists(message.from_user.id)
     if not user_exists:
         text = "Привет!\n\nЭто сервис по поиску попутчиков <b>on the way</b> \U0001F699. \
 Здесь вы можете найти с кем добраться до пункта назначения или создать поездку как водитель и найти пассажиров. \

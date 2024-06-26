@@ -3,7 +3,7 @@ from threading import Thread
 
 from telegram import form
 from telegram.handlers import start
-from bot_init import dp, bot
+from telegram.bot_init import dp, bot
 from web.server import start as web_start
 
 
