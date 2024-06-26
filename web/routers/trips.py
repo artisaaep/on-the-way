@@ -14,7 +14,7 @@ router = APIRouter(
 @router.get("/", response_model=List[Trip])
 async def get_trips(db: Session = Depends(get_db)):
     trips = db.query(SQLTrip).all()
-    return [Trip.from_orm(trip, db) for trip in trips]
+    return [Trip.from_orm(trip) for trip in trips]
 
 
 @router.post("/", response_model=int)
