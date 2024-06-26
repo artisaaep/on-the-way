@@ -7,7 +7,7 @@ from shared.base_models import Trip as SQLTrip, User as SQLUser, TripPassenger
 from ..utils.id_generators import generator
 
 router = APIRouter(
-    prefix="/trips",
+    prefix="/api/trips",
 )
 
 

@@ -1,0 +1,31 @@
+@font-face { font-family: 'Kreadon Regular'; src: url(fonts/Kreadon-Regular.ttf); } 
+
+body {
+    background-color: #f0eff5;
+}
+
+p {
+    text-align: center;
+    color: var(--tg-theme-text-color);
+    font-family: 'Kreadon Regular';
+}
+#success {
+    margin-top: 25%;
+    font-size: 40px;
+}
+
+#created {
+    font-size: 30px;
+}
+
+#message {
+    font-size: 20px;
+}
+
+#car {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    width: 350px;
+}

@@ -8,7 +8,7 @@ from shared.database import get_db
 from shared.base_models import User as UserModel
 
 router = APIRouter(
-    prefix="/users",
+    prefix="/api/users",
     tags=["users"],
 )
 

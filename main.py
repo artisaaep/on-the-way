@@ -3,6 +3,7 @@ import asyncio
 from telegram import form
 from telegram.handlers import start
 from bot_init import dp, bot
+from web.server import start
 
 
 async def main():
@@ -14,3 +15,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+    start()

@@ -1,0 +1,382 @@
+@font-face {
+    font-family: "Kreadon"; 
+    src: url("fonts/Kreadon-Regular.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: 400;
+} 
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Kreadon";
+    color: #000;
+}
+
+.grey-rect {
+    width: 83.9%;
+    height: 17.5vh;
+    background-color: #E3E1E1;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    margin-bottom: 3%;
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dir-button {
+    height: 81%;
+    width: 43%;
+    border-radius: 10px;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-color: #000;
+    background-color: #E3E1E1;
+    padding: 0;
+}
+
+#dir-text {
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 3.3vh;
+    font-family: "Kreadon";
+    color: #000;
+    margin-top: 10%;
+}
+
+#dir-image {
+    margin-top: 5%;
+    margin-left: 70%;
+    height: 45%;
+    width: auto;
+    fill: #FBEC69B2;
+}
+
+.long-grey-rect {
+    width: 83.9%;
+    height: 43vh;
+    background-color: #E3E1E1;
+    display: flex;
+    margin: auto;
+    margin-bottom: 3%;
+    border-radius: 10px;
+    flex-direction: column;
+    font-size: 5vw;
+    font-family: "Kreadon";
+    position: relative;
+}
+
+#hr {
+    width: 80%;
+    margin-top: 0; 
+    border: none;
+    border-top: 0.7px solid #000; 
+    margin-bottom: 10%; 
+}
+
+.header {
+    margin-top: 0;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#param-text {
+   margin-top: 3%; 
+   margin-bottom: 1%;
+}
+
+.param {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    margin-left: 6%;
+    margin-right: 6%;
+}
+
+.param-li {
+    margin-bottom: 5% !important;;
+}
+
+#title {
+    height: 4.78%;
+    width: 47.79%;
+    margin: auto;
+    background-color: #FBEA50D9;
+    font-size: 4.7vw;
+    font-family: "Kreadon";
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    display: flex;
+}
+
+#date {
+    height: 14.2vh;
+    width: 100%;
+    border-radius: 10px;
+    border-color: #000;
+    font-size: 5vw;
+    font-family: "Kreadon";
+    color: #000;
+    background-color: #E3E1E1;
+}
+
+
+.date-desc {
+    height: 81%;
+    width: 43%;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 0;
+}
+
+#date-title {
+    margin-left: 4%;
+    margin-right: 2%;
+    font-size: 5vw;
+    font-family: "Kreadon";
+    color: #000;
+    margin-top: 10%;
+}
+
+#date-image {
+    margin-top: 5%;
+    margin-left: 70%;
+    height: 40%;
+    width: auto;
+    fill: #FBEC69B2;
+}
+
+
+#type-trip {
+    height: 19%;
+    border-radius: 10px;
+    border: 1px solid #000;
+    border-color: #000;
+    font-size: 4vw;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    width: 80%;
+    margin-bottom: 2vw;
+}
+
+.choice {
+    list-style: none;
+    padding: 0;
+    font-size: 3.2vw;
+    margin: 0;
+}
+
+.choice li {
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 0.3vh;
+    justify-content: space-between;
+}
+
+.choice input[type="checkbox"] {
+    width: 2.6vh;
+    margin: 0.37vh;
+}
+
+
+#price {
+    height: 81%;
+    width: 43%;
+    border-radius: 10px;
+    border-color: #000;
+    background-color: #E3E1E1;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+#price-text {
+    margin-left: 4%;
+    margin-right: 60%;
+    font-size: 3.3vh;
+    font-family: "Kreadon";
+    color: #000;
+    margin-top: 0;
+}
+
+#price-image {
+    margin-top: 15%;
+    margin-left: 65%;
+    height: 45%;
+    width: auto;
+    fill: #FBEC69B2;
+}
+
+.type-title-choice {
+    width: 43%;
+    height: 81%;
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    display: table-column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    margin-right: 2%;
+    margin-left: 4%;
+    font-family: "Kreadon";
+}
+
+.choice li, .param li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.3vh;
+}
+
+#form {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#comment {
+    width: 100%;
+    height: 100%;
+    font-size: 3.4vw;
+    border: none;
+    background-color: inherit;
+    border-radius: 8px;
+    box-sizing: border-box; 
+    text-align: left;
+    padding-left: 2%;
+    white-space: normal; 
+    overflow: auto;
+    resize: none;
+    position: absolute;
+    margin: 0;
+    outline: none;
+}
+
+#car {
+    height: 54.5%;
+}
+
+.frame {
+    border: 1px solid #000; 
+    border-radius: 10px;
+    height: 81%;
+    width: 45%;
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.choose-car {
+    font-size: 3.7vw;
+    font-family: "Kreadon";
+    color: #000;
+    height: 81%;
+    width: 43%;
+    text-align: left;
+    flex: 1;
+    margin-left: 6%;
+    margin-right: 2%;
+}
+
+.create {
+    height: 6.5%;
+    width: 53.8%;
+    margin: auto;
+    background-color: #FBEA50D9;
+    font-size: 18px;
+    font-family: "Kreadon";
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-radius: 10px;
+    margin-bottom: 40%;
+    display: flex;
+    color: #000;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 20%;
+    border-top-right-radius: 15%; 
+    box-shadow: 0px -3px 8px rgba(0, 0, 0, 0.3);
+    background-color: #E3E1E1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+footer button {
+    width: 35%;
+    height: 78%;
+    font-family: "Kreadon";
+    font-size: 5vw;
+    text-align:left;
+    border-radius: 5vw;
+    border-color: #000;
+    bottom: 0%;
+    margin-top: 4%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: #D0CECE;
+    margin-bottom: 3%;
+}
+
+.foot-img {
+    height: 5vh;
+    margin-top: 5%;
+    margin-left: 70%;
+}
+
+.foot-text {
+    margin-left: 10%;
+    margin-top: 0;
+    color: #000;
+}
+
+
+.new-button {
+    color: #000;
+    height: 50%; /* Занимает 50% высоты родительского элемента */
+    width: 100%; /* Занимает 100% ширины родительского элемента */
+    margin: 0;
+    background-color: #E3E1E1;
+    border-color: #E3E1E1;
+    padding: 0;
+    font-size: 2.7vh;
+    font-family: "Kreadon";
+}
+
+#lower {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: 0.6px solid black;
+}
+
+#upper {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 0.6px solid black;
+}
