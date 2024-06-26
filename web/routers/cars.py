@@ -6,7 +6,7 @@ from shared.base_models import Car as SQLCar
 from ..utils.id_generators import generator
 
 router = APIRouter(
-    prefix="/cars",
+    prefix="/api/cars",
 )
 
 
