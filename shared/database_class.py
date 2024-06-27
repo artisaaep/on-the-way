@@ -8,14 +8,13 @@ from shared.database import get_db
 
 class Database:
     def __init__(self):
-        self.db = Depends(get_db())
+        self.db = next(get_db())
 
     def exists(self, user_id: int) -> bool:
         return self.db.query(User).filter(User.id == user_id).first() is not None
 
-    def create_profile(self, user_id: int, name: str = "", age: int = 0, sex: int = -1, photo: str = "", bio: str = "",
-                       alias: str = "") -> None:
-        user = User(id=user_id, name=name, age=age, sex=sex, photo=photo, bio=bio, alias=alias)
+    def create_profile(self, user_id: int, name: str = "", age: int = 0, sex: int = -1, alias: str = "") -> None:
+        user = User(id=user_id, name=name, age=age, sex=sex, alias=alias)
         self.db.add(user)
         self.db.commit()
 

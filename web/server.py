@@ -15,7 +15,7 @@ async def lifespan(app: FastAPI):
     print("Shutting down...")
 
 
-__static_files_path = Path(__file__).parent / "web" / "front" / "static"
+__static_files_path = Path(__file__).parent / "front" / "static"
 app = FastAPI(lifespan=lifespan)
 
 

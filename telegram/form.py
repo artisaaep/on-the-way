@@ -1,11 +1,15 @@
+from pathlib import Path
+
 from aiogram import Router
 from aiogram import types
-from bot_init import bot
-from shared.database_class import Database
-from aiogram.types.web_app_info import WebAppInfo
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+from aiogram.types.web_app_info import WebAppInfo
+
+from shared.database_class import Database
+from telegram.bot_init import bot
+from telegram.config_reader import base_webapp_url
 
 router = Router()
 db = Database()
@@ -45,7 +49,7 @@ async def set_age(message: types.Message, state: FSMContext):
         )
         await message.answer("Укажите Ваш пол", reply_markup=markup)
         await state.set_state(Form.photo)
-    except:
+    except Exception:
         await message.answer("Введеный возраст некорректен, разрешены только цифры")
         await state.set_state(Form.sex)
 
@@ -67,17 +71,26 @@ async def set_sex(message: types.Message, state: FSMContext):
 @router.message(Form.finish)
 async def set_photo(message: types.Message, state: FSMContext):
     data = await state.get_data()
-    await db.create_profile(user_id=message.from_user.id, alias=message.from_user.username, name=data['name'], age=data['age'], sex=data['sex'])
+    db.create_profile(
+        user_id=message.from_user.id,
+        alias=message.from_user.username,
+        name=data['name'],
+        age=data['age'],
+        sex=data['sex']
+    )
     if message.photo is not None:
-        await bot.download(message.photo[-1], destination=f"photos/{message.from_user.id}.jpg")
+        await bot.download(
+            message.photo[-1],
+            destination=Path(__file__).parent.parent / "shared" / "photos" / f"{message.from_user.id}.jpg"
+        )
     else:
         await state.set_state(Form.photo)
     markup = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="Создать поездку",
-                            web_app=WebAppInfo(url="https://artisaaep.github.io/availabletrips.html"))], [
-                KeyboardButton(text="Найти поездку",
-                               web_app=WebAppInfo(url="https://artisaaep.github.io/availabletrips.html"))]
+                            web_app=WebAppInfo(url=base_webapp_url + "/availabletrips.html"))],
+            [KeyboardButton(text="Найти поездку",
+                            web_app=WebAppInfo(url=base_webapp_url + "/createtrip.html"))]
         ],
         resize_keyboard=True,
         one_time_keyboard=True,
