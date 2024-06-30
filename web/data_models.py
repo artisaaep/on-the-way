@@ -54,6 +54,7 @@ class BaseTrip(BaseModel):
     end_location: str
     departure_time: str
     end_location: str
+    price: int
     available_seats: Optional[int]
     has_child_seat: Optional[bool]
 
@@ -77,6 +78,7 @@ class Trip(BaseTrip):
             departure_time=self.departure_time,
             seats_available=self.available_seats,
             has_child_seat=self.has_child_seat,
+            price=self.price,
             car_id=self.car.id if self.car else 0
         )
         return sqlalchemy_trip
@@ -121,6 +123,7 @@ class Trip(BaseTrip):
             departure_time=orm.departure_time,
             available_seats=orm.seats_available,
             has_child_seat=orm.has_child_seat,
+            price=orm.price,
             car=session.query(SQLCar).filter(SQLCar.id == orm.car_id).first(),
         )
 
@@ -142,6 +145,7 @@ class NewTrip(BaseTrip):
             departure_time=self.departure_time,
             available_seats=self.available_seats,
             has_child_seat=self.has_child_seat,
+            price=self.price,
         )
 
 

@@ -47,6 +47,7 @@ class Trip(Base):
     passenger_ids = Column(String, nullable=True)  # space-sliced integers
     start_location = Column(String, index=True)
     end_location = Column(String, index=True)
+    price = Column(Integer, nullable=True)
     departure_time = Column(String, index=True)
     seats_available = Column(Integer, nullable=True)
     has_child_seat = Column(Boolean, nullable=True)
