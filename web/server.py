@@ -24,6 +24,7 @@ app = FastAPI(lifespan=lifespan)
 async def root() -> FileResponse:
     return FileResponse(__static_files_path / "index.html")
 
+
 app.mount("/static", StaticFiles(directory=__static_files_path), name="static")
 
 
@@ -32,3 +33,7 @@ def start():
     app.include_router(users.router)
     app.include_router(cars.router)
     run(app)
+
+
+if __name__ == '__main__':
+    start()

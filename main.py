@@ -16,11 +16,5 @@ async def main():
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
-    def __start():
-        asyncio.run(main())
-    web_thread = Thread(target=web_start)
-    tg_thread = Thread(target=__start)
-    web_thread.start()
-    tg_thread.start()
-    web_thread.join()
-    tg_thread.join()
+    asyncio.run(main())
+
