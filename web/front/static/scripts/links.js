@@ -13,3 +13,7 @@ function ride() {
 function create() {
     window.location.href = 'tripcreated.html';
 }
+
+function addCar() {
+    window.location.href = 'addcar.html';
+}

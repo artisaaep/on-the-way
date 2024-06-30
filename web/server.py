@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 
 from starlette.responses import FileResponse
+from starlette.staticfiles import StaticFiles
 from uvicorn import run
 from fastapi import FastAPI, HTTPException
 
@@ -23,19 +24,7 @@ app = FastAPI(lifespan=lifespan)
 async def root() -> FileResponse:
     return FileResponse(__static_files_path / "index.html")
 
-
-@app.get("/{static_file_location}", include_in_schema=False)
-async def index(static_file_location: str) -> FileResponse:
-    correct_path = __static_files_path
-    for path_part in static_file_location.split('/'):
-        correct_path = correct_path / path_part
-    if correct_path.exists():
-        return FileResponse(correct_path)
-
-    raise HTTPException(
-        status_code=404,
-        detail="Page not found",
-    )
+app.mount("/static", StaticFiles(directory=__static_files_path), name="static")
 
 
 def start():

@@ -8,37 +8,24 @@
     <link rel="stylesheet" href="availabletrips.css">
     <title>On the way</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="availabletrips.js"></script>
-    <script src="links.js"></script>
+    <script src="scripts/availabletrips.js"></script>
+    <script src="scripts/links.js"></script>
 </head>
 
 <body>
-        <button id="filter" onclick=""><img id="imgfilter" src="icons/filter-svgrepo-com.svg">Фильтр</button>
-        <br>
-        <br><br>
-        <div class="card">
-            <img id="avatar" src="artem.jpg">
-            <a class="name">Артём Остапенко</a>
-            <br><br>
-            <a class="date">30.02.2024<br></a>
-            <a class="from">Иннополис</a>
-            <a class="strelka">---------></a>
-            <a class="to">Казань<br></a>
-            <a class="clari-from">Технопарк</a>
-            <a class="time">16:00</a>
-            <a class="clari-to">Тандем</a>
-            <div class="pr-ch">
-                <a class="price">250 руб.</a>
-                <button class="choose" onclick="">Выбрать</button>
-            </div>
-            <div class="dopinfa">
-                <a class="rides">Поездок: 0 <br></a>
-                <a class="free-places">Свободных мест: 3</a>
-            </div>
-        </div>
-        <footer class="footer">
-            <button id="My-profile" onclick="myprofile()"><img id="imgprof" src="icons/profile-1341-svgrepo-com.svg">Мой профиль</button>
-            <button id="history" onclick=""><img id="imghist" src="./icons/travel-car-svgrepo-com.svg">История поездок</button>
-        </footer>
+<div id="zakrep">
+    <button id="filter" onclick=""><img id="imgfilter" src="icons/filter-svgrepo-com.svg">Фильтр</button>
+</div>
+<br><br>
+<div class="scrolling">
+
+</div>
+
+
+<footer class="footer">
+    <button id="My-profile" onclick="myprofile()"><img id="imgprof" src="icons/profile-1341-svgrepo-com.svg">Мой профиль
+    </button>
+    <button id="history" onclick=""><img id="imghist" src="./icons/travel-car-svgrepo-com.svg">История поездок</button>
+</footer>
 </body>
 </html>
