@@ -88,9 +88,9 @@ async def set_photo(message: types.Message, state: FSMContext):
     markup = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="Создать поездку",
-                            web_app=WebAppInfo(url=base_webapp_url + "/availabletrips.html"))],
+                            web_app=WebAppInfo(url=base_webapp_url + "/static/availabletrips.html"))],
             [KeyboardButton(text="Найти поездку",
-                            web_app=WebAppInfo(url=base_webapp_url + "/createtrip.html"))]
+                            web_app=WebAppInfo(url=base_webapp_url + "/static/createtrip.html"))]
         ],
         resize_keyboard=True,
         one_time_keyboard=True,

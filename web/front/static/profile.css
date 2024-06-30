@@ -120,7 +120,7 @@ input:focus {
     margin-left: 5%;
 }
 
-#car {
+.car {
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 0;
