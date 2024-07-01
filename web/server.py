@@ -6,7 +6,7 @@ from starlette.staticfiles import StaticFiles
 from uvicorn import run
 from fastapi import FastAPI, HTTPException
 
-from web.routers import trips, users, cars
+from routers import trips, users, cars
 
 
 @asynccontextmanager
