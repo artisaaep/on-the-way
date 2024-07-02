@@ -2,7 +2,7 @@ document.getElementById('back').onclick = function () {
     window.location.href = 'profile.html';
 };
 
-let url = "https://t.me/frontMVPSWP_bot/ontheway";
+let url = "https://e8dc-188-130-155-186.ngrok-free.app";
 
 let model;
 let number;

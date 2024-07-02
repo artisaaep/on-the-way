@@ -99,7 +99,7 @@ class Trip(BaseTrip):
         passenger_ids = map(int, orm.passenger_ids.split()) if orm.passenger_ids else []
         passengers = []
         for pid in passenger_ids:
-            user = session.query(User).get(int(pid))
+            user = session.query(SQLUser).get(int(pid))
             trip_passenger = session.query(TripPassenger).filter_by(user_id=user.id, trip_id=orm.id).first()
             if user:
                 passengers.append(
@@ -108,6 +108,8 @@ class Trip(BaseTrip):
                         name=user.name,
                         age=user.age,
                         alias=user.alias,
+                        rides_amount=user.rides_amount,
+                        car_ids=list(map(int, user.car_ids.split())) if user.car_ids else [],
                         has_luggage=trip_passenger.has_luggage if trip_passenger else 0,
                         has_kids=trip_passenger.has_kids if trip_passenger else 0,
                         has_pets=trip_passenger.has_pets if trip_passenger else 0

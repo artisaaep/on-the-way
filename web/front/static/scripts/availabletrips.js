@@ -1,8 +1,16 @@
-let url = "https://t.me/frontMVPSWP_bot/ontheway";
+let url = "https://e8dc-188-130-155-186.ngrok-free.app";
 
 async function apply(trip_id) {
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
-        method: "PUT"
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "has_luggage": false,
+            "has_kids": false,
+            "has_pets": false
+        })
     }).then(response => {
         if (response.ok) {
             const btn = document.getElementById("choose-" + trip_id);
@@ -21,6 +29,7 @@ async function apply(trip_id) {
             btn.textContent = "Отменить";
         } else {
             window.Telegram.WebApp.showAlert("Something went wrong");
+            console.log(response);
         }
     })
 }
@@ -32,9 +41,9 @@ const decorator = (trip_id) => {
 }
 
 async function main() {
-    const bar = window.document.querySelector('.scrolling');
+    const bar = document.getElementById("main-scrolling-div");
     const response = await (await fetch(url + "/api/trips", {
-        method: "GET"
+        method: "GET",
     })).json();
     response.forEach(trip => {
         bar.innerHTML += `
@@ -48,7 +57,7 @@ async function main() {
         <a class="to"><br>${trip.end_location}</a>
     </div>
     <div class="pr-ch">
-        <button class="choose" onclick="decorator(${trip.id})" id="choose-${trip.id}">Выбрать</button>
+        <button class="choose" onclick="apply(${trip.id})" id="choose-${trip.id}">Выбрать</button>
     </div>
     <div class="dopinfa">
         <a class="rides">Поездок: ${trip.driver.rides_amount} <br></a>
