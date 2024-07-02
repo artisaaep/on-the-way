@@ -1,10 +1,9 @@
 from fastapi import APIRouter, HTTPException, Depends, Query, Response, status
 from sqlalchemy.orm import Session
 from typing import List
-from ..data_models import Trip, NewTrip, UserOptions
+from web.data_models import Trip, NewTrip, UserOptions
 from shared.database import get_db
 from shared.base_models import Trip as SQLTrip, User as SQLUser, TripPassenger
-from ..utils.id_generators import generator
 
 router = APIRouter(
     prefix="/api/trips",

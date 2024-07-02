@@ -2,7 +2,7 @@ let url = "https://t.me/frontMVPSWP_bot/ontheway";
 
 async function apply(trip_id) {
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
-        method: "put",
+        method: "PUT"
     }).then(response => {
         if (response.ok) {
             const btn = document.getElementById("choose-" + trip_id);
@@ -11,7 +11,7 @@ async function apply(trip_id) {
                     method: "DELETE",
                 }).then(response => {
                     if (response.ok) {
-                        btn.onclick = apply;
+                        btn.onclick = decorator(trip_id);
                         btn.textContent = "Выбрать";
                     } else {
                         window.Telegram.WebApp.showAlert("Something went wrong");
@@ -25,14 +25,21 @@ async function apply(trip_id) {
     })
 }
 
+const decorator = (trip_id) => {
+    return () => {
+        return apply(trip_id)
+    }
+}
 
 async function main() {
     const bar = window.document.querySelector('.scrolling');
-    const response = await (await fetch(url + "/api/trips")).json();
+    const response = await (await fetch(url + "/api/trips", {
+        method: "GET"
+    })).json();
     response.forEach(trip => {
         bar.innerHTML += `
 <div class="card">
-    <img class="avatar" src="${url}/api/users/${trip.driver.id}/photo">
+    <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
     <a class="name">${trip.driver.name}</a>
     <div class="maininfa">
         <a class="date">${trip.departure_time}<br></a>
@@ -41,7 +48,7 @@ async function main() {
         <a class="to"><br>${trip.end_location}</a>
     </div>
     <div class="pr-ch">
-        <button class="choose" onclick="apply(${trip.id})" id="choose-${trip.id}">Выбрать</button>
+        <button class="choose" onclick="decorator(${trip.id})" id="choose-${trip.id}">Выбрать</button>
     </div>
     <div class="dopinfa">
         <a class="rides">Поездок: ${trip.driver.rides_amount} <br></a>
