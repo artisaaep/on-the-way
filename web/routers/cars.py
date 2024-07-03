@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from web.data_models import NewCar, Car
 from web.utils.id_generators import generator
 from shared.database import get_db
-from shared.base_models import Car as SQLCar
+from shared.base_models import Car as SQLCar, User as SQLUser
 
 router = APIRouter(
     prefix="/api/cars",
@@ -21,13 +21,16 @@ async def get_car(_id: int, db: Session = Depends(get_db)):
 @router.post("/", response_model=int)
 async def create_car(new: NewCar,
                      db: Session = Depends(get_db)):
+    id_ = generator(SQLCar)
     car = SQLCar(
-        id=generator(SQLCar),
+        id=id_,
         owner_id=new.owner_id,
         number=new.number,
         brand=new.brand,
         color=new.color,
     )
+    owner = db.query(SQLUser).filter(SQLUser.id == new.owner_id).first()
+    owner.car_ids = (owner.car_ids + f" {id_}") if owner.car_ids else f"{id_}"
     db.add(car)
     db.commit()
     db.refresh(car)
