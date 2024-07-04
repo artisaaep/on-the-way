@@ -77,7 +77,6 @@ async def attach_rider(
         db: Session = Depends(get_db)
 ):
     passengers, db_trip = __check_rider_properties(db, _id, rider_id)
-    print(passengers)
     if str(rider_id) not in passengers:
         passengers.append(str(rider_id))
         db_trip.passenger_ids = ' '.join(passengers)
