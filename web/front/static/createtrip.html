@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <link rel="stylesheet" href="createtrip.css">
+
     
     <div id="step1" class="step active">
         <div class="grey-rect">
@@ -23,7 +25,7 @@
                 </div>
                 <textarea id="comment1" class="com" placeholder="Уточните место отправления..."></textarea>
             </div>
-            <button class="next" onclick="addInfoOrigin()">Далее</button>
+            <button id="single-but" class="next" onclick="addInfoOrigin()">Далее</button>
         </div>
     </div>
 
@@ -55,12 +57,14 @@
                 <p class="dir-desc">Дата и время поездки</p>
             </div>
             <div class="date">
-                <p class="choose-dt">Выберите дату:</p>
+                <p class="choose-d">Дата:</p>
                 <input type="date" id="date-f" value="2024-06-23"></input>
             </div>
             <div class="time">
-                <p class="choose-dt">Выберите время:</p>
-                <input type="time" id="time-f" value="00:00"></input>
+                <p class="choose-t">Временной диапазон начала поездки:</p>
+                <div id="time-range">
+                    <p class="ft">от</p> <input type="time" class="time-f" value="00:00"></input> <p class="ft">до</p> <input type="time" class="time-f" value="00:00"></input>
+                </div>
             </div>
             <div class="nav-buttons">
                 <button class="next" id="dir-button1" onclick="goBack(3)">Назад</button>

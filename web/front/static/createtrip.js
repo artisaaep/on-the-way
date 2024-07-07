@@ -14,6 +14,38 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+function setCurrentTime() {
+    var now = new Date();
+
+    var hours = now.getHours().toString().padStart(2, '0');
+    var minutes = now.getMinutes().toString().padStart(2, '0');
+
+    var currentTime = hours + ':' + minutes;
+
+    const times = document.querySelectorAll('.time-f');
+    times.forEach(win => {
+        win.value = currentTime;
+    })
+}
+
+
+function setCurrentDate() {
+    var now = new Date();
+
+    var year = now.getFullYear();
+    var month = (now.getMonth() + 1).toString().padStart(2, '0'); 
+    var day = now.getDate().toString().padStart(2, '0');
+    
+    var currentDate = year + '-' + month + '-' + day;
+    
+    document.getElementById('date-f').value = currentDate;
+    console.log(getElementById('date-f').value);
+    console.log(currentDate);
+}
+
+window.addEventListener('load', setCurrentTime);
+window.addEventListener('load', setCurrentDate);
+
 let tripData = {
     origin: '',
     destination: '',
@@ -93,8 +125,9 @@ function addInfoDest() {
 
 function selectDate() {
     let date = document.getElementById('date-f');
-    let time = document.getElementById('time-f');
-    tripData.date = `${date.value}   ${time.value}`;
+    const times = document.querySelectorAll('.time-f');
+    tripData.date = `${date.value}`;  
+    tripData.time = `${times[0].value}-${times[1].value}`;
     goToStep(4);
     updateTripData()
 }
@@ -112,12 +145,21 @@ function goBack(cuurent) {
 }
 
 function showSummary() {
-    document.getElementById('summary-text').innerText = `Город отправления: ${tripData.origin}, Город назначения: ${tripData.destination}, Дата поездки: ${tripData.date}`;
+    document.getElementById('summary-text').innerText = `Город отправления: ${tripData.origin}, Город назначения: ${tripData.destination}, Дата поездки: ${tripData.date}  ${tripData.date}`;
 }
 
-function submitTrip() {
-    window.location.href = "tripcreated.html";
+async function submitTrip() {
     console.log('Trip submitted:', tripData);
+    let id = window.Telegram.WebApp.initDataUnsafe.user.id;
+    let text = `Ваша поездка *${tripData.origin} - ${tripData.destination}* успешно создана! 🚙
+    
+Нажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️`;
+
+    let encodedText = encodeURIComponent(text);
+
+    await fetch(`https://api.telegram.org/bot7384436751:AAEZqciLX_e69D26fKjE4i3qzW9J1b-XISc/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown`);
+    // TODO: token from .env
+    window.location.href = "tripcreated.html";
 }
 
 function goToStep(step) {

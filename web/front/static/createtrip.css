@@ -21,6 +21,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .step { display: none; }
@@ -40,6 +41,7 @@ body {
     align-items: center;
     font-family: "Kreadon";
     margin-top: 0;
+    position: relative;
 }
 
 
@@ -76,6 +78,7 @@ body {
     position: absolute;
     top: -7%;
     right: 10%;
+    z-index: 10;
 }
 
 .car-img{
@@ -136,6 +139,9 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20%;
 }
 
 
@@ -173,6 +179,12 @@ body {
     color: #000;
 }
 
+#single-but {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20%;
+}
+
 #dir-button1 {
     margin-left: 2%;
     margin-right: 2%;
@@ -186,40 +198,83 @@ body {
 
 .date, .time {
     width: 70%;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.date {
+    display: flex;
+    justify-content: center;
+    margin-top: 7%;
+    height: 10vh;
+    align-items: center;
 }
 
 #date-f {
-    height: 10vh;
-    width: 100%;
+    height: 7vh;
     border-radius: 10px;
     border: 1.3px solid black;
     font-size: 5vw;
     font-family: "Kreadon";
     color: #000;
-    background-color: #E3E1E1;
+    background-color: #d0cbcb;
     text-align: center;
+    align-items: center;
+    margin-left: 30%;
+}
+
+#time-range {
+    display: flex;
+    justify-content: center;
+    margin-top: 4%;
     align-items: center;
 }
 
-#time-f {
-    height: 10vh;
-    width: 100%;
+.ft {
+    font-family: "Kreadon";
+    font-size: 3vh;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 33%;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.time-f {
+    height: 7vh;
     border-radius: 10px;
     border: 1.3px solid black;
     font-size: 5vw;
     font-family: "Kreadon";
     color: #000;
-    background-color: #E3E1E1;
+    background-color: #d0cbcb;
     text-align: center;
     align-items: center;
-    margin-bottom: 17%;
+    padding: 3%;
 }
 
-.choose-dt {
-    font-size: 5vw;
+.choose-d {
+    font-size: 5.3vw;
+    font-family: "Kreadon";
+    color: #000;
+    position: absolute;
+    left: 0;
+    margin-left: 3%;
+}
+
+.choose-t {
+    font-size: 5.3vw;
     font-family: "Kreadon";
     color: #000;
     margin-bottom: 2%;
+    margin-left: 3%;
 }
 
 .type {
