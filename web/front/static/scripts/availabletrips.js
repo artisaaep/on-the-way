@@ -69,10 +69,10 @@ async function main() {
             <div class="card">
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
                 <a class="name">${trip.driver.name}</a>
-                <div class="maininfa">
+                <div class="main-info">
                     <a class="date">${trip.departure_time}<br></a>
                     <a class="from">${trip.start_location}</a>
-                    <a class="strelka">&#8594;</a>
+                    <a class="arrow">&#8594;</a>
                     <a class="to"><br>${trip.end_location}</a>
                 </div>
                 <div class="pr-ch">
@@ -82,7 +82,7 @@ async function main() {
                     : `<button class="choose" onClick="apply(${trip.id})" id="choose-${trip.id}">Выбрать</button>`
             ) +
             `</div>
-                <div class="dopinfa">
+                <div class="additional-info">
                     <a class="rides">Поездок: ${trip.driver.rides_amount} <br></a>
                     <a class="free-places">Свободных мест: ${trip.available_seats}</a>
                 </div>
