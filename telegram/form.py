@@ -4,7 +4,8 @@ from aiogram import Router
 from aiogram import types
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, InlineKeyboardButton, \
+    InlineKeyboardMarkup
 from aiogram.types.web_app_info import WebAppInfo
 
 from shared.database_class import Database
@@ -85,12 +86,15 @@ async def set_photo(message: types.Message, state: FSMContext):
         )
     else:
         await state.set_state(Form.photo)
-    markup = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="Создать поездку",
-                            web_app=WebAppInfo(url=base_webapp_url + "/createtrip.html"))],
-            [KeyboardButton(text="Найти поездку",
-                            web_app=WebAppInfo(url=base_webapp_url + "/availabletrips.html"))]
+
+    markup = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text="Создать поездку",
+                                     web_app=WebAppInfo(url=base_webapp_url + "/static/createtrip.html")),
+                InlineKeyboardButton(text="Найти поездку",
+                                     web_app=WebAppInfo(url=base_webapp_url + "/static/availabletrips.html")),
+            ],
         ],
         resize_keyboard=True,
         one_time_keyboard=True,

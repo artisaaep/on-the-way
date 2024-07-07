@@ -3,7 +3,7 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
-from ..data_models import User
+from web.data_models import User
 from shared.database import get_db
 from shared.base_models import User as UserModel
 
