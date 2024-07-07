@@ -1,4 +1,4 @@
-let url = "https://8aef-188-130-155-165.ngrok-free.app";
+let url = "https://8c70-188-130-155-165.ngrok-free.app";
 
 async function apply(trip_id) {
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
@@ -53,6 +53,10 @@ async function main() {
     const response = await (await fetch(url + "/api/trips", {
         method: "GET",
     })).json();
+    if (response.length===0){
+        bar.innerHTML = `<p>Пока нет доступных поездок</p>`;
+        return;
+    }
     response.forEach(trip => {
         let is_attached = false;
         console.log(trip.passengers)
@@ -65,7 +69,7 @@ async function main() {
             break;
         }
         bar.innerHTML += `
-            <div class="card">
+            <div class="card" id="trip-card-by-id-${trip.id}">
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
                 <a class="name">${trip.driver.name}</a>
                 <div class="main-info">
@@ -85,7 +89,7 @@ async function main() {
             ) +
             `</div>
                 <div class="additional-info">
-                    <a class="rides">Поездок: ${trip.driver.rides_amount} <br></a>
+                    <a class="rides" id="rides-amount-of-${trip.id}-driver">Поездок: ${trip.driver.rides_amount} <br></a>
                     <a class="free-places">Свободных мест: ${trip.available_seats}</a>
                 </div>
             </div>

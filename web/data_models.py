@@ -57,9 +57,9 @@ class BaseTrip(BaseModel):
     price: int
     available_seats: Optional[int]
     has_child_seat: Optional[bool]
-    departure_date = Optional[str]
-    clarify_from = Optional[str]
-    clarify_to = Optional[str]
+    departure_date: Optional[str]
+    clarify_from: Optional[str]
+    clarify_to: Optional[str]
 
     model_config = {"from_attributes": True}
 
