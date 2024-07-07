@@ -58,22 +58,24 @@ async function main() {
         console.log(trip.passengers)
         for (let index in trip.passengers) {
             console.log(trip.passengers[index]);
-            if (trip.passengers[index].id !== window.Telegram.WebApp.initDataUnsafe.user.id) {
+            if (trip.passengers[index].id !== number(window.Telegram.WebApp.initDataUnsafe.user.id)) {
                 continue;
             }
             is_attached = true;
             break;
         }
-        const msg = is_attached ? "Отменить" : "Выбрать";
         bar.innerHTML += `
             <div class="card">
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
                 <a class="name">${trip.driver.name}</a>
                 <div class="main-info">
-                    <a class="date">${trip.departure_time}<br></a>
+                    <a class="date">${trip.departure_date}<br></a>
                     <a class="from">${trip.start_location}</a>
                     <a class="arrow">&#8594;</a>
                     <a class="to"><br>${trip.end_location}</a>
+                    <a class="clari-from">${trip.clarify_from}</a>
+                    <a class="time">${trip.departure_time}</a>
+                    <a class="clari-to">${trip.clarify_to}</a>
                 </div>
                 <div class="pr-ch">
                     <a class="price">${trip.price} руб.</a>` +
