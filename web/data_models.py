@@ -28,6 +28,7 @@ class User(BaseModel):
     name: Optional[str] = None
     age: Optional[int]
     alias: str
+    sex: int
     car_ids: List[int]
     rides_amount: Optional[int]
 
@@ -38,6 +39,7 @@ class User(BaseModel):
             name=obj.name,
             age=obj.age,
             alias=obj.alias,
+            sex=obj.sex,
             car_ids=map(int, obj.car_ids.split()) if obj.car_ids else [],
             rides_amount=obj.rides_amount,
         )
