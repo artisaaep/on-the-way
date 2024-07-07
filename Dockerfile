@@ -16,8 +16,8 @@ COPY . .
 #RUN npm install
 #COPY web/wront/OnTheWay .
 #RUN npm run build
-FROM python:3.11-slim
-WORKDIR /on-the-way
+#FROM python:3.11-slim
+#WORKDIR /on-the-way
 
 COPY --from=python-base /on-the-way /on-the-way
 #COPY --from=node-build /on-the-way/web/wront/OnTheWay/build /on-the-way/web/wront/OnTheWay/build
