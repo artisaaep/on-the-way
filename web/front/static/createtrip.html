@@ -8,7 +8,7 @@
 </head>
 <body>
     <link rel="stylesheet" href="createtrip.css">
-    
+
     <div id="step1" class="step active">
         <div class="grey-rect">
             <div class="desc-img">
@@ -100,7 +100,7 @@
                     </li>
                 </ul>
             </div>
-            
+
             <div class="price">
                 <p class="choose-price">Цена в рублях:</p>
                 <input type="number" id="price-rub" value="100" step="50" min="0">
@@ -214,7 +214,7 @@
                 <p class="dir-desc" id="submit-data">Подтвердите данные о поездке</p>
             </div>
             <div id="trip-data">
-                    
+
             </div>
             <div class="nav-buttons">
                 <button class="next" id="dir-button1" onclick="goBack(7)">Назад</button>
@@ -222,7 +222,7 @@
             </div>
         </div>
     </div>
-
+    <script src="/scripts/createtrip.js"></script>
     <script>
 
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -231,7 +231,7 @@
             function handleClickOutside(event) {
                 comments.forEach(comment => {
                     if (comment === document.activeElement && !comment.contains(event.target)) {
-                        comment.blur(); 
+                        comment.blur();
                     }
                 });
             }
@@ -273,13 +273,13 @@
             const button = document.getElementById(id);
             if (button.classList.contains('selected')) {
                 button.classList.remove('selected');
-                button.style.backgroundColor = ''; 
+                button.style.backgroundColor = '';
             } else {
                 document.querySelectorAll('.button1').forEach(btn => {
                     btn.classList.remove('selected');
                     btn.style.backgroundColor = '';
                 });
-        
+
                 button.classList.add('selected');
                 button.style.backgroundColor = '#969696';
             }
@@ -291,13 +291,13 @@
             const button = document.getElementById(id);
             if (button.classList.contains('selected')) {
                 button.classList.remove('selected');
-                button.style.backgroundColor = ''; 
+                button.style.backgroundColor = '';
             } else {
                 document.querySelectorAll('.button2').forEach(btn => {
                     btn.classList.remove('selected');
                     btn.style.backgroundColor = '';
                 });
-        
+
                 button.classList.add('selected');
                 button.style.backgroundColor = '#969696';
             }
@@ -343,7 +343,6 @@
         }
 
         function submitTrip() {
-            window.location.href = "tripcreated.html";
             console.log('Trip submitted:', tripData);
         }
 
