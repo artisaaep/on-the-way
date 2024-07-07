@@ -43,7 +43,7 @@ async def start(message: types.Message, state: FSMContext):
         )
         text = "Привет!\n\nЭто сервис по поиску попутчиков <b>on the way</b>. \
 Здесь вы можете найти с кем добраться до пункта назначения или создать поездку как водитель и найти пассажиров. \U0001F699 "
-        await message.answer(text, parse_mode='html')
+        await message.answer(text, parse_mode='html', reply_markup=markup)
 
 
 
