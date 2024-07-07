@@ -12,7 +12,7 @@ class User(Base):
     age = Column(Integer, nullable=True)
     sex = Column(Integer, nullable=True)
     alias = Column(String, unique=True, index=True)
-    rides_amount = Column(Integer)
+    rides_amount = Column(Integer, default=0)
     car_ids = Column(String, nullable=True)
 
 
