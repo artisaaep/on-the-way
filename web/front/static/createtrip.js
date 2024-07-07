@@ -74,6 +74,11 @@ function updateTripData() {
 }
 
 function selectOrigin(city, id) {
+    if (city == "Казань") {
+        selectDestination('Иннополис', 'left2');
+    } else {
+        selectDestination('Казань', 'right2');
+    }
     tripData.origin = city;
     const button = document.getElementById(id);
     if (button.classList.contains('selected')) {
