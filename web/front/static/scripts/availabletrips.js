@@ -1,4 +1,4 @@
-let url = "https://8c70-188-130-155-165.ngrok-free.app";
+let url = "https://d925-188-130-155-165.ngrok-free.app";
 
 async function apply(trip_id) {
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
@@ -57,6 +57,7 @@ async function main() {
         bar.innerHTML = `<p>Пока нет доступных поездок</p>`;
         return;
     }
+    bar.innerHTML=``;
     response.forEach(trip => {
         let is_attached = false;
         console.log(trip.passengers)

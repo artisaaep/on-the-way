@@ -2,7 +2,7 @@ document.getElementById('back').onclick = function () {
     window.location.href = 'profile.html';
 };
 
-let url = "https://e8dc-188-130-155-186.ngrok-free.app";
+let url = "https://d925-188-130-155-165.ngrok-free.app";
 
 let model;
 let number;
