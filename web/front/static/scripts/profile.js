@@ -1,5 +1,5 @@
 async function main() {
-    let url = "https://e8dc-188-130-155-186.ngrok-free.app";
+    let url = "https://t.me/frontMVPSWP_bot/ontheway";
     const userUrl = url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id;
     const response = await (await fetch(userUrl, {})).json();
     const img = document.getElementById("avatar");
