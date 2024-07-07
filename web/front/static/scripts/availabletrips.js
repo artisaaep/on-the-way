@@ -1,4 +1,4 @@
-let url = "https://8c70-188-130-155-165.ngrok-free.app";
+let url = "https://399d-188-130-155-163.ngrok-free.app";
 
 async function apply(trip_id) {
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {

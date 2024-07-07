@@ -77,8 +77,8 @@
 }
 
 .avatar {
-    width: 6em;
-    height: 6em;
+    width: 5em;
+    height: 5em;
     object-fit: cover;
     border-radius: 50%;
     border: solid 0.5px black;
