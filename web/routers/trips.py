@@ -107,7 +107,9 @@ async def attach_rider(
     else:
         raise HTTPException(status_code=400, detail="Bad request. Rider is not attached to the ride")
 
-    db.delete(db.query(TripPassenger).filter(TripPassenger.user_id == rider_id).first())
+    db.delete(
+        db.query(TripPassenger).filter(TripPassenger.user_id == rider_id,
+                                       TripPassenger.trip_id.like == _id).first())
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
