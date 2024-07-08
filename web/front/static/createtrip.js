@@ -181,7 +181,7 @@ async function submitTrip() {
             let kb = {
                 inline_keyboard: [[{
                     text: 'подробнее',
-                    web_app: { url: 'https://75df-188-130-155-149.ngrok-free.app/web/front/static/tripinfo.html'}
+                    web_app: { url: 'https://75df-188-130-155-149.ngrok-free.app/static/tripinfo.html'}
                 }]]
             };
             let text = `Ваша поездка *${tripData.origin} - ${tripData.destination}* успешно создана! 🚙
@@ -211,7 +211,7 @@ async function checkCar() {
         bar.innerHTML = `<p id="no-cars">У вас пока нет машин.</p>`;
         return;
     }
-    bar.innerHTML = ``;
+    bar.innerHTML = "";
     response.car_ids.forEach(async(id) => {
         const response = await (await fetch(url + "/api/cars/" + id, {
             method: "GET",

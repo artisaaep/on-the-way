@@ -1,5 +1,5 @@
 async function main() {
-    let url = "https://d2fd-188-130-155-177.ngrok-free.app";
+    let url = "https://75df-188-130-155-149.ngrok-free.app";
     const userUrl = url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id;
     const response = await (await fetch(userUrl, {})).json();
     const img = document.getElementById("avatar");

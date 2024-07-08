@@ -32,4 +32,4 @@ def start():
     app.include_router(trips.router)
     app.include_router(users.router)
     app.include_router(cars.router)
-    run(app)
+    run(app, port=5500)

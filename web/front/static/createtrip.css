@@ -56,6 +56,14 @@ body {
 }
 
 
+#addcar {
+    font-size: 3vh;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 38%;
+}
+
+
 .dir-desc {
     margin-left: 2%;
     margin-right: 2%;
@@ -87,6 +95,7 @@ body {
     position: absolute;
     top: -11%;
     left: 8%;
+    z-index: 10;
 }
 
 
@@ -393,7 +402,7 @@ body {
     margin-top: 5%;
     padding-top: 4%;
     width: 70%;
-    height: 50%;
+    height: 40%;
     border: 1.3px solid black;
     border-radius: 10px;
     margin-bottom: 8%;
