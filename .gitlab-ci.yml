@@ -1,26 +1,51 @@
-# You can override the included template(s) by including variable overrides
-# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
-# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
-# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
-# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
-# Note that environment variables can be set in several places
-# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+variables:
+  DOCKER_TLS_CERTDIR: "/certs"
+  APP: "my-app"
+
 stages:
-- build
-- test
-- deploy
-- review
-- dast
-- staging
-- canary
-- production
-- incremental rollout 10%
-- incremental rollout 25%
-- incremental rollout 50%
-- incremental rollout 100%
-- performance
-- cleanup
-sast:
+  - build
+  - test
+
+build:
+  stage: build
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
+  before_script:
+    - docker info
+    - echo "$HARBOR_PASSWORD" | docker login -u "$HARBOR_USERNAME" "$HARBOR_HOST" --password-stdin
+  script:
+    - docker build -t my-docker-image .
+    - docker tag my-docker-image $HARBOR_HOST/$HARBOR_PROJECT/$APP:$CI_JOB_ID
+    - docker tag my-docker-image $HARBOR_HOST/$HARBOR_PROJECT/$APP:latest
+    - docker push $HARBOR_HOST/$HARBOR_PROJECT/$APP:$CI_JOB_ID
+    - docker push $HARBOR_HOST/$HARBOR_PROJECT/$APP:latest
+
+container_scanning:
   stage: test
-include:
-- template: Auto-DevOps.gitlab-ci.yml
+  image:
+    name: $HARBOR_HOST/docker-hub-cache/aquasec/trivy:latest
+    entrypoint: [""]
+  variables:
+    GIT_STRATEGY: none
+    TRIVY_USERNAME: "$HARBOR_USERNAME"
+    TRIVY_PASSWORD: "$HARBOR_PASSWORD"
+    TRIVY_AUTH_URL: "$HARBOR_HOST"
+    FULL_IMAGE_NAME: $HARBOR_HOST/$HARBOR_PROJECT/$APP:latest
+  script:
+    - trivy --version
+    - time trivy image --download-db-only --no-progress --cache-dir .trivycache/
+    - time trivy image --exit-code 0 --cache-dir .trivycache/ --no-progress --format template --template "@/contrib/gitlab.tpl" --output "$CI_PROJECT_DIR/gl-container-scanning-report.json" "$FULL_IMAGE_NAME"
+    - time trivy image --exit-code 0 --cache-dir .trivycache/ --no-progress "$FULL_IMAGE_NAME"
+    - time trivy image --exit-code 1 --cache-dir .trivycache/ --severity CRITICAL --no-progress "$FULL_IMAGE_NAME"
+  cache:
+    paths:
+      - .trivycache/
+  artifacts:
+    when: always
+    reports:
+      container_scanning: gl-container-scanning-report.json
+  tags:
+    - docker
+  needs:
+    - build

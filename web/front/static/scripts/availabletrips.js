@@ -2,15 +2,7 @@ let url = "https://d2fd-188-130-155-177.ngrok-free.app";
 
 async function apply(trip_id) {
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "has_luggage": false,
-            "has_kids": false,
-            "has_pets": false
-        })
+        method: "put",
     }).then(response => {
         if (response.ok) {
             const btn = document.getElementById("choose-" + trip_id);
