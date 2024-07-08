@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const comments = document.querySelectorAll('.com');
+    const comments = document.querySelectorAll('.com');
 
     function handleClickOutside(event) {
         comments.forEach(comment => {
