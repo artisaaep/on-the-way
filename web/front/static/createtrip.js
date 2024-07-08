@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const comments = document.querySelectorAll('.com');
-    const comments = document.querySelectorAll('.com');
 
     function handleClickOutside(event) {
         comments.forEach(comment => {
@@ -178,17 +177,24 @@ async function submitTrip() {
           }),
     }).then(async response => {
         if (response.ok) {
-            console.log('Trip submitted:', tripData);
             let id = window.Telegram.WebApp.initDataUnsafe.user.id;
+            let kb = {
+                inline_keyboard: [[{
+                    text: 'подробнее',
+                    web_app: { url: 'https://75df-188-130-155-149.ngrok-free.app/web/front/static/tripinfo.html'}
+                }]]
+            };
             let text = `Ваша поездка *${tripData.origin} - ${tripData.destination}* успешно создана! 🚙
             
-        Нажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️`;
+Нажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️`;
 
             let encodedText = encodeURIComponent(text);
+            let encodedReplyMarkup = encodeURIComponent(JSON.stringify(kb));
 
-            await fetch(`https://api.telegram.org/bot7384436751:AAEZqciLX_e69D26fKjE4i3qzW9J1b-XISc/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown`);
+            await fetch(`https://api.telegram.org/bot6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown&reply_markup=${encodedReplyMarkup}`);
             // TODO: token from .env
             window.location.href = "tripcreated.html";
+
         } else {
             window.Telegram.WebApp.showAlert("Something went wrong");
         }
