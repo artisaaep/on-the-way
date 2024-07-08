@@ -167,6 +167,32 @@ async function submitTrip() {
     window.location.href = "tripcreated.html";
 }
 
+async function checkCar() {
+    goToStep(5);
+    const bar = document.getElementById("carchoice");
+    const response = await (await fetch(url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id, {
+        method: "GET",
+    })).json();
+    if (response.car_ids.length == 0){
+        bar.innerHTML = `<p id="no-cars">У вас пока нет машин.</p>`;
+        return;
+    }
+    response.car_ids.forEach(async(id) => {
+        const response = await (await fetch(url + "/api/cars/" + id, {
+            method: "GET",
+        })).json();
+        bar.innerHTML += `
+            <li>
+                <label for="car${id}">
+                    <input  type="radio" id="car${id}" name="${response.brand}">
+                    <div class="checkbox__checkmark"></div>
+                    ${response.brand}
+                </label>
+            </li>
+        `
+    });
+}
+
 function goToStep(step) {
     document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
     document.getElementById(`step${step}`).classList.add('active');

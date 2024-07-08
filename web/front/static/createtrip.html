@@ -41,7 +41,7 @@
             <div class="but-text">
                 <div class="buttons">
                     <button class="button2" id="left2">Иннополис</button>
-                    <button class="button2" id="right2"">Казань</button>
+                    <button class="button2" id="right2">Казань</button>
                 </div>
                 <textarea id="comment2" class="com" placeholder="Уточните место прибытия..."></textarea>
             </div>
@@ -113,7 +113,7 @@
             </div>
             <div class="nav-buttons">
                 <button class="next" id="dir-button1" onclick="goBack(4)">Назад</button>
-                <button class="next" id="dir-button2" onclick="goToStep(5)">Далее</button>
+                <button class="next" id="dir-button2" onclick="checkCar()">Далее</button>
             </div>
         </div>
     </div>
@@ -126,13 +126,9 @@
             </div>
             <div class="car">
                 <ul class="choice">
-                    <li>
-                        <label for="car1">
-                            <input  type="radio" id="car1" name="c">
-                            <div class="checkbox__checkmark"></div>
-                            машина 1
-                        </label>
-                    </li>
+                    <div id="carchoice">
+                        
+                    </div>
                 </ul>
             </div>
             <div id="myModal" class="modal">
