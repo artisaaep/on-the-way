@@ -51,17 +51,19 @@ let tripData = {
     destination: '',
     addInfoDest: '',
     addInfoOrigin: '',
+    available_seats: 0,
     date: '',
     time: '',
     type: '',
-    price: '',
+    price: 0,
     car: '',
     lagg: false,
     an: false,
     ch: false,
     bust: false,
     av: '',
-    additional: ''
+    additional: '',
+    car_id: 1
 };
 
 function updateTripData() {
@@ -154,17 +156,42 @@ function showSummary() {
 }
 
 async function submitTrip() {
-    console.log('Trip submitted:', tripData);
-    let id = window.Telegram.WebApp.initDataUnsafe.user.id;
-    let text = `Ваша поездка *${tripData.origin} - ${tripData.destination}* успешно создана! 🚙
-    
-Нажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️`;
+    console.log(tripData);
+    await fetch(url + "/api/trips/", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "start_location": tripData.origin,
+            "end_location": tripData.destination,
+            "departure_time": tripData.time,
+            "price": tripData.price,
+            "available_seats": tripData.available_seats,
+            "has_child_seat": tripData.ch,
+            "departure_date": tripData.date,
+            "clarify_from": tripData.addInfoOrigin,
+            "clarify_to": tripData.addInfoDest,
+            "car_id": tripData.car_id,
+            "driver_id": window.Telegram.WebApp.initDataUnsafe.user.id
+          }),
+    }).then(async response => {
+        if (response.ok) {
+            console.log('Trip submitted:', tripData);
+            let id = window.Telegram.WebApp.initDataUnsafe.user.id;
+            let text = `Ваша поездка *${tripData.origin} - ${tripData.destination}* успешно создана! 🚙
+            
+        Нажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️`;
 
-    let encodedText = encodeURIComponent(text);
+            let encodedText = encodeURIComponent(text);
 
-    await fetch(`https://api.telegram.org/bot7384436751:AAEZqciLX_e69D26fKjE4i3qzW9J1b-XISc/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown`);
-    // TODO: token from .env
-    window.location.href = "tripcreated.html";
+            await fetch(`https://api.telegram.org/bot7384436751:AAEZqciLX_e69D26fKjE4i3qzW9J1b-XISc/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown`);
+            // TODO: token from .env
+            window.location.href = "tripcreated.html";
+        } else {
+            window.Telegram.WebApp.showAlert("Something went wrong");
+        }
+    });
 }
 
 async function checkCar() {
@@ -177,6 +204,7 @@ async function checkCar() {
         bar.innerHTML = `<p id="no-cars">У вас пока нет машин.</p>`;
         return;
     }
+    bar.innerHTML = ``;
     response.car_ids.forEach(async(id) => {
         const response = await (await fetch(url + "/api/cars/" + id, {
             method: "GET",
@@ -184,7 +212,7 @@ async function checkCar() {
         bar.innerHTML += `
             <li>
                 <label for="car${id}">
-                    <input  type="radio" id="car${id}" name="${response.brand}">
+                    <input  type="radio" id="car-${id}" name="${response.brand}">
                     <div class="checkbox__checkmark"></div>
                     ${response.brand}
                 </label>

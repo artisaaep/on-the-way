@@ -20,6 +20,16 @@ class Car(NewCar):
     model_config = {"from_attributes": True}
     id: int
 
+    @classmethod
+    def from_orm(cls: type[BaseModel], obj: SQLCar) -> Model:
+        return cls(
+            id=obj.id,
+            owner_id=obj.owner_id,
+            number=obj.number,
+            brand=obj.brand,
+            color=obj.brand,
+        )
+
 
 class User(BaseModel):
     model_config = {"from_attributes": True}
@@ -53,7 +63,6 @@ class BaseTrip(BaseModel):
     start_location: str
     end_location: str
     departure_time: str
-    end_location: str
     price: int
     available_seats: Optional[int]
     has_child_seat: Optional[bool]
@@ -149,7 +158,7 @@ class NewTrip(BaseTrip):
         return Trip(
             passengers=[],
             id=generator(SQLTrip),
-            car=db.query(SQLCar).filter(SQLCar.id == self.car_id).first() if self.car_id else 0,
+            car=Car.from_orm(db.query(SQLCar).filter(SQLCar.id == self.car_id).first()) if self.car_id else 0,
             driver=User.from_orm(db.query(SQLUser).filter(SQLUser.id == self.driver_id).first()),
             start_location=self.start_location,
             end_location=self.end_location,
