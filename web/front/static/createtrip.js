@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+function main() {
+    window.Telegram.WebApp.expand();
+}
+
 function setCurrentTime() {
     var now = new Date();
 
@@ -232,3 +236,5 @@ function goToStep(step) {
     document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
     document.getElementById(`step${step}`).classList.add('active');
 }
+
+main()
