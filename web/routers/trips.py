@@ -77,7 +77,6 @@ async def attach_rider(
         db: Session = Depends(get_db)
 ):
     passengers, db_trip = __check_rider_properties(db, _id, rider_id)
-    print(passengers)
     if str(rider_id) not in passengers:
         passengers.append(str(rider_id))
         db_trip.passenger_ids = ' '.join(passengers)
@@ -107,7 +106,9 @@ async def attach_rider(
     else:
         raise HTTPException(status_code=400, detail="Bad request. Rider is not attached to the ride")
 
-    db.delete(db.query(TripPassenger).filter(TripPassenger.user_id == rider_id).first())
+    db.delete(
+        db.query(TripPassenger).filter(TripPassenger.user_id == rider_id,
+                                       TripPassenger.trip_id == _id).first())
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
@@ -126,4 +127,3 @@ def __check_rider_properties(db: Session, _id: int, rider_id: int) -> (List[str]
     else:
         passengers = []
     return passengers, db_trip
-

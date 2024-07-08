@@ -53,6 +53,9 @@ class Trip(Base):
     has_child_seat = Column(Boolean, nullable=True)
     car_id = Column(Integer, ForeignKey('cars.id'), nullable=True)
     car = relationship("Car")
+    departure_date = Column(String, nullable=True)
+    clarify_from = Column(String, nullable=True)
+    clarify_to = Column(String, nullable=True)
 
 
 User.cars = relationship("Car", order_by=Car.id, back_populates="owner")

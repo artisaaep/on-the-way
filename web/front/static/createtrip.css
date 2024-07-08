@@ -17,8 +17,20 @@ html, body {
     font-family: "Kreadon";
 }
 
+* {
+    box-sizing: border-box;
+    font-family: "Kreadon";
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: "Kreadon";
+}
+
 body {
     display: flex;
+    justify-content: center;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -28,7 +40,13 @@ body {
 .step.active { display: block; }
 
 
+.step { display: none; }
+.step.active { display: block; }
+
+
 .grey-rect {
+    width: 83.9vw;
+    height: 70vh;
     width: 83.9vw;
     height: 70vh;
     background-color: #E3E1E1;
@@ -52,13 +70,29 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Kreadon";
+    margin-top: 0;
+    position: relative;
 }
 
+
+.desc-img{
+    margin-top: 10%;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
 
 .dir-desc {
     margin-left: 2%;
     margin-right: 2%;
+    font-size: 7vw;
     font-size: 7vw;
     font-family: "Kreadon";
     color: #000;
@@ -71,10 +105,31 @@ body {
     height: 90%;
     width: auto;
 }
+.dir-image {
+    margin-top: 2%;
+    height: 90%;
+    width: auto;
+}
 
 .date-img{
     height: 14vw;
     width: auto;
+    position: absolute;
+    top: -7%;
+    right: 10%;
+    z-index: 10;
+}
+
+.car-img{
+    height: 14vw;
+    margin-bottom: 0;
+    position: absolute;
+    top: -11%;
+    left: 8%;
+}
+
+
+#step3, #step4, #step5 {
     position: absolute;
     top: -7%;
     right: 10%;
@@ -120,11 +175,49 @@ body {
     border-right: 0.65px solid black;
 }
 
+.button1, .button2 {
+    width: 50%;
+    height: 100%;
+    font-size: 3vh;
+    font-family: "Kreadon";
+    padding: 0;
+    background-color: inherit;
+    color: #000;
+}
+
+#right1, #right2 {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 0.1px solid black;
+    border-left: 0.65px solid black;
+}
+
+#left1, #left2 {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border: 0.1px solid black;
+    border-right: 0.65px solid black;
+}
+
 .buttons {
     width: 100%;
     display: flex;
     justify-content: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 7%;
+    height: 10vh;
     align-items: center;
+    height: 10vh;
+    border-radius: 10px;
+    border: 1.2px solid black;
+    margin: 0;
+    margin-top: 3%;
+    margin-bottom: 5%;
+}
+
+.nav-buttons {
+    width: 70%;
     height: 10vh;
     border-radius: 10px;
     border: 1.2px solid black;
@@ -144,13 +237,11 @@ body {
     margin-bottom: 20%;
 }
 
-
 .but-text {
     margin-top: 5%;
     margin-bottom: 10%;
     width: 70%;
 }
-
 
 #comment1, #comment2 {
     width: 100%;
@@ -164,6 +255,7 @@ body {
     overflow: auto;
     resize: none;
     margin: 0;
+    outline: none;
     outline: none;
 }
 
@@ -214,6 +306,7 @@ body {
 #date-f {
     height: 7vh;
     border-radius: 10px;
+    border: 1.3px solid black;
     border: 1.3px solid black;
     font-size: 5vw;
     font-family: "Kreadon";
@@ -294,6 +387,18 @@ body {
     font-size: 5.4vw;
     align-items: center;
     position: relative;
+    margin-top: 7%;
+    font-size: 4.5vw;
+}
+
+.price {
+    width: 70%;
+    margin-top: 5%;
+    margin-bottom: 8%;
+    display: flex;
+    font-size: 5.4vw;
+    align-items: center;
+    position: relative;
 }
 
 .choice {
@@ -301,9 +406,21 @@ body {
     padding: 0;
     margin: 0;
     font-family: "Kreadon";
+    font-family: "Kreadon";
 }
 
 .choice li {
+    margin-bottom: 15px; 
+}
+
+.choice label {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 7%; 
+    cursor: pointer;
+    user-select: none;
+    font-family: "Kreadon";
     margin-bottom: 15px; 
 }
 
@@ -377,7 +494,29 @@ body {
 .header {
     margin-top: 0;
     width: 100%;
+.header {
+    margin-top: 0;
+    width: 100%;
     align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 5vw;
+}
+
+#param-text {
+    margin-bottom: 2%;
+}
+
+.car {
+    font-size: 5vw;
+    margin-top: 5%;
+    padding-top: 4%;
+    width: 70%;
+    height: 50%;
+    border: 1.3px solid black;
+    border-radius: 10px;
+    margin-bottom: 8%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -417,6 +556,24 @@ body {
     height: 16%;
     font-size: 3vw;
     border: 1.3px solid black;
+#price-rub {
+    width: 30%;
+    height: 70%;
+    border: 1.3px solid black;
+    border-radius: 10px;
+    padding-left: 3%;
+    font-size: 4vw;
+    right: 100;
+    position: absolute;
+    right: 0;
+    background-color: inherit;
+}
+
+#add {
+    width: 70%;
+    height: 16%;
+    font-size: 3vw;
+    border: 1.3px solid black;
     background-color: inherit;
     border-radius: 8px;
     text-align: left;
@@ -431,12 +588,31 @@ body {
 
 
 .number-label {
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+
+.number-label {
     display: flex;
     align-items: center;
     position: relative;
     padding-left: 7%; 
     cursor: pointer;
+    position: relative;
+    padding-left: 7%; 
+    cursor: pointer;
     font-family: "Kreadon";
+}
+
+.number-input {
+    position: relative;
+    width: 10vw; 
+    height: 5vw; 
+    border: 1px solid #333;
+    border-radius: 3px;
+    margin-left: 15%;
+    text-align: center;
 }
 
 .number-input {
@@ -458,8 +634,17 @@ body {
 
 #submit-data {
     font-size: 5.5vw;
+    background-color: inherit;
+    font-size: 3vw;
 }
 
+.av-text {
+    margin-left: 6.8%;
+}
+
+#submit-data {
+    font-size: 5.5vw;
+}
 #sub-d {
     margin-top: 0;
     margin-bottom: 2%;
@@ -474,4 +659,10 @@ body {
     border-radius: 10px;
     margin-top: 2%;
     margin-bottom: 4%;
+}
+
+#no-cars {
+    color: gray;
+    font-size: medium;
+    text-align: center;
 }

@@ -61,6 +61,8 @@
     top: 16%;
     right: 48%;
 }
+
+/* taken */
 .card {
     padding: 2.5%;
     text-align: center;
@@ -75,8 +77,9 @@
 }
 
 .avatar {
-    width: 25%;
-    height: 25%;
+    width: 6em;
+    height: 6em;
+    object-fit: cover;
     border-radius: 50%;
     border: solid 0.5px black;
     float: left;
@@ -95,7 +98,7 @@
     padding-bottom: 0.5%;
 }
 
-.maininfa {
+.main-info {
     margin-top: 2%;
     width: 100%;
 }
@@ -114,7 +117,7 @@
 
 }
 
-.strelka {
+.arrow {
     font-family: Kreadon_demi;
     font-size: 15px;
     margin-left: 7%;
@@ -146,7 +149,7 @@
     margin-left: 10%;
 }
 
-.dopinfa {
+.additional-info {
     float: left;
     margin-top: -10.5%;
 }
@@ -183,6 +186,7 @@
     padding: 3%;
     color: black;
 }
+/* end taken*/
 
 footer{
     position: fixed;

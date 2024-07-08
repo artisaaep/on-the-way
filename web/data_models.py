@@ -20,6 +20,16 @@ class Car(NewCar):
     model_config = {"from_attributes": True}
     id: int
 
+    @classmethod
+    def from_orm(cls: type[BaseModel], obj: SQLCar) -> Model:
+        return cls(
+            id=obj.id,
+            owner_id=obj.owner_id,
+            number=obj.number,
+            brand=obj.brand,
+            color=obj.brand,
+        )
+
 
 class User(BaseModel):
     model_config = {"from_attributes": True}
@@ -53,10 +63,12 @@ class BaseTrip(BaseModel):
     start_location: str
     end_location: str
     departure_time: str
-    end_location: str
     price: int
     available_seats: Optional[int]
     has_child_seat: Optional[bool]
+    departure_date: Optional[str]
+    clarify_from: Optional[str]
+    clarify_to: Optional[str]
 
     model_config = {"from_attributes": True}
 
@@ -79,7 +91,10 @@ class Trip(BaseTrip):
             seats_available=self.available_seats,
             has_child_seat=self.has_child_seat,
             price=self.price,
-            car_id=self.car.id if self.car else 0
+            car_id=self.car.id if self.car else 0,
+            departure_date=self.departure_date,
+            clarify_from=self.clarify_from,
+            clarify_to=self.clarify_to,
         )
         return sqlalchemy_trip
 
@@ -127,6 +142,9 @@ class Trip(BaseTrip):
             has_child_seat=orm.has_child_seat,
             price=orm.price,
             car=session.query(SQLCar).filter(SQLCar.id == orm.car_id).first(),
+            departure_date=orm.departure_date,
+            clarify_from=orm.clarify_from,
+            clarify_to=orm.clarify_to,
         )
 
         return trip_model
@@ -140,7 +158,7 @@ class NewTrip(BaseTrip):
         return Trip(
             passengers=[],
             id=generator(SQLTrip),
-            car=db.query(SQLCar).filter(SQLCar.id == self.car_id).first() if self.car_id else 0,
+            car=Car.from_orm(db.query(SQLCar).filter(SQLCar.id == self.car_id).first()) if self.car_id else 0,
             driver=User.from_orm(db.query(SQLUser).filter(SQLUser.id == self.driver_id).first()),
             start_location=self.start_location,
             end_location=self.end_location,
@@ -148,6 +166,9 @@ class NewTrip(BaseTrip):
             available_seats=self.available_seats,
             has_child_seat=self.has_child_seat,
             price=self.price,
+            departure_date=self.departure_date,
+            clarify_from=self.clarify_from,
+            clarify_to=self.clarify_to,
         )
 
 
