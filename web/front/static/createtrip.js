@@ -159,7 +159,7 @@ async function submitTrip() {
     let kb = {
         inline_keyboard: [[{
             text: 'подробнее',
-            url: 'vk.com'
+            web_app: { url: 'https://75df-188-130-155-149.ngrok-free.app/web/front/static/tripinfo.html'}
         }]]
     };
     let text = `Ваша поездка *${tripData.origin} - ${tripData.destination}* успешно создана! 🚙
@@ -169,7 +169,7 @@ async function submitTrip() {
     let encodedText = encodeURIComponent(text);
     let encodedReplyMarkup = encodeURIComponent(JSON.stringify(kb));
 
-    await fetch(`https://api.telegram.org/bot7384436751:AAEZqciLX_e69D26fKjE4i3qzW9J1b-XISc/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown&reply_markup=${encodedReplyMarkup}`);
+    await fetch(`https://api.telegram.org/bot6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown&reply_markup=${encodedReplyMarkup}`);
     // TODO: token from .env
     window.location.href = "tripcreated.html";
 }
