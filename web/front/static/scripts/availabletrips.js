@@ -1,4 +1,4 @@
-let url = "https://8c70-188-130-155-165.ngrok-free.app";
+let url = "https://8aef-188-130-155-165.ngrok-free.app";
 
 async function apply(trip_id) {
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
@@ -57,12 +57,13 @@ async function main() {
         bar.innerHTML = `<p>Пока нет доступных поездок</p>`;
         return;
     }
+    bar.innerHTML = ``;
     response.forEach(trip => {
         let is_attached = false;
         console.log(trip.passengers)
         for (let index in trip.passengers) {
             console.log(trip.passengers[index]);
-            if (trip.passengers[index].id !== number(window.Telegram.WebApp.initDataUnsafe.user.id)) {
+            if (trip.passengers[index].id !== window.Telegram.WebApp.initDataUnsafe.user.id) {
                 continue;
             }
             is_attached = true;
@@ -72,8 +73,8 @@ async function main() {
             <div class="card" id="trip-card-by-id-${trip.id}">
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
                 <a class="name">${trip.driver.name}</a>
-                <div class="main-info">
-                    <a class="date">${trip.departure_date}<br></a>
+                <div class="maininfa">
+                    <a class="date">${trip.departure_time}<br></a>
                     <a class="from">${trip.start_location}</a>
                     <a class="arrow">&#8594;</a>
                     <a class="to"><br>${trip.end_location}</a>
@@ -88,7 +89,7 @@ async function main() {
                     : `<button class="choose" onClick="apply(${trip.id})" id="choose-${trip.id}">Выбрать</button>`
             ) +
             `</div>
-                <div class="additional-info">
+                <div class="dopinfa">
                     <a class="rides" id="rides-amount-of-${trip.id}-driver">Поездок: ${trip.driver.rides_amount} <br></a>
                     <a class="free-places">Свободных мест: ${trip.available_seats}</a>
                 </div>
