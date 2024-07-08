@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function handleClickOutside(event) {
         comments.forEach(comment => {
             if (comment === document.activeElement && !comment.contains(event.target)) {
-                comment.blur();
+                comment.blur(); 
             }
         });
     }
@@ -14,22 +14,56 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+function setCurrentTime() {
+    var now = new Date();
+
+    var hours = now.getHours().toString().padStart(2, '0');
+    var minutes = now.getMinutes().toString().padStart(2, '0');
+
+    var currentTime = hours + ':' + minutes;
+
+    const times = document.querySelectorAll('.time-f');
+    times.forEach(win => {
+        win.value = currentTime;
+    })
+}
+
+
+function setCurrentDate() {
+    var now = new Date();
+
+    var year = now.getFullYear();
+    var month = (now.getMonth() + 1).toString().padStart(2, '0'); 
+    var day = now.getDate().toString().padStart(2, '0');
+    
+    var currentDate = year + '-' + month + '-' + day;
+    
+    document.getElementById('date-f').value = currentDate;
+    console.log(getElementById('date-f').value);
+    console.log(currentDate);
+}
+
+window.addEventListener('load', setCurrentTime);
+window.addEventListener('load', setCurrentDate);
+
 let tripData = {
     origin: '',
     destination: '',
     addInfoDest: '',
     addInfoOrigin: '',
+    available_seats: 0,
     date: '',
     time: '',
     type: '',
-    price: '',
+    price: 0,
     car: '',
     lagg: false,
     an: false,
     ch: false,
     bust: false,
     av: '',
-    additional: ''
+    additional: '',
+    car_id: 1
 };
 
 function updateTripData() {
@@ -42,11 +76,16 @@ function updateTripData() {
 }
 
 function selectOrigin(city, id) {
+    if (city == "Казань") {
+        selectDestination('Иннополис', 'left2');
+    } else {
+        selectDestination('Казань', 'right2');
+    }
     tripData.origin = city;
     const button = document.getElementById(id);
     if (button.classList.contains('selected')) {
         button.classList.remove('selected');
-        button.style.backgroundColor = '';
+        button.style.backgroundColor = ''; 
     } else {
         document.querySelectorAll('.button1').forEach(btn => {
             btn.classList.remove('selected');
@@ -64,7 +103,7 @@ function selectDestination(city, id) {
     const button = document.getElementById(id);
     if (button.classList.contains('selected')) {
         button.classList.remove('selected');
-        button.style.backgroundColor = '';
+        button.style.backgroundColor = ''; 
     } else {
         document.querySelectorAll('.button2').forEach(btn => {
             btn.classList.remove('selected');
@@ -92,91 +131,94 @@ function addInfoDest() {
 }
 
 function selectDate() {
-    let date = document.getElementById('trip-date');
-    let time = document.getElementById('trip-time');
-    const selectedDate = new Date(`${date.value}T${time.value}`);
-    const now = new Date();
-
-    if (selectedDate > now) {
-        tripData.date = `${date.value}   ${time.value}`;
-        goToStep(4);
-        updateTripData();
-    } else {
-        alert('Выберите дату и время позже текущего момента.');
-    }
+    let date = document.getElementById('date-f');
+    const times = document.querySelectorAll('.time-f');
+    tripData.date = `${date.value}`;  
+    tripData.time = `${times[0].value}-${times[1].value}`;
+    goToStep(4);
+    updateTripData()
 }
 
-function selectTypePrice() {
-    const selectedType = document.querySelector('input[name="r"]:checked');
-    if (selectedType) {
-        tripData.type = selectedType.nextElementSibling.textContent;
-        tripData.price = document.getElementById('price-rub').value;
-        if (tripData.type === 'На своей машине') {
-            fetchCarOptions();
-        } else {
-            goToStep(6);
-        }
-        updateTripData();
-    } else {
-        alert('Выберите вид поездки.');
-    }
+function selectTypePrice(date) {
+    tripData.date = date;
 }
 
-function fetchCarOptions() {
-    fetch('/api/cars/')
-        .then(response => response.json())
-        .then(cars => {
-            const carList = document.querySelector('.car ul.choice');
-            carList.innerHTML = '';
-            cars.forEach(car => {
-                const carItem = document.createElement('li');
-                carItem.innerHTML = `
-                    <label for="car${car.id}">
-                        <input type="radio" id="car${car.id}" name="c" value="${car.id}">
-                        <div class="checkbox__checkmark"></div>
-                        ${car.brand} - ${car.color}
-                    </label>
-                `;
-                carList.appendChild(carItem);
-            });
-            goToStep(5);
-        })
-        .catch(error => console.error('Error fetching cars:', error));
+function selectCar(date) {
+    tripData.date = date;
 }
 
-function selectCar() {
-    const selectedCar = document.querySelector('input[name="c"]:checked');
-    if (selectedCar) {
-        tripData.car = selectedCar.value;
-        goToStep(6);
-        updateTripData();
-    } else {
-        alert('Выберите машину.');
-    }
-}
-
-function goBack(current) {
-    goToStep(current - 1);
+function goBack(cuurent) {
+    goToStep(cuurent - 1);
 }
 
 function showSummary() {
-    document.getElementById('summary-text').innerText = `Город отправления: ${tripData.origin}, Город назначения: ${tripData.destination}, Дата поездки: ${tripData.date}`;
+    document.getElementById('summary-text').innerText = `Город отправления: ${tripData.origin}, Город назначения: ${tripData.destination}, Дата поездки: ${tripData.date}  ${tripData.date}`;
 }
 
-function submitTrip() {
-    fetch('/api/trips/', {
+async function submitTrip() {
+    console.log(tripData);
+    await fetch(url + "/api/trips/", {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify(tripData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Trip submitted:', data);
-        alert('Поездка успешно создана!');
-    })
-    .catch(error => console.error('Error submitting trip:', error));
+        body: JSON.stringify({
+            "start_location": tripData.origin,
+            "end_location": tripData.destination,
+            "departure_time": tripData.time,
+            "price": tripData.price,
+            "available_seats": tripData.available_seats,
+            "has_child_seat": tripData.ch,
+            "departure_date": tripData.date,
+            "clarify_from": tripData.addInfoOrigin,
+            "clarify_to": tripData.addInfoDest,
+            "car_id": tripData.car_id,
+            "driver_id": window.Telegram.WebApp.initDataUnsafe.user.id
+          }),
+    }).then(async response => {
+        if (response.ok) {
+            console.log('Trip submitted:', tripData);
+            let id = window.Telegram.WebApp.initDataUnsafe.user.id;
+            let text = `Ваша поездка *${tripData.origin} - ${tripData.destination}* успешно создана! 🚙
+            
+        Нажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️`;
+
+            let encodedText = encodeURIComponent(text);
+
+            await fetch(`https://api.telegram.org/bot7384436751:AAEZqciLX_e69D26fKjE4i3qzW9J1b-XISc/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown`);
+            // TODO: token from .env
+            window.location.href = "tripcreated.html";
+        } else {
+            window.Telegram.WebApp.showAlert("Something went wrong");
+        }
+    });
+}
+
+async function checkCar() {
+    goToStep(5);
+    const bar = document.getElementById("carchoice");
+    const response = await (await fetch(url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id, {
+        method: "GET",
+    })).json();
+    if (response.car_ids.length == 0){
+        bar.innerHTML = `<p id="no-cars">У вас пока нет машин.</p>`;
+        return;
+    }
+    bar.innerHTML = ``;
+    response.car_ids.forEach(async(id) => {
+        const response = await (await fetch(url + "/api/cars/" + id, {
+            method: "GET",
+        })).json();
+        bar.innerHTML += `
+            <li>
+                <label for="car${id}">
+                    <input  type="radio" id="car-${id}" name="${response.brand}">
+                    <div class="checkbox__checkmark"></div>
+                    ${response.brand}
+                </label>
+            </li>
+        `
+    });
 }
 
 function goToStep(step) {

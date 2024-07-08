@@ -1,3 +1,6 @@
 .venv
 __pycache__
 .idea
+web/front/OnTheWay/node_modules
+web/front/OnTheWay/.svelte-kit
+web/front/OnTheWay/build
