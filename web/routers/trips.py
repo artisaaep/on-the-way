@@ -108,7 +108,7 @@ async def attach_rider(
 
     db.delete(
         db.query(TripPassenger).filter(TripPassenger.user_id == rider_id,
-                                       TripPassenger.trip_id.like == _id).first())
+                                       TripPassenger.trip_id == _id).first())
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 

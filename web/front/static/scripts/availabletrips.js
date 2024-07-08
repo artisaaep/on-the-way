@@ -1,4 +1,4 @@
-let url = "https://8c70-188-130-155-165.ngrok-free.app";
+let url = "https://d2fd-188-130-155-177.ngrok-free.app";
 
 async function apply(trip_id) {
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
@@ -62,7 +62,7 @@ async function main() {
         console.log(trip.passengers)
         for (let index in trip.passengers) {
             console.log(trip.passengers[index]);
-            if (trip.passengers[index].id !== number(window.Telegram.WebApp.initDataUnsafe.user.id)) {
+            if (trip.passengers[index].id !== window.Telegram.WebApp.initDataUnsafe.user.id) {
                 continue;
             }
             is_attached = true;

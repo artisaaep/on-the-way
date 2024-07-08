@@ -2,7 +2,7 @@ document.getElementById('back').onclick = function () {
     window.location.href = 'profile.html';
 };
 
-let url = "https://e8dc-188-130-155-186.ngrok-free.app";
+let url = "https://d2fd-188-130-155-177.ngrok-free.app";
 
 let model;
 let number;
@@ -24,7 +24,7 @@ colorInput.oninput = function (evt) {
 
 }
 
-const addButton = window.document.getElementById('ADD');
+const addButton = window.document.getElementById('ADDcarBtn');
 addButton.onclick = async function (evt) {
     if (!modelInput.value || !numberInput.value || !colorInput.value) {
         window.Telegram.WebApp.showAlert("Not all data is filled");
