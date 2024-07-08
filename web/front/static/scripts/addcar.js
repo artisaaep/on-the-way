@@ -30,26 +30,6 @@ addButton.onclick = async function (evt) {
         }),
     }).then(async response => {
         if (response.ok) {
-            const bar = document.getElementById("carchoice");
-            const response = await (await fetch(url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id, {
-                method: "GET",
-            })).json();
-            bar.innerHTML = ``;
-            response.car_ids.forEach(async(id) => {
-                const response = await (await fetch(url + "/api/cars/" + id, {
-                    method: "GET",
-                })).json();
-                bar.innerHTML += `
-                    <li>
-                        <label for="car${id}">
-                            <input  type="radio" id="car${id}" name="${response.brand}">
-                            <div class="checkbox__checkmark"></div>
-                            ${response.brand}
-                        </label>
-                    </li>
-                `
-            });
-
             const modal = document.getElementById('myModal');
             modal.querySelector('.modal-content').classList.remove('show');
         setTimeout(() => {
@@ -58,6 +38,7 @@ addButton.onclick = async function (evt) {
                 modal.style.display = 'none';
             }, 300);
         }, 10);
+        window.location.reload();
         } else {
             window.Telegram.WebApp.showAlert("Something went wrong");
         }

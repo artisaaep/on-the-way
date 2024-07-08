@@ -2,7 +2,15 @@ let url = "https://d2fd-188-130-155-177.ngrok-free.app";
 
 async function apply(trip_id) {
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
-        method: "put",
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "has_luggage": false,
+            "has_kids": false,
+            "has_pets": false
+        })
     }).then(response => {
         if (response.ok) {
             const btn = document.getElementById("choose-" + trip_id);
@@ -41,6 +49,7 @@ const applyDecorator = (trip_id) => {
 }
 
 async function main() {
+    window.Telegram.WebApp.expand();
     const bar = document.getElementById("main-scrolling-div");
     const response = await (await fetch(url + "/api/trips", {
         method: "GET",
@@ -66,13 +75,19 @@ async function main() {
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
                 <a class="name">${trip.driver.name}</a>
                 <div class="maininfa">
-                    <a class="date">${trip.departure_time}<br></a>
-                    <a class="from">${trip.start_location}</a>
-                    <a class="arrow">&#8594;</a>
-                    <a class="to"><br>${trip.end_location}</a>
-                    <a class="clari-from">${trip.clarify_from}</a>
-                    <a class="time">${trip.departure_time}</a>
-                    <a class="clari-to">${trip.clarify_to}</a>
+                    <div class="from_main">
+                        <a class="from">${trip.start_location}</a><br>
+                        <a class="clari-from">${trip.clarify_from}</a>
+                    </div>
+                    <div class="bott">
+                        <a class="date">${trip.departure_time}<br></a>
+                        <a class="arrow">&#8594;</a>
+                        <a class="time">${trip.departure_time}</a>
+                    </div>
+                    <div class="to_main">
+                        <a class="to"><br>${trip.end_location}</a>
+                        <a class="clari-to">${trip.clarify_to}</a>
+                    </div>
                 </div>
                 <div class="pr-ch">
                     <a class="price">${trip.price} руб.</a>` +
