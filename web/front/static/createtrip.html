@@ -3,115 +3,300 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <link rel="stylesheet" href="createtrip.css">
-    <h1 id="title">Создание поездки</h1>
-    <div class="grey-rect">
-        <button class="dir-button">
-            <img src="images/location-pin-alt-svgrepo-com.svg" id="dir-image">
-            <p id="dir-text">Откуда</p>
-        </button>
-        <script src="createtrip.js"></script>
-        <button class="dir-button">
-            <img src="images/location-xmark-svgrepo-com.svg" id="dir-image">
-            <p id="dir-text">Куда</p>
-        </button>
-    </div>
-    <div class="grey-rect">
-        <div class="date-desc">
-            <img src="images/date-range-svgrepo-com.svg" id="date-image">
-            <p id="date-title">Дата поездки</p>
+    <link rel="stylesheet" href="popupaddcar.css">
+    <link rel="stylesheet" href="addcar.css">
+
+    
+    <div id="step1" class="step active">
+        <div class="grey-rect">
+            <div class="desc-img">
+                <p class="dir-desc">Откуда</p>
+                <img src="images/location-pin-alt-svgrepo-com.svg" class="dir-image">
+            </div>
+            <!-- <p class="dir-choose">Выберите город:</p> -->
+            <div class="but-text">
+                <div class="buttons">
+                    <button class="button1" id="left1" onclick="selectOrigin('Иннополис', 'left1')">Иннополис</button>
+                    <button class="button1" id="right1" onclick="selectOrigin('Казань', 'right1')">Казань</button>
+                </div>
+                <textarea id="comment1" class="com" placeholder="Уточните место отправления..."></textarea>
+            </div>
+            <button id="single-but" class="next" onclick="addInfoOrigin()">Далее</button>
+            <button id="single-but" class="next" onclick="addInfoOrigin()">Далее</button>
         </div>
-        <div class="date-desc">
-            <input type="date" id="date" value="2024-06-23"></input>
-        </div>
-        
     </div>
-    <div class="grey-rect" id="type-id">
-        <div class="type-title-choice">
-            <p id="type-trip">
-                Вид поездки
-            </p>
-            <ul class="choice">
-                <li>
-                    <label for="own">На своей машине</label>
-                    <input type="checkbox" id="own">
+
+    <div id="step2" class="step">
+        <div class="grey-rect">
+            <div class="desc-img">
+                <p class="dir-desc">Куда</p>
+                <img src="images/location-xmark-svgrepo-com.svg" class="dir-image">
+            </div>
+            <!-- <p class="dir-choose">Выберите город:</p> -->
+            <div class="but-text">
+                <div class="buttons">
+                    <button class="button2" id="left2">Иннополис</button>
+                    <button class="button2" id="right2">Казань</button>
+                </div>
+                <textarea id="comment2" class="com" placeholder="Уточните место прибытия..."></textarea>
+            </div>
+            <div class="nav-buttons">
+                <button class="next" id="dir-button1" onclick="goBack(2)">Назад</button>
+                <button class="next" id="dir-button2" onclick="addInfoDest()">Далее</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="step3" class="step">
+        <img src="images/date-range-svgrepo-com.svg" class="date-img">
+        <div class="grey-rect">
+            <div class="desc-img">
+                <p class="dir-desc">Дата и время поездки</p>
+            </div>
+            <div class="date">
+                <p class="choose-d">Дата:</p>
+                <input type="date" id="date-f" value="2024-06-23"></input>
+            </div>
+            <div class="time">
+                <p class="choose-t">Временной диапазон начала поездки:</p>
+                <div id="time-range">
+                    <p class="ft">от</p> <input type="time" class="time-f" value="00:00"></input> <p class="ft">до</p> <input type="time" class="time-f" value="00:00"></input>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="next" id="dir-button1" onclick="goBack(3)">Назад</button>
+                <button class="next" id="dir-button2" onclick="selectDate()">Далее</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="step4" class="step">
+        <img src="images/ruble-svgrepo-com.svg" class="date-img">
+        <div class="grey-rect">
+            <div class="desc-img">
+                <p class="dir-desc">Вид и цена поездки</p>
+            </div>
+            <div class="type">
+                <ul class="choice">
+                    <li>
+                        <label for="own">
+                            <input  type="radio" id="own" name="r">
+                            <div class="checkbox__checkmark"></div>
+                            На своей машине
+                        </label>
+                    </li>
+                    <li>
+                        <label for="carsh">
+                            <input  type="radio" id="carsh" name="r">
+                            <div class="checkbox__checkmark"></div>
+                            Каршеринг
+                        </label>
+                    </li>
+                    <li>
+                        <label for="taxi">
+                            <input  type="radio" id="taxi" name="r">
+                            <div class="checkbox__checkmark"></div>
+                            Совместное такси
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="price">
+                <p class="choose-price">Цена в рублях:</p>
+                <input type="number" id="price-rub" value="100" step="50" min="0">
+            </div>
+            <div class="nav-buttons">
+                <button class="next" id="dir-button1" onclick="goBack(4)">Назад</button>
+                <button class="next" id="dir-button2" onclick="checkCar()">Далее</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="step5" class="step">
+        <img src="images/travel-car-svgrepo-com.svg" class="car-img">
+        <div class="grey-rect">
+            <div class="desc-img">
+                <p class="dir-desc">Выберите машину</p>
+            </div>
+            <div class="car">
+                <ul class="choice">
+                    <div id="carchoice">
+                        
+                    </div>
+                </ul>
+            </div>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <div class="navig">
+                        <button class="close">Закрыть</button>
+                    </div>
+                    
+                    <p id="Hadd">Добавить машину</p>
+                    <br>
+                    <div class="parameters">
+                        <p><b>Модель</b></p>
+                        <input type="text" class="vvod" id="p1" placeholder="Пример: BMW X5">
+                    </div>
+                    <div class="parameters">
+                        <p><b>Номер</b></p>
+                        <input type="text" class="vvod" id="p2" placeholder="Пример: А123БВ">
+                    </div>
+                    <div class="parameters"> 
+                        <p><b>Цвет</b></p>
+                        <input type="text" class="vvod" id="p3"  placeholder="Пример: Белый">
+                    </div>
+                    <button id="ADDcarBtn">Добавить</button>
+                </div>
+            </div>
+            <u id="addcar">Добавить машину</u>
+            <div class="nav-buttons">
+                <button class="next" id="dir-button1" onclick="goBack(5)">Назад</button>
+                <button class="next" id="dir-button2" onclick="goToStep(6)">Далее</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="step6" class="step">
+        <div class="grey-rect">
+            <div class="header">
+                <p id="param-text">Параметры</p>
+                <hr id="hr">
+            </div>
+            <ul class="choice" id="param">
+                <li class="param-li">
+                    <label for="lag" >
+                        <input  type="checkbox" id="lag">
+                        <div class="checkbox__checkmark"></div>
+                        Есть место для багажа
+                    </label>
                 </li>
-                <li>
-                    <label for="carsh">Каршеринг</label>
-                    <input type="checkbox" id="carsh">
+                <li class="param-li" >
+                    <label for="an">
+                        <input  type="checkbox" id="an">
+                        <div class="checkbox__checkmark"></div>
+                        Можно с животными
+                    </label>
                 </li>
-                <li>
-                    <label for="taxi">Совместное такси</label>
-                    <input type="checkbox" id="taxi">
+                <li class="param-li" >
+                    <label for="ch">
+                        <input  type="checkbox" id="ch">
+                        <div class="checkbox__checkmark"></div>
+                        Есть детское кресло
+                    </label>
+                </li>
+                <li class="param-li" >
+                    <label for="bu">
+                        <input  type="checkbox" id="bu">
+                        <div class="checkbox__checkmark"></div>
+                        Есть бустер
+                    </label>
+                </li>
+                <li class="param-li" >
+                    <div class="av-text">
+                        Свободных мест
+                        <input type="number" list="places" step="1" min="1" max="4" id="av" class="number-input"/>
+                        <datalist id="places">
+                            <option value="1">
+                            <option value="2">
+                            <option value="3">
+                            <option value="4">
+                        </datalist>
+                    </div>
                 </li>
             </ul>
+
+            <textarea id="add" class="com" placeholder="Дополнительные сведения о поездке..."></textarea>
+
+            <div class="nav-buttons">
+                <button class="next" id="dir-button1" onclick="goBack(6)">Назад</button>
+                <button class="next" id="dir-button2" onclick="goToStep(7)">Готово</button>
+            </div>
         </div>
-        <button id="price">
-            <img src="images/ruble-svgrepo-com.svg" id="price-image">
-            <p id="price-text">Цена</p>
-        </button>
     </div>
-    <button class="grey-rect">
-        <div class="frame">
-            <img src="images/travel-car-svgrepo-com.svg" alt="машинка" id="car">
+
+    <div id="step6" class="step">
+        <div class="grey-rect">
+            <div class="header">
+                <p id="param-text">Параметры</p>
+                <hr id="hr">
+            </div>
+            <ul class="choice" id="param">
+                <li class="param-li">
+                    <label for="lag" >
+                        <input  type="checkbox" id="lag">
+                        <div class="checkbox__checkmark"></div>
+                        Есть место для багажа
+                    </label>
+                </li>
+                <li class="param-li" >
+                    <label for="an">
+                        <input  type="checkbox" id="an">
+                        <div class="checkbox__checkmark"></div>
+                        Можно с животными
+                    </label>
+                </li>
+                <li class="param-li" >
+                    <label for="ch">
+                        <input  type="checkbox" id="ch">
+                        <div class="checkbox__checkmark"></div>
+                        Есть детское кресло
+                    </label>
+                </li>
+                <li class="param-li" >
+                    <label for="bu">
+                        <input  type="checkbox" id="bu">
+                        <div class="checkbox__checkmark"></div>
+                        Есть бустер
+                    </label>
+                </li>
+                <li class="param-li" >
+                    <div class="av-text">
+                        Свободных мест
+                        <input type="number" list="places" step="1" min="1" max="4" id="av" class="number-input"/>
+                        <datalist id="places">
+                            <option value="1">
+                            <option value="2">
+                            <option value="3">
+                            <option value="4">
+                        </datalist>
+                    </div>
+                </li>
+            </ul>
+
+            <textarea id="add" class="com" placeholder="Дополнительные сведения о поездке..."></textarea>
+
+            <div class="nav-buttons">
+                <button class="next" id="dir-button1" onclick="goBack(6)">Назад</button>
+                <button class="next" id="dir-button2" onclick="goToStep(7)">Готово</button>
+            </div>
         </div>
-        <p class="choose-car">Выбрать машину...</p>
-    </button>
-    <div class="long-grey-rect">
-        <div class="header">
-            <p id="param-text">Параметры</p>
-            <hr id="hr">
+    </div>
+
+    <div id="step7" class="step">
+        <div class="grey-rect">
+            <div class="desc-img" id="sub-d">
+                <p class="dir-desc" id="submit-data">Подтвердите данные о поездке</p>
+            </div>
+            <div id="trip-data">
+                    
+            </div>
+            <div class="nav-buttons">
+                <button class="next" id="dir-button1" onclick="goBack(7)">Назад</button>
+                <button class="next" id="dir-button2" onclick="submitTrip()">Подтвердить</button>
+            </div>
         </div>
-        <ul class="param">
-            <li class="param-li">
-                <label for="own">Есть место для багажа</label>
-                <input type="checkbox" id="own">
-                
-            </li>
-            <li class="param-li">
-                <label for="carsh">Можно с животными</label>
-                <input type="checkbox" id="carsh">
-                
-            </li>
-            <li class="param-li">
-                <label for="taxi">Есть детское кресло</label>
-                <input type="checkbox" id="taxi">
-                
-            </li>
-            <li class="param-li">
-                <label for="taxi">Есть бустер</label>
-                <input type="checkbox" id="taxi">
-                
-            </li>
-            <li class="param-li">
-                <label for="taxi">Свободных мест</label>
-                <input type="checkbox" id="taxi">
-                
-            </li>
-        </ul>
     </div>
-    <div class="grey-rect">
-        <form id="form">
-            <textarea id="comment" placeholder="Дополнительные сведения о поездке..."></textarea>
-        </form>
-    </div>
-    <script src="script.js"></script>
-    <button class="create">
-        Создать поездку
-    </button>
-    <footer class="footer">
-        <button id="My-profile" onclick="">
-            <img class="foot-img" src="images/profile-1341-svgrepo-com.svg">
-            <p class="foot-text">Мой профиль</p>
-        </button>
-        <button class="history" onclick="">
-            <img class="foot-img" src="images/travel-car-svgrepo-com.svg">
-            <p class="foot-text">История поездок</p>
-        </button>
-    </footer>
+
+    <script src="createtrip.js"></script>
+    <script src="scripts/addcar.js"></script>
+    <script src="scripts/popupaddcar.js"></script>
 </body>
 </html>
