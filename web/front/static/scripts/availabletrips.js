@@ -66,13 +66,19 @@ async function main() {
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
                 <a class="name">${trip.driver.name}</a>
                 <div class="maininfa">
-                    <a class="date">${trip.departure_time}<br></a>
-                    <a class="from">${trip.start_location}</a>
-                    <a class="arrow">&#8594;</a>
-                    <a class="to"><br>${trip.end_location}</a>
-                    <a class="clari-from">${trip.clarify_from}</a>
-                    <a class="time">${trip.departure_time}</a>
-                    <a class="clari-to">${trip.clarify_to}</a>
+                    <div class="from_main">
+                        <a class="from">${trip.start_location}</a><br>
+                        <a class="clari-from">${trip.clarify_from}</a>
+                    </div>
+                    <div class="bott">
+                        <a class="date">${trip.departure_time}<br></a>
+                        <a class="arrow">&#8594;</a>
+                        <a class="time">${trip.departure_time}</a>
+                    </div>
+                    <div class="to_main">
+                        <a class="to"><br>${trip.end_location}</a>
+                        <a class="clari-to">${trip.clarify_to}</a>
+                    </div>
                 </div>
                 <div class="pr-ch">
                     <a class="price">${trip.price} руб.</a>` +
