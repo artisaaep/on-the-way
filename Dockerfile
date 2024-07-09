@@ -15,7 +15,7 @@ FROM harbor.pg.innopolis.university/docker-hub-cache/debian:11-slim
 
 # Install Nginx
 RUN apt update && apt install --no-install-recommends -y nginx && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    apt-get clean && rm -rf /var/lib/apt/lists/* && sudo apt-get update && sudo apt-get upgrade libdb5.3 && sudo apt-get upgrade zlib1g
 
 # Copy built Python environment and application code
 COPY --from=python-base /on-the-way /on-the-way
