@@ -1,4 +1,4 @@
-let url = "https://8aef-188-130-155-165.ngrok-free.app";
+let url = "https://ddc1-188-130-155-165.ngrok-free.app";
 
 async function apply(trip_id) {
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
@@ -79,12 +79,12 @@ async function main() {
                         <a class="clari-from">${trip.clarify_from}</a>
                     </div>
                     <div class="bott">
-                        <a class="date">${trip.departure_time}<br></a>
-                        <a class="arrow">&#8594;</a>
+                        <a class="date">${trip.departure_date}<br></a>
+                        <a class="arrow">&#8594;</a><br>
                         <a class="time">${trip.departure_time}</a>
                     </div>
                     <div class="to_main">
-                        <a class="to"><br>${trip.end_location}</a>
+                        <a class="to"><br>${trip.end_location}</a><br>
                         <a class="clari-to">${trip.clarify_to}</a>
                     </div>
                 </div>
