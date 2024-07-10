@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+function backToRole() {
+    console.log("back");
+    window.location.href = "chooserole.html";
+}
+
+
 function setCurrentTime() {
     var now = new Date();
 
