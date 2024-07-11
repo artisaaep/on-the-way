@@ -38,6 +38,7 @@ class User(BaseModel):
     name: Optional[str] = None
     age: Optional[int]
     alias: str
+    sex: int
     car_ids: List[int]
     rides_amount: Optional[int]
 
@@ -48,6 +49,7 @@ class User(BaseModel):
             name=obj.name,
             age=obj.age,
             alias=obj.alias,
+            sex=obj.sex,
             car_ids=map(int, obj.car_ids.split()) if obj.car_ids else [],
             rides_amount=obj.rides_amount,
         )
@@ -107,6 +109,7 @@ class Trip(BaseTrip):
             name=sql_driver.name,
             age=sql_driver.age,
             alias=sql_driver.alias,
+            sex=sql_driver.sex,
             rides_amount=sql_driver.rides_amount,
             bio=None,
             car_ids=list(map(int, sql_driver.car_ids.split())) if sql_driver.car_ids else [],
@@ -123,6 +126,7 @@ class Trip(BaseTrip):
                         name=user.name,
                         age=user.age,
                         alias=user.alias,
+                        sex=user.sex,
                         rides_amount=user.rides_amount,
                         car_ids=list(map(int, user.car_ids.split())) if user.car_ids else [],
                         has_luggage=trip_passenger.has_luggage if trip_passenger else 0,
