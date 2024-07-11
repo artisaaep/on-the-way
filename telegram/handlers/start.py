@@ -26,7 +26,7 @@ async def start(message: types.Message, state: FSMContext):
             resize_keyboard=True,
             one_time_keyboard=True,
         )
-        await state.set_state(Form.name)
+        await state.set_state(Form.number)
         await message.answer(text, reply_markup=markup, parse_mode='html')
     else:
         markup = InlineKeyboardMarkup(
