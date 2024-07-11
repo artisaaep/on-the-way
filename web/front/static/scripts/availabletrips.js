@@ -1,4 +1,4 @@
-let url = "https://ddc1-188-130-155-165.ngrok-free.app";
+let url = "https://33bc-188-130-155-165.ngrok-free.app";
 
 async function apply(trip_id) {
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
@@ -69,6 +69,7 @@ async function main() {
             is_attached = true;
             break;
         }
+
         bar.innerHTML += `
             <div class="card" id="trip-card-by-id-${trip.id}">
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">

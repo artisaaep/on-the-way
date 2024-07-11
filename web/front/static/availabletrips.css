@@ -5,7 +5,7 @@
 
 #zakrep {
     width: 100%;
-    height: 5%;
+    height: 11%;
     background-color: white;
     position: fixed;
     top:0%;
@@ -20,7 +20,7 @@
     left: 70%;
     float: right;
     width: 25%;
-    background-color: rgba(251, 234, 80, 0.85);;
+    background-color: rgba(251, 234, 80, 0.85);
     color: black;
     border-radius: 10px;
     border: 0px;
@@ -30,8 +30,64 @@
     padding-top: 1%;
     font-family: Kreadon_medium;
     padding-left: 5%;
-    box-shadow: 2px 2px 2px rgb(234, 215, 50, 60%);;
+    box-shadow: 1.5px 1.5px 2px rgb(0, 0, 0, 0.2);;
 
+}
+
+.tab {
+    margin-top: 8%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.tab > input[type="radio"] {
+    display: none;
+}
+
+.tab-content {
+    display: none;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.tab > label {
+    display: block;
+    padding: 2%;
+    cursor: pointer;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    text-decoration: none;
+    color: black;
+    background: #E3E1E1;
+    border-bottom: 1px solid black;
+    text-align: center;
+
+}
+
+#drivers {
+    width: 46%;
+    float:left;
+    border-top-right-radius: 1.2rem;
+    margin-left: -2.5%;
+}
+
+#passengers {
+    float: right;
+    border-top-left-radius: 1.2rem;
+    width: 46.5%;
+}
+
+.tab > input[type="radio"]:checked + label {
+    cursor: default;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    border-bottom: 0px;
+    box-shadow: inset 0px 8px 10px rgba(0, 0, 0, 0.1);
+}
+#tab-btn-1:checked~#trip-card-by-id-${trip.id},
+#tab-btn-2:checked~#content-2 {
+    display: block;
 }
 
 .content {
@@ -209,7 +265,7 @@
     font-size: 16px;
     border-radius: 10px;
     border: 0px;
-    background-color: #CDCDCD;
+    background-color: rgba(251, 234, 80, 0.75);
     margin-left: 10%;
     padding: 3%;
     color: black;
