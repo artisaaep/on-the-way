@@ -26,7 +26,7 @@ async def start(message: types.Message, state: FSMContext):
             resize_keyboard=True,
             one_time_keyboard=True,
         )
-        await state.set_state(Form.name)
+        await state.set_state(Form.number)
         await message.answer(text, reply_markup=markup, parse_mode='html')
     else:
         markup = InlineKeyboardMarkup(
@@ -42,8 +42,7 @@ async def start(message: types.Message, state: FSMContext):
             one_time_keyboard=True,
         )
         text = "Привет!\n\nЭто сервис по поиску попутчиков <b>on the way</b>. \
-Здесь вы можете найти с кем добраться до пункта назначения или создать поездку как водитель и найти пассажиров. \
-Нажмите <b>запустить</b>, чтобы начать \U0001F699 "
+Здесь вы можете найти с кем добраться до пункта назначения или создать поездку как водитель и найти пассажиров. \U0001F699 "
         await message.answer(text, parse_mode='html', reply_markup=markup)
 
 

@@ -13,18 +13,24 @@
 <body>
 <div id="zakrep">
     <button id="filter" onclick=""><img id="imgfilter" src="icons/filter-svgrepo-com.svg">Фильтр</button>
+    <div class="tab">
+        <input checked id="tab-btn-1" name="tab-btn" type="radio" value="">
+        <label id="drivers" for="tab-btn-1">Заявки водителей</label>
+        <input id="tab-btn-2" name="tab-btn" type="radio" value="">
+        <label id="passengers" for="tab-btn-2">Заявки пассажиров</label>
+    </div>
 </div>
-<br><br>
+<br><br><br>
+<a class="tab-content" id="content-2">Ама рокстар попстар</a>
 <div class="scrolling" id="main-scrolling-div">
-    <p>Загрузка...</p>
-</div>
 
+</div>
 
 <footer class="footer">
-    <button id="My-profile" onclick="myprofile()"><img id="imgprof" src="icons/profile-1341-svgrepo-com.svg">Мой профиль
-    </button>
-    <button id="history" onclick=""><img id="imghist" src="./icons/travel-car-svgrepo-com.svg">История поездок</button>
+    <button id="My-profile" onclick="myprofile()"><img id="imgprof" src="icons/profile-1341-svgrepo-com.svg">Мой <br> профиль</button>
+    <button id="history" onclick=""><img id="imghist" src="./icons/travel-car-svgrepo-com.svg">История <br> поездок</button>
 </footer>
+
 </body>
 <script src="scripts/availabletrips.js"></script>
 <script src="scripts/links.js"></script>

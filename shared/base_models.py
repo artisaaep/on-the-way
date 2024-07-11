@@ -14,6 +14,7 @@ class User(Base):
     alias = Column(String, unique=True, index=True)
     rides_amount = Column(Integer, default=0)
     car_ids = Column(String, nullable=True)
+    number = Column(String, index=True, nullable=True)
 
 
 class Car(Base):
