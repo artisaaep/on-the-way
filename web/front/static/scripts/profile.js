@@ -6,6 +6,12 @@ async function main() {
     img.src = userUrl + "/photo";
     const nameElem = document.getElementById("name");
     nameElem.textContent = response.name;
+    const sexElem = document.getElementById("sex");
+    if (response.sex) {
+        sexElem.textContent += "Женский";
+    } else {
+        sexElem.textContent += "Мужской";
+    }
     const ageElem = document.getElementById("age");
     ageElem.textContent = "Возраст: " + response.age;
     const ridesElem = document.getElementById("rides");

@@ -4,8 +4,8 @@
 @font-face { font-family: Kreadon_medium; src: url(fonts/Kreadon-Medium.ttf); } 
 
 body {
-    background-color: var(--tg-theme-bg-color);
-    color: var(--tg-theme-text-color);
+    background-color: white;
+    color: black;
     font-family: Kreadon_regular;
 }
 
@@ -157,7 +157,7 @@ a {
     font-family: Kreadon_regular;
     font-size: 20px;
     margin-left: 5%;
-    color: var(--tg-theme-text-color);
+    color: black;
     
 }
 
