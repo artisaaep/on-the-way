@@ -85,10 +85,6 @@
     border-bottom: 0px;
     box-shadow: inset 0px 8px 10px rgba(0, 0, 0, 0.1);
 }
-#tab-btn-1:checked~#trip-card-by-id-${trip.id},
-#tab-btn-2:checked~#content-2 {
-    display: block;
-}
 
 .content {
     margin-bottom: 35%;
