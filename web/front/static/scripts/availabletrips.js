@@ -70,6 +70,7 @@ async function main() {
             is_attached = true;
             break;
         }
+
         bar.innerHTML += `
             <div class="card" id="trip-card-by-id-${trip.id}">
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
@@ -80,12 +81,12 @@ async function main() {
                         <a class="clari-from">${trip.clarify_from}</a>
                     </div>
                     <div class="bott">
-                        <a class="date">${trip.departure_time}<br></a>
-                        <a class="arrow">&#8594;</a>
+                        <a class="date">${trip.departure_date}<br></a>
+                        <a class="arrow">&#8594;</a><br>
                         <a class="time">${trip.departure_time}</a>
                     </div>
                     <div class="to_main">
-                        <a class="to"><br>${trip.end_location}</a>
+                        <a class="to"><br>${trip.end_location}</a><br>
                         <a class="clari-to">${trip.clarify_to}</a>
                     </div>
                 </div>
