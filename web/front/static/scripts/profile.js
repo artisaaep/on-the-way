@@ -18,9 +18,14 @@ async function main() {
     const ridesElem = document.getElementById("rides");
     ridesElem.textContent = "Количество поездок: " + response.rides_amount;
     const carsElem = document.getElementById("cars-ul");
-    for (const id of response.car_ids) {
-        const carInfo = await (await fetch(url + "/api/cars/" + id, {})).json();
-        carsElem.innerHTML += `<li><p class="car"><b>${carInfo.color} ${carInfo.brand} ${carInfo.number}</b></p></li>`;
+    if (response.car_ids.length == 0) {
+        carsElem.innerHTML = `<p>У вас ещё нет добавленных машин.</p>`;
+    } else {
+        for (const id of response.car_ids) {
+            const carInfo = await (await fetch(url + "/api/cars/" + id, {})).json();
+            console.log(carInfo);
+            carsElem.innerHTML += `<li><p class="car"><b>${carInfo.color} ${carInfo.brand} ${carInfo.number}</b></p></li>`;
+        }
     }
 }
 

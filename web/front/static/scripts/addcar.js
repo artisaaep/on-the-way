@@ -2,7 +2,7 @@
 //     window.location.href = 'profile.html';
 // };
 
-let url = "https://d2fd-188-130-155-177.ngrok-free.app";
+url = "https://d2fd-188-130-155-177.ngrok-free.app";
 
 let model;
 let number;

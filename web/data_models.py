@@ -20,16 +20,6 @@ class Car(NewCar):
     model_config = {"from_attributes": True}
     id: int
 
-    @classmethod
-    def from_orm(cls: type[BaseModel], obj: SQLCar) -> Model:
-        return cls(
-            id=obj.id,
-            owner_id=obj.owner_id,
-            number=obj.number,
-            brand=obj.brand,
-            color=obj.brand,
-        )
-
 
 class User(BaseModel):
     model_config = {"from_attributes": True}
@@ -124,22 +114,19 @@ class Trip(BaseTrip):
         passenger_ids = map(int, orm.passenger_ids.split()) if orm.passenger_ids else []
         passengers = []
         for pid in passenger_ids:
-            user = session.query(SQLUser).get(int(pid))
+            user = session.query(SQLUser).get(pid)
             trip_passenger = session.query(TripPassenger).filter_by(user_id=user.id, trip_id=orm.id).first()
+
             if user:
+                api_user = User.from_orm(user)
+                api_trip_passenger = Passenger(
+                    **api_user.dict(),
+                    has_luggage=trip_passenger.has_luggage if trip_passenger.has_luggage else 0,
+                    has_kids=trip_passenger.has_kids if trip_passenger.has_kids else 0,
+                    has_pets=trip_passenger.has_pets if trip_passenger.has_pets else 0,
+                )
                 passengers.append(
-                    Passenger(
-                        id=user.id,
-                        name=user.name,
-                        age=user.age,
-                        alias=user.alias,
-                        sex=user.sex,
-                        rides_amount=user.rides_amount,
-                        car_ids=list(map(int, user.car_ids.split())) if user.car_ids else [],
-                        has_luggage=trip_passenger.has_luggage if trip_passenger else 0,
-                        has_kids=trip_passenger.has_kids if trip_passenger else 0,
-                        has_pets=trip_passenger.has_pets if trip_passenger else 0
-                    )
+                    api_trip_passenger
                 )
 
         trip_model = Trip(

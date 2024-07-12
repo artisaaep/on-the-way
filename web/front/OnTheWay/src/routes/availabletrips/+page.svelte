@@ -3,7 +3,7 @@
     import {myProfile} from "$lib/links";
     import type {Trip} from "$lib/Types";
 
-    let url = "https://8aef-188-130-155-165.ngrok-free.app";
+   
     let trips: Trip[];
     const fetcher = async () => {
         trips = await (await fetch(url + "/api/trips", {

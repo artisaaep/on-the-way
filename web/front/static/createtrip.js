@@ -1,4 +1,14 @@
 let url = "https://d2fd-188-130-155-177.ngrok-free.app";
+function initializeCustomCheckboxes() {
+    const checkboxes = document.querySelectorAll('.checkbox__checkmark');
+    checkboxes.forEach(checkbox => {
+        // Добавить необходимые обработчики событий или стили
+        checkbox.addEventListener('click', () => {
+            const input = checkbox.previousElementSibling;
+            input.checked = true;
+        });
+    });
+}
 document.addEventListener('DOMContentLoaded', (event) => {
     const comments = document.querySelectorAll('.com');
 
@@ -50,8 +60,6 @@ function setCurrentDate() {
     var currentDate = year + '-' + month + '-' + day;
     
     document.getElementById('date-f').value = currentDate;
-    console.log(getElementById('date-f').value);
-    console.log(currentDate);
 }
 
 window.addEventListener('load', setCurrentTime);
@@ -205,7 +213,7 @@ async function submitTrip() {
             let kb = {
                 inline_keyboard: [[{
                     text: 'Подробнее',
-                    web_app: { url: `https://${url}/web/front/static/tripinfo.html`}
+                    web_app: { url: `${url}/static/tripinfo.html`}
                 }]]
             };
             let text = `Ваша поездка *${tripData.origin} - ${tripData.destination}* успешно создана! 🚙
@@ -214,10 +222,11 @@ async function submitTrip() {
 
             let encodedText = encodeURIComponent(text);
             let encodedReplyMarkup = encodeURIComponent(JSON.stringify(kb));
-
+            console.log("aaa");
             await fetch(`https://api.telegram.org/bot6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown&reply_markup=${encodedReplyMarkup}`);
             // TODO: token from .env
             window.location.href = "tripcreated.html";
+            
 
         } else {
             window.Telegram.WebApp.showAlert("Something went wrong");
@@ -226,6 +235,8 @@ async function submitTrip() {
 }
 
 async function checkCar() {
+    let input = document.getElementById('price-rub');
+    tripData.price = input.value;
     if (tripData.is_request) {
         goToStep(6);
     } else {
@@ -248,11 +259,12 @@ async function checkCar() {
                     <label for="car${id}">
                         <input  type="radio" id="car-${id}" name="${response.brand}">
                         <div class="checkbox__checkmark"></div>
-                        ${response.brand}
+                        ${response.color} ${response.brand}
                     </label>
                 </li>
             `
         });
+        initializeCustomCheckboxes();
     }
 }
 

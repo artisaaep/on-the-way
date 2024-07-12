@@ -86,7 +86,7 @@ async function main() {
         }
     }
     if (drivers.length===0){
-        bar.innerHTML = `<p>Пока нет доступных поездок</p>`;
+        bar.innerHTML = `<p>Пока нет доступных поездок от водителей.</p>`;
     } else {
         bar.innerHTML = ``;
     }
@@ -137,7 +137,7 @@ async function main() {
     })
     const bar2 = document.getElementById("pas-scrolling-div");
     if (requests.length===0){
-        bar2.innerHTML = `<p>Пока нет доступных поездок</p>`;
+        bar2.innerHTML = `<p>Пока нет запросов на поездки от пассажиров.</p>`;
     } else {
         bar2.innerHTML = ``;
     }
