@@ -264,8 +264,8 @@ async function checkCar() {
             })).json();
             bar.innerHTML += `
                 <li>
-                    <label for="car${id}">
-                        <input  type="radio" id="car-${id}" name="${response.brand}">
+                    <label for="car-${id}">
+                        <input type="radio" id="car-${id}" name="${response.brand}">
                         <div class="checkbox__checkmark"></div>
                         ${response.color} ${response.brand}
                     </label>
