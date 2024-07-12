@@ -12,7 +12,13 @@
 }
 
 .scrolling {
+    display: none;
     margin-bottom: 20%;
+}
+
+#tab-btn-1:checked ~ #main-scrolling-div,
+#tab-btn-2:checked ~ #pas-scrolling-div {
+    display: block;
 }
 
 #filter {

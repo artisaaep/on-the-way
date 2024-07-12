@@ -1,5 +1,27 @@
 let url = "https://d2fd-188-130-155-177.ngrok-free.app";
 
+document.addEventListener('DOMContentLoaded', function() {
+    const tabBtn1 = document.getElementById('tab-btn-1');
+    const tabBtn2 = document.getElementById('tab-btn-2');
+    const mainScrollingDiv = document.getElementById('main-scrolling-div');
+    const pasScrollingDiv = document.getElementById('pas-scrolling-div');
+
+    function toggleScrollingDivs() {
+        if (tabBtn1.checked) {
+            mainScrollingDiv.style.display = 'block';
+            pasScrollingDiv.style.display = 'none';
+        } else if (tabBtn2.checked) {
+            mainScrollingDiv.style.display = 'none';
+            pasScrollingDiv.style.display = 'block';
+        }
+    }
+
+    tabBtn1.addEventListener('change', toggleScrollingDivs);
+    tabBtn2.addEventListener('change', toggleScrollingDivs);
+
+    toggleScrollingDivs();
+});
+
 async function apply(trip_id) {
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
         method: "PUT",
@@ -54,12 +76,21 @@ async function main() {
     const response = await (await fetch(url + "/api/trips", {
         method: "GET",
     })).json();
-    if (response.length===0){
+    const drivers = [];
+    const requests = [];
+    for (const element of response) {
+        if (!element.is_request) {
+            drivers.push(element);
+        } else {
+            requests.push(element);
+        }
+    }
+    if (drivers.length===0){
         bar.innerHTML = `<p>Пока нет доступных поездок</p>`;
         return;
     }
     bar.innerHTML = ``;
-    response.forEach(trip => {
+    drivers.forEach(trip => {
         let is_attached = false;
         console.log(trip.passengers)
         for (let index in trip.passengers) {
@@ -70,8 +101,59 @@ async function main() {
             is_attached = true;
             break;
         }
-
+        
         bar.innerHTML += `
+            <div class="card" id="trip-card-by-id-${trip.id}">
+                <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
+                <a class="name">${trip.driver.name}</a>
+                <div class="maininfa">
+                    <div class="from_main">
+                        <a class="from">${trip.start_location}</a><br>
+                        <a class="clari-from">${trip.clarify_from}</a>
+                    </div>
+                    <div class="bott">
+                        <a class="date">${trip.departure_date}<br></a>
+                        <a class="arrow">&#8594;</a><br>
+                        <a class="time">${trip.departure_time}</a>
+                    </div>
+                    <div class="to_main">
+                        <a class="to"><br>${trip.end_location}</a><br>
+                        <a class="clari-to">${trip.clarify_to}</a>
+                    </div>
+                </div>
+                <div class="pr-ch">
+                    <a class="price">${trip.price} руб.</a>` +
+            (is_attached
+                    ? `<button class="choose" onClick="reject(${trip.id})" id="choose-${trip.id}">Отменить</button>`
+                    : `<button class="choose" onClick="apply(${trip.id})" id="choose-${trip.id}">Выбрать</button>`
+            ) +
+            `</div>
+                <div class="dopinfa">
+                    <a class="rides" id="rides-amount-of-${trip.id}-driver">Поездок: ${trip.driver.rides_amount} <br></a>
+                    <a class="free-places">Свободных мест: ${trip.available_seats}</a>
+                </div>
+            </div>
+        `
+    })
+    if (requests.length===0){
+        bar2.innerHTML = `<p>Пока нет доступных поездок</p>`;
+        return;
+    }
+    const bar2 = document.getElementById("pas-scrolling-div");
+    bar2.innerHTML = ``;
+    requests.forEach(trip => {
+        let is_attached = false;
+        console.log(trip.passengers)
+        for (let index in trip.passengers) {
+            console.log(trip.passengers[index]);
+            if (trip.passengers[index].id !== window.Telegram.WebApp.initDataUnsafe.user.id) {
+                continue;
+            }
+            is_attached = true;
+            break;
+        }
+        
+        bar2.innerHTML += `
             <div class="card" id="trip-card-by-id-${trip.id}">
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
                 <a class="name">${trip.driver.name}</a>

@@ -57,6 +57,8 @@ class Trip(Base):
     departure_date = Column(String, nullable=True)
     clarify_from = Column(String, nullable=True)
     clarify_to = Column(String, nullable=True)
+    is_request = Column(Integer, nullable=True)
+    add_info = Column(String, nullable=True)
 
 
 User.cars = relationship("Car", order_by=Car.id, back_populates="owner")
