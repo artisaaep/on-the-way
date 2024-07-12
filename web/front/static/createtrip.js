@@ -178,7 +178,16 @@ function selectCar(date) {
 }
 
 function goBack(cuurent) {
+    if (cuurent == 6) {
+        const ownRadio = document.getElementById('own');
+        console.log(ownRadio);
+        if (!ownRadio.checked) {
+            goToStep(4);
+            return;
+        }
+    }
     goToStep(cuurent - 1);
+
 }
 
 function showSummary() {
