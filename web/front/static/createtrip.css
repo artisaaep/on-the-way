@@ -27,6 +27,12 @@ body {
 .step { display: none; }
 .step.active { display: block; }
 
+.step0 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .grey-rect {
     width: 83.9vw;
@@ -527,7 +533,15 @@ body {
     width: 85vw;
     height: 50vw;
     position: relative;
-    /* transform: translateY(-200px); */
+    overflow: hidden;
+}
+
+#firstimg {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #role {
