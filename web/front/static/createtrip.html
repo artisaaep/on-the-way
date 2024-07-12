@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -13,8 +13,24 @@
     <link rel="stylesheet" href="popupaddcar.css">
     <link rel="stylesheet" href="addcar.css">
 
-    
-    <div id="step1" class="step active">
+    <div id="step0" class="step active">
+        <div class="pdiv">
+            <p class="q">В какой роли вы хотели бы</p>
+            <p class="q">совершить поездку?</p>
+        </div>
+        <div id="buttonschoose">
+            <button id="btnc" onclick="driver()">
+                <p class="buttonchoose">Водитель</p>
+            </button>
+            <button id="btnc" onclick="passenger()">
+                <p class="buttonchoose">Пассажир</p>
+            </button>
+        </div>
+        <div class="img-cont">
+            <img src="images/car-svgrepo-com.svg">
+        </div>
+    </div>
+    <div id="step1" class="step">
         <div class="grey-rect">
             <div class="desc-img">
                 <p class="dir-desc">Откуда</p>
@@ -29,7 +45,7 @@
                 <textarea id="comment1" class="com" placeholder="Уточните место отправления..."></textarea>
             </div>
             <div class="nav-buttons">
-                <button class="next" id="dir-button1" onclick="backToRole()">Назад</button>
+                <button class="next" id="dir-button1" onclick="goToStep(0)">Назад</button>
                 <button class="next" id="dir-button2" onclick="addInfoOrigin()">Далее</button>
             </div>
         </div>

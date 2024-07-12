@@ -484,3 +484,54 @@ body {
     margin-top: 2%;
     margin-bottom: 4%;
 }
+
+#buttonschoose {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    font-size: 4vh;
+}
+
+#btnc {
+    width: 100%;
+    margin-bottom: 10%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #FBEA50D9;
+}
+
+.buttonchoose {
+    font-size: 4vh;
+    font-family: "Kreadon";
+    color: black;
+}
+
+.q {
+    font-size: 3.4vh;
+    font-family: "Kreadon";
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.pdiv {
+    margin-top: 15%;
+    margin-bottom: 17%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-cont {
+    width: 85vw;
+    height: 50vw;
+    position: relative;
+    /* transform: translateY(-200px); */
+}
+
+#role {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

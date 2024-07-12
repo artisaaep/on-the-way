@@ -12,21 +12,16 @@
     <p class="q">совершить поездку?</p>
     </div>
     <div id="buttons">
-        <button onclick="passenger()">
+        <button onclick="driver()">
             <p class="button">Водитель</p>
         </button>
-        <button>
+        <button onclick="passenger()">
             <p class="button">Пассажир</p>
         </button>
     </div>
-    <script>
-        function passenger() {
-            console.log("torole");
-            window.location.href = "createtrip.html";
-        }
-    </script>
     <div class="img-cont">
         <img src="images/car-svgrepo-com.svg">
     </div>
 </body>
+<script src="scripts/chooserole.js"></script>
 </html>

@@ -1,4 +1,4 @@
-let url = "https://75df-188-130-155-149.ngrok-free.app";
+let url = "https://d2fd-188-130-155-177.ngrok-free.app";
 
 document.addEventListener('DOMContentLoaded', function() {
     const tabBtn1 = document.getElementById('tab-btn-1');
@@ -87,9 +87,9 @@ async function main() {
     }
     if (drivers.length===0){
         bar.innerHTML = `<p>Пока нет доступных поездок</p>`;
-        return;
+    } else {
+        bar.innerHTML = ``;
     }
-    bar.innerHTML = ``;
     drivers.forEach(trip => {
         let is_attached = false;
         console.log(trip.passengers)
@@ -135,12 +135,12 @@ async function main() {
             </div>
         `
     })
+    const bar2 = document.getElementById("pas-scrolling-div");
     if (requests.length===0){
         bar2.innerHTML = `<p>Пока нет доступных поездок</p>`;
-        return;
+    } else {
+        bar2.innerHTML = ``;
     }
-    const bar2 = document.getElementById("pas-scrolling-div");
-    bar2.innerHTML = ``;
     requests.forEach(trip => {
         let is_attached = false;
         console.log(trip.passengers)
