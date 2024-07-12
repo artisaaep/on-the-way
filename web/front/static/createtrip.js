@@ -237,9 +237,8 @@ async function submitTrip() {
 async function checkCar() {
     let input = document.getElementById('price-rub');
     tripData.price = input.value;
-    if (tripData.is_request) {
-        goToStep(6);
-    } else {
+    const ownRadio = document.getElementById('own');
+    if (ownRadio.checked) {
         goToStep(5);
         const bar = document.getElementById("carchoice");
         const response = await (await fetch(url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id, {
@@ -264,7 +263,8 @@ async function checkCar() {
                 </li>
             `
         });
-        initializeCustomCheckboxes();
+    } else {
+        goToStep(6);
     }
 }
 
