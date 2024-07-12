@@ -265,7 +265,7 @@ async function checkCar() {
             bar.innerHTML += `
                 <li>
                     <label for="car-${id}">
-                        <input type="radio" id="car-${id}" name="${response.brand}">
+                        <input type="radio" id="car-${id}" name="c">
                         <div class="checkbox__checkmark"></div>
                         ${response.color} ${response.brand}
                     </label>
