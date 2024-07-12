@@ -1,4 +1,5 @@
 async function main() {
+    window.Telegram.WebApp.expand();
     let url = "https://d2fd-188-130-155-177.ngrok-free.app";
     const userUrl = url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id;
     const response = await (await fetch(userUrl, {})).json();

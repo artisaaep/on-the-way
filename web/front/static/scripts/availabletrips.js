@@ -105,7 +105,7 @@ async function main() {
         bar.innerHTML += `
             <div class="card" id="trip-card-by-id-${trip.id}">
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
-                <a class="name">${trip.driver.name}</a>
+                <a class="driver_name">${trip.driver.name}</a>
                 <div class="maininfa">
                     <div class="from_main">
                         <a class="from">${trip.start_location}</a><br>
@@ -124,8 +124,8 @@ async function main() {
                 <div class="pr-ch">
                     <a class="price">${trip.price} руб.</a>` +
             (is_attached
-                    ? `<button class="choose" onClick="reject(${trip.id})" id="choose-${trip.id}">Отменить</button>`
-                    : `<button class="choose" onClick="apply(${trip.id})" id="choose-${trip.id}">Выбрать</button>`
+                    ? `<button class="driver_choose" onClick="reject(${trip.id})" id="choose-${trip.id}">Отменить</button>`
+                    : `<button class="driver_choose" onClick="apply(${trip.id})" id="choose-${trip.id}">Выбрать</button>`
             ) +
             `</div>
                 <div class="dopinfa">
@@ -156,7 +156,7 @@ async function main() {
         bar2.innerHTML += `
             <div class="card" id="trip-card-by-id-${trip.id}">
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
-                <a class="name">${trip.driver.name}</a>
+                <a class="request_name">${trip.driver.name}</a>
                 <div class="maininfa">
                     <div class="from_main">
                         <a class="from">${trip.start_location}</a><br>
@@ -175,8 +175,8 @@ async function main() {
                 <div class="pr-ch">
                     <a class="price">${trip.price} руб.</a>` +
             (is_attached
-                    ? `<button class="choose" onClick="reject(${trip.id})" id="choose-${trip.id}">Отменить</button>`
-                    : `<button class="choose" onClick="apply(${trip.id})" id="choose-${trip.id}">Выбрать</button>`
+                    ? `<button class="request_choose" onClick="reject(${trip.id})" id="choose-${trip.id}">Отменить</button>`
+                    : `<button class="request_choose" onClick="apply(${trip.id})" id="choose-${trip.id}">Выбрать</button>`
             ) +
             `</div>
                 <div class="dopinfa">
