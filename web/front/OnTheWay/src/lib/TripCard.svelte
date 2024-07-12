@@ -41,13 +41,22 @@
 </script>
 
 <div class="card">
-    <img class="avatar" alt="driver-avatar" src="{url}/api/users/{trip.driver.id}/photo">
-    <p class="name">{trip.driver.name}</p>
+    <img class="avatar" alt="driver-avatar" src="{url}/api/users/${trip.driver.id}/photo">
+    <p class="owner_name">{trip.driver.name}</p>
     <div class="main-info">
-        <p class="date">{trip.departure_time}<br></p>
-        <p class="from">{trip.start_location}</p>
-        <p class="arrow">&#8594;</p>
-        <p class="to"><br>{trip.end_location}</p>
+        <div class="from_main">
+            <p class="from">{trip.start_location}</p><br>
+            <p class="clari-from">{trip.clarify_from}</p>
+        </div>
+        <div class="bott">
+            <p class="date">{trip.departure_date}<br></p>
+            <p class="arrow">&#8594;</p><br>
+            <p class="time">{trip.departure_time}</p>
+        </div>
+        <div class="to_main">
+            <p class="to"><br>{trip.end_location}</p><br>
+            <p class="clari-to">{trip.clarify_to}</p>
+        </div>
     </div>
     <div class="pr-ch">
         <p class="price">{trip.price} руб.</p>
@@ -75,31 +84,43 @@
         box-shadow: 0 3px 1cqmax rgba(0, 0, 0, 0.3);
         margin: 3% auto auto;
     }
+
     .avatar {
-        width: 25%;
-        height: 25%;
+        width: 5em;
+        height: 5em;
+        object-fit: cover;
         border-radius: 50%;
-        border: solid .5px black;
+        border: solid 0.1px black;
         float: left;
     }
-    .name {
+
+    .owner_name {
         font-family: Kreadon_demi;
         margin-left: 5%;
         font-size: 16px;
-        background-color: rgba(251, 234, 80, 0.67);;
-        border: 0px;
+        background-color: var(--owner-bg-col);
+        border: 0;
         border-radius: 10px;
         padding: 0.5% 5%;
     }
 
     .main-info {
-        margin-top: 2%;
+        padding-top: 10%;
+        margin-top: 10%;
         width: 100%;
+
+    }
+
+    .from_main {
+        width: 35%;
+        float: left;
+        align-items: center;
+        text-align: center;
+        margin-top: 6%;
     }
 
     .date {
         font-family: Kreadon_medium;
-        margin-left: 8%;
         font-size: 11px;
         width: 10%;
     }
@@ -114,38 +135,56 @@
     .arrow {
         font-family: Kreadon_demi;
         font-size: 15px;
-        margin-left: 7%;
 
+    }
+
+    .to_main {
+        width: 35%;
+        float: right;
+        align-items: center;
+        text-align: center;
+        margin-top: -17%;
+        margin-right: -6%;
     }
 
     .to {
         font-family: Kreadon_demi;
         font-size: 15px;
-        margin-left: 6%;
     }
 
-    /*.clari-from {
+    .bott {
+        width: 20%;
+        float: left;
+        align-items: center;
+        text-align: center;
+        margin-top: 1%;
+        margin-left: -4%;
+
+    }
+
+    .clari-from {
         font-family: Kreadon_regular;
-        margin-right: 1%;
-        margin-left: 3%;
         font-size: 10px;
+
     }
 
     .time {
         font-family: Kreadon_medium;
         font-size: 11px;
-        margin-left: 10%;
+        padding-top: 5%;
+
     }
 
     .clari-to {
         font-family: Kreadon_regular;
         font-size: 10px;
-        margin-left: 10%;
-    }*/
+        margin-top: 10%;
+    }
 
     .additional-info {
         float: left;
-        margin-top: -10.5%;
+        margin-top: -8.5%;
+
     }
 
     .rides {
@@ -157,27 +196,5 @@
         font-family: Kreadon_medium;
         font-size: 11px;
     }
-    .pr-ch {
-        margin-top: 4%;
-        margin-left: 40%;
-    }
 
-    .price {
-        font-family: Kreadon_bold;
-        font-size: 16px;
-        width: 16%;
-        padding-top: 10%;
-        margin-right: 8%;
-    }
-
-    .choose {
-        font-family: Kreadon_demi;
-        font-size: 16px;
-        border-radius: 10px;
-        border: 0px;
-        background-color: #CDCDCD;
-        margin-left: 10%;
-        padding: 3%;
-        color: black;
-    }
 </style>

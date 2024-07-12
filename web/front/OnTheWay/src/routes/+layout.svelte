@@ -1,28 +1,35 @@
-<script>
-    import "../app.css"
+<script lang="ts" xmlns="http://www.w3.org/1999/html">
+    import "../app.css";
+    import {url} from "../enviroment";
 </script>
-<div id="page-container">
+<div id="page-container" style="
+        --font-reg: {url}/fonts/Kreadon-Regular.ttf;
+        --font-regular: {url}/fonts/Kreadon-Regular.ttf;
+        --font-medium: {url}/fonts/Kreadon-Medium.ttf;
+        --font-demi: {url}/fonts/Kreadon-demi.ttf;
+    ">
+    <slot/>
 </div>
 
 <style>
     @font-face {
         font-family: Kreadon_regular;
-        src: url("fonts/Kreadon-Regular.ttf");
+        src: var(--font-reg);
     }
 
     @font-face {
         font-family: Kreadon_bold;
-        src: url("fonts/Kreadon-Bold.ttf");
+        src: var(--font-bold);
     }
 
     @font-face {
         font-family: Kreadon_demi;
-        src: url("fonts/Kreadon-Demi.ttf");
+        src: var(--font-demi);
     }
 
     @font-face {
         font-family: Kreadon_medium;
-        src: url("fonts/Kreadon-Medium.ttf");
+        src: var(--font-medium);
     }
 
     #page-container {

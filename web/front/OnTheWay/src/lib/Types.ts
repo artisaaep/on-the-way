@@ -31,6 +31,10 @@ export interface BaseTrip {
     price: number
     available_seats: null | undefined | number;
     has_child_seat: null | undefined | boolean;
+    is_request: boolean
+    departure_date: string
+    clarify_from: string
+    clarify_to: string
 }
 
 
