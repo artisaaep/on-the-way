@@ -3,9 +3,6 @@
 @font-face { font-family: Kreadon_demi; src: url(fonts/Kreadon-Demi.ttf); } 
 @font-face { font-family: Kreadon_medium; src: url(fonts/Kreadon-Medium.ttf); }
 
-.navig {
-
-}
 
 .close {
     font-family: Kreadon_regular;
@@ -50,7 +47,7 @@
     flex-direction: column;
 }
 
-p {
+.modal p {
     margin-left: 10%;
 }
   

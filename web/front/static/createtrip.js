@@ -15,6 +15,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+function backToRole() {
+    console.log("back");
+    window.location.href = "chooserole.html";
+}
+
+
 function main() {
     window.Telegram.WebApp.expand();
 }
@@ -219,7 +225,7 @@ async function checkCar() {
         bar.innerHTML = `<p id="no-cars">У вас пока нет машин.</p>`;
         return;
     }
-    bar.innerHTML = ``;
+    bar.innerHTML = "";
     response.car_ids.forEach(async(id) => {
         const response = await (await fetch(url + "/api/cars/" + id, {
             method: "GET",

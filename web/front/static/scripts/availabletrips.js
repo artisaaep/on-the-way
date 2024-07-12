@@ -1,4 +1,4 @@
-let url = "https://d2fd-188-130-155-177.ngrok-free.app";
+let url = "https://75df-188-130-155-149.ngrok-free.app";
 
 document.addEventListener('DOMContentLoaded', function() {
     const tabBtn1 = document.getElementById('tab-btn-1');
