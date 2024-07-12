@@ -8,7 +8,7 @@ The project is designed to simplify the process of finding travelling companions
 
 - Create adverts to search for travelling companions from the driver and passenger side.
 - View available offers.
-- Receive notifications about responding passengers or drivers
+- Receive notifications about responding passengers or drivers.
 - Contact drivers and passengers via Telegram.
 
 ## Features
@@ -18,7 +18,7 @@ The project is designed to simplify the process of finding travelling companions
 - **Registration and Authentication**: Users can register and log in to the system.
 - **Создать поездку**: Users can go to the web application to create a trip.
 - **Найти поездку**: Users can go to the web application to find a trip.
-- **Мой профиль**: Users can go to their profile page in web application.
+- **Мой профиль**: Users can go to their profile page in the web application.
 - **Notifications**: Users receive notifications of passengers or drivers who respond to their requests.
 
 ### Web Application
@@ -29,11 +29,26 @@ The project is designed to simplify the process of finding travelling companions
 
 ## Demo of our Product
 
+[Link to the demo]
+
 ## Link to the up-to-date deployed version of our product
 
-## Usage instructions
+[Link to the deployed version]
 
-## Frameworks or technologies used
+## Usage Instructions
 
-##  License
+1. Follow the link to our Telegram bot: [Telegram Bot Link].
+2. Click the "Start" button to initiate the bot.
+3. Register by providing the required information.
+4. Once registered, you will have three options:
+    - **Создать поездку**: Go to the web application to create a trip.
+    - **Найти поездку**: Go to the web application to find a trip.
+    - **Мой профиль**: Go to your profile page in the web application.
+
+## Frameworks or Technologies Used
+
+- [List of frameworks or technologies used in the project]
+
+## License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
