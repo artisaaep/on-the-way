@@ -195,7 +195,8 @@ function showSummary() {
 }
 
 async function submitTrip() {
-    console.log(tripData);
+    let input = document.getElementById('av');
+    tripData.available_seats = input.value;
     await fetch(url + "/api/trips/", {
         method: 'POST',
         headers: {
