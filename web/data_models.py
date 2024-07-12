@@ -41,6 +41,7 @@ class User(BaseModel):
     sex: int
     car_ids: List[int]
     rides_amount: Optional[int]
+    number: str
 
     @classmethod
     def from_orm(cls: type[BaseModel], obj: SQLUser) -> Model:
@@ -52,6 +53,7 @@ class User(BaseModel):
             sex=obj.sex,
             car_ids=map(int, obj.car_ids.split()) if obj.car_ids else [],
             rides_amount=obj.rides_amount,
+            number=obj.number
         )
 
 
@@ -80,6 +82,8 @@ class Trip(BaseTrip):
     driver: User
     passengers: List[Passenger]
     car: Optional[Car]
+    is_request: int
+    add_info: str
 
     def to_orm(self) -> SQLTrip:
         passenger_ids = " ".join(str(p.id) for p in self.passengers)
@@ -97,6 +101,8 @@ class Trip(BaseTrip):
             departure_date=self.departure_date,
             clarify_from=self.clarify_from,
             clarify_to=self.clarify_to,
+            is_request=self.is_request,
+            add_info=self.add_info
         )
         return sqlalchemy_trip
 
@@ -113,6 +119,7 @@ class Trip(BaseTrip):
             rides_amount=sql_driver.rides_amount,
             bio=None,
             car_ids=list(map(int, sql_driver.car_ids.split())) if sql_driver.car_ids else [],
+            number=sql_driver.number
         )
         passenger_ids = map(int, orm.passenger_ids.split()) if orm.passenger_ids else []
         passengers = []
@@ -149,6 +156,8 @@ class Trip(BaseTrip):
             departure_date=orm.departure_date,
             clarify_from=orm.clarify_from,
             clarify_to=orm.clarify_to,
+            is_request=orm.is_request,
+            add_info=orm.add_info
         )
 
         return trip_model
@@ -157,6 +166,8 @@ class Trip(BaseTrip):
 class NewTrip(BaseTrip):
     car_id: Optional[int]
     driver_id: int
+    is_request: int
+    add_info: str
 
     def to_full(self, db: Session = next(get_db())):  # -> Trip
         return Trip(
@@ -173,6 +184,8 @@ class NewTrip(BaseTrip):
             departure_date=self.departure_date,
             clarify_from=self.clarify_from,
             clarify_to=self.clarify_to,
+            is_request=self.is_request,
+            add_info=self.add_info
         )
 
 

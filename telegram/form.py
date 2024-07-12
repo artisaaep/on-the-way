@@ -11,6 +11,7 @@ from aiogram.types.web_app_info import WebAppInfo
 from shared.database_class import Database
 from telegram.bot_init import bot
 from telegram.config_reader import base_webapp_url
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 router = Router()
 db = Database()
@@ -106,17 +107,12 @@ async def set_photo(message: types.Message, state: FSMContext):
             destination=Path(__file__).parent.parent / "shared" / "photos" / f"{message.from_user.id}.jpg"
         )
 
-        markup = InlineKeyboardMarkup(
-            inline_keyboard=[
-                [
-                    InlineKeyboardButton(text="Создать поездку",
+        builder = InlineKeyboardBuilder()
+        builder.row(InlineKeyboardButton(text="Создать поездку",
                                          web_app=WebAppInfo(url=base_webapp_url + "/static/createtrip.html")),
                     InlineKeyboardButton(text="Найти поездку",
-                                         web_app=WebAppInfo(url=base_webapp_url + "/static/availabletrips.html")),
-                ],
-            ],
-            resize_keyboard=True,
-            one_time_keyboard=True,
-        )
+                                         web_app=WebAppInfo(url=base_webapp_url + "/static/availabletrips.html")))
+        builder.row(InlineKeyboardButton(text="Мой профиль",
+                                         web_app=WebAppInfo(url=base_webapp_url + "/static/profile.html")))
         await message.answer("Отлично!\U0001f973 Анкета создана, можете начать ваше чудесное путешествие\U0001f699",
-                             reply_markup=markup)
+                             reply_markup=builder.as_markup())

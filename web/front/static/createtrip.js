@@ -1,3 +1,4 @@
+let url = "https://d2fd-188-130-155-177.ngrok-free.app";
 document.addEventListener('DOMContentLoaded', (event) => {
     const comments = document.querySelectorAll('.com');
 
@@ -67,7 +68,8 @@ let tripData = {
     bust: false,
     av: '',
     additional: '',
-    car_id: 1
+    car_id: 1,
+    is_request: 0
 };
 
 function updateTripData() {
@@ -177,15 +179,17 @@ async function submitTrip() {
             "clarify_from": tripData.addInfoOrigin,
             "clarify_to": tripData.addInfoDest,
             "car_id": tripData.car_id,
-            "driver_id": window.Telegram.WebApp.initDataUnsafe.user.id
+            "driver_id": window.Telegram.WebApp.initDataUnsafe.user.id,
+            "is_request": tripData.is_request,
+            "add_info": tripData.additional
           }),
     }).then(async response => {
         if (response.ok) {
             let id = window.Telegram.WebApp.initDataUnsafe.user.id;
             let kb = {
                 inline_keyboard: [[{
-                    text: 'подробнее',
-                    web_app: { url: 'https://75df-188-130-155-149.ngrok-free.app/web/front/static/tripinfo.html'}
+                    text: 'Подробнее',
+                    web_app: { url: `https://${url}/web/front/static/tripinfo.html`}
                 }]]
             };
             let text = `Ваша поездка *${tripData.origin} - ${tripData.destination}* успешно создана! 🚙
