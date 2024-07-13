@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 
 
-## [0.5.1]
+## 0.5.1 - 2024-06-15
 
 ### Added
 - Initialized bot and dispatcher in `bot_init.py` using configuration from `config_reader`.
@@ -25,7 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 - Removed redundant imports and unused code sections.
 
-## [0.5.0] - 2024-06-13
+## 0.5.0 - 2024-06-13
 
 ### Added
 - Implemented database functionality in `database.py`:
@@ -37,7 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Updated `main.py` to include `form.router` in Dispatcher setup for routing.
 - Modified `handlers/start.py` to utilize `Database` class methods for user profile creation and existence checks.
 
-## [0.4.0] - 2024-06-12
+## 0.4.0 - 2024-06-12
 
 ### Added
 - Implemented database functions in `database.py`:
@@ -50,7 +50,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - Greeting message for new users, guiding them through registration or providing startup instructions.
   - Utilized `exists` function from `database` module to check user existence during startup.
 
-## [0.3.2] - 2024-06-11
+## 0.3.2 - 2024-06-11
 
 ### Changed
 - Updated keyboard button text in `handlers/start.py` for the CommandStart message handler.
@@ -58,7 +58,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 - Removed redundant message response in the CommandStart message handler in `handlers/start.py`.
 
-## [0.3.1] - 2024-06-08
+## 0.3.1 - 2024-06-08
 
 ### Added
 - Added `.venv` to `.gitignore` to exclude virtual environment files from version control.
@@ -74,7 +74,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - Fixed the `main.py` script to correctly handle asynchronous operations using `asyncio.run(main())`.
 
-## [0.3.0] - 2024-06-08
+## 0.3.0 - 2024-06-08
 
 ### Removed
 - Removed `.gitignore` entries and configuration files from `.idea/` directory.
@@ -87,7 +87,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - Deleted `.idea/vcs.xml` used for version control system directory mappings.
   - Removed `__pycache__/config_reader.cpython-312.pyc` Python bytecode file.
 
-## [0.2.0] - 2024-06-08
+## 0.2.0 - 2024-06-08
 
 ### Added
 - Added `.gitignore` file to ignore virtual environment files (`venv`).
@@ -96,7 +96,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Modified `main.py` to fix type hinting and import issues in command handler.
 - Updated `requirements.txt` with specific library versions required for the project.
 
-## [0.1.0] - 2024-06-08
+## 0.1.0 - 2024-06-08
 
 ### Added
 - Initialized project with basic Telegram bot setup.
