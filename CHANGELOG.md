@@ -4,12 +4,46 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 3.0.3 - 2024-07-13
+
+### Changed
+- `README`
+- `CHANGELOG`
+
+## 3.0.2 - 2024-07-12
+
+### Added
+- `README` file
+- `CHANGELOG` file
+
+### Changed
+- Refactoring of `createtrip.html` and `createtrip.css`
+- changes in the corresponding `js` file
+
+
+## 3.0.1 - 2024-07-08
+
+### Added
+- `createtrip.js` code
+- `tripinfo.html`
+
+### Changed
+- Refactoring HTML and CSS code (`CreateTrip`, `AddCar`, `AvailableTrips`, `Profile`)
+
 ## 3.0.0 - 2024-07-07 - MVP Version 2
 
 Full-fledged bot communication with the database and refactoring of some web pages
 
 ### Added
--
+- Added some javascript code for web page interaction
+
+### Cnanged
+- Refactoring some web pages
+- Expanded database structure
+
+### Updated
+- Gitlab pipeline
+- Dockerfile
 
 ## 2.1.0 - 2024-07-06
 
