@@ -4,12 +4,21 @@ This project is a Telegram bot together with a web application to find travellin
 
 ## Description
 
-The project is designed to simplify the process of finding travelling companions for students, employees and residents of Innopolis and Kazan. Our bot will allow you to:
+The project is designed to simplify the process of finding travelling companions for students, employees, and residents of Innopolis and Kazan. Our bot will allow you to:
 
 - Create adverts to search for travelling companions from the driver and passenger side.
 - View available offers.
-- Receive notifications about responding passengers or drivers
+- Receive notifications about responding passengers or drivers.
 - Contact drivers and passengers via Telegram.
+
+## Built With
+
+- ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white) 
+- ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat&logo=css3&logoColor=white) 
+- ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) 
+- ![Svelte](https://img.shields.io/badge/-Svelte-FF3E00?style=flat&logo=svelte&logoColor=white) 
+- ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) 
+- ![Telegram](https://img.shields.io/badge/-Telegram-26A5E4?style=flat&logo=telegram&logoColor=white) 
 
 ## Features
 
@@ -18,22 +27,51 @@ The project is designed to simplify the process of finding travelling companions
 - **Registration and Authentication**: Users can register and log in to the system.
 - **Создать поездку**: Users can go to the web application to create a trip.
 - **Найти поездку**: Users can go to the web application to find a trip.
-- **Мой профиль**: Users can go to their profile page in web application.
+- **Мой профиль**: Users can go to their profile page in the web application.
 - **Notifications**: Users receive notifications of passengers or drivers who respond to their requests.
 
 ### Web Application
 
 - **User Profile**: Each user has their own profile page where they can add or remove cars they own, as well as edit basic information about themselves.
-- **Trip Management**: Users can create, edit, and delete their trip requests.
+- **Trip Management**: Users can create and delete their trip requests.
 - **Search and Filtering**: Users can search and filter trips based on various criteria.
 
 ## Demo of our Product
 
+[**Link to the demo of our bot**]()
+
 ## Link to the up-to-date deployed version of our product
 
-## Usage instructions
+[**On The Way Telegram Bot**](https://t.me/OnTheWayApp_bot)
 
-## Frameworks or technologies used
+## Usage Instructions
 
-##  License
+1. Follow the link to our Telegram bot: [**On The Way Telegram Bot**](https://t.me/OnTheWayApp_bot).
+2. Click the "Start" button to initiate the bot.
+3. Next, click on the "Начать регистрацию" button to register with the bot.
+4. Register by providing the required information.
+5. Once registered, you will have three options:
+    - **Создать поездку**: Go to the web application to create a trip.
+    - **Найти поездку**: Go to the web application to find a trip.
+    - **Мой профиль**: Go to your profile page in the web application.
+
+## Frameworks and Technologies Used
+
+- **HTML and CSS**: Used for designing and styling the web pages, ensuring a responsive and user-friendly interface.
+- **JavaScript**: Provides dynamic behavior to the web application, enhancing user interactions.
+- **Svelte**: Utilized for building the web application's front-end, offering a modern, efficient way to create highly reactive user interfaces.
+- **Python**: Powers the backend logic of the bot, handling user interactions, data processing, and communication with the Telegram API.
+- **Telegram API**: Enables communication between the bot and Telegram, allowing for real-time messaging and notifications.
+
+## Contribution
+
+We welcome contributions to our project! If you would like to contribute, please create a pull request or open an issue for discussion.
+
+## Contact
+
+- Telegram: [@AEZuraa](https://t.me/AEZuraa)
+- Email: [e.agapov@innopolis.university](mailto:e.agapov@innopolis.university)
+
+## License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
