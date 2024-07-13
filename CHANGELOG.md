@@ -4,59 +4,76 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.8.0 - 2024-07-02
+## 3.0.0 - 2024-07-07 - MVP Version 2
+
+Full-fledged bot communication with the database and refactoring of some web pages
 
 ### Added
-- Added handling for `car_ids` in user data for trip passengers in `web/data_models.py`.
-- Added enhanced trip rendering in `main` function in `web/front/static/scripts/availabletrips.js`.
+-
+
+## 2.1.0 - 2024-07-06
+
+### Added 
+- Added pipeline features
+- Dockerfile for NGINX web server
+
+## 2.0.2 - 2024-07-04
+
+### Added
+- Added base for Svelte-framework based front-end in some web pages
+
+### Removed
+- Removed unnecessary part of the code of web pages due to migration to Svelte
+
+## 2.0.1 - 2024-07-02
+
+### Added
+- Added handling for `car_ids` in user data for trip passengers in `data_models.py`.
+- Added enhanced trip rendering in `main` function in `availabletrips.js`.
 
 ### Fixed
-- Fixed redundant script import in `web/front/static/availabletrips.html`.
+- Fixed redundant script import in `availabletrips.html`.
 
 ### Changed
-- Changed `user` retrieval to use `SQLUser` instead of `User` in `web/data_models.py`.
-- Changed `url` variable to point to a new API endpoint in `web/front/static/scripts/addcar.js`.
-- Changed `url` variable to point to a new API endpoint in `web/front/static/scripts/availabletrips.js`.
-- Changed `apply` function to handle trip applications with a specific payload in `web/front/static/scripts/availabletrips.js`.
-- Changed `url` variable to point to a new endpoint in `web/front/static/scripts/profile.js`.
+- Changed `user` retrieval to use `SQLUser` instead of `User` in `data_models.py`.
+- Changed `url` variable to point to a new API endpoint in `addcar.js`.
+- Changed `url` variable to point to a new API endpoint in `availabletrips.js`.
+- Changed `apply` function to handle trip applications with a specific payload in `availabletrips.js`.
+- Changed `url` variable to point to a new endpoint in `profile.js`.
 
-## 0.8.0 - 2024-06-30
+## 2.0.0 - 2024-06-30 - MVP Version 1
+
+The bot is uploaded to the server and partially connected to the database
 
 ### Added
 - Updated values for `BOT_TOKEN` and `BASE_WEBAPP_URL` in the `.env` file.
 
 ### Changed
 - Fixed links in `telegram/form.py` for user interaction with the web application.
-
-### Removed
-- Deleted `index.html` file as it was unnecessary.
-
-### Changes in `web/front/dev-readme.txt`
 - Updated instructions for compiling files into the static folder.
-
-### Changes in `web/front` package files
 - Updated `package-lock.json`.
 - Updated `package.json`.
 - Added `rollup.config.js` for script compilation.
 - Updated scripts and styles in static files.
-
-### Changes in static files
 - Added and updated HTML files and scripts for the web application.
 
-## 0.7.2 - 2024-06-27
+### Removed
+- Deleted `index.html` file as it was unnecessary.
+
+## 1.0.3 - 2024-06-27
 
 ### Added
 - Added `BASE_WEBAPP_URL` to `.env`.
-- Integrated web app links in `telegram/form.py` for user interaction.
+- Integrated web app links in `form.py` for user interaction.
 
 ### Changed
 - Updated imports across several files for clarity and organization.
-- Streamlined user profile creation in `shared/database_class.py`.
+- Streamlined user profile creation in `database_class.py`.
 
 ### Fixed
 - Corrected file path in `web/server.py` for static file handling.
 
-## 0.7.1 - 2024-06-25
+## 1.0.2 - 2024-06-25
 
 ### Added
 - Added `cars` router to `server.py` for managing car-related endpoints.
@@ -74,7 +91,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 - Removed redundant imports and unused code from `data_models.py` and `users.py`.
 
-## 0.7.0 - 2024-06-25
+## 1.0.1 - 2024-06-25
 
 ### Updated
 
@@ -83,6 +100,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Enhanced `database.py` to support SQLAlchemy sessions for managing user profiles and fetching photos.
 - Improved trip handling in `trips.py` using ORM models, optimizing CRUD operations.
 - Added ID generator function in `id_generators.py` for generating unique identifiers for entities.
+
+## 1.0.0 - 2024-06-23 - MVP Version 0
+
+A bot along with a web app that is not connected to the database.
 
 ## 0.6.2 - 2024-06-21
 
