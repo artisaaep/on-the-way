@@ -19,6 +19,7 @@ The project is designed to simplify the process of finding travelling companions
 - ![Svelte](https://img.shields.io/badge/-Svelte-FF3E00?style=flat&logo=svelte&logoColor=white) 
 - ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) 
 - ![Telegram](https://img.shields.io/badge/-Telegram-26A5E4?style=flat&logo=telegram&logoColor=white) 
+- ![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-EE0000?style=flat&logo=sqlalchemy&logoColor=white)
 
 ## Features
 
@@ -62,6 +63,7 @@ The project is designed to simplify the process of finding travelling companions
 - **Svelte**: Utilized for building the web application's front-end, offering a modern, efficient way to create highly reactive user interfaces.
 - **Python**: Powers the backend logic of the bot, handling user interactions, data processing, and communication with the Telegram API.
 - **Telegram API**: Enables communication between the bot and Telegram, allowing for real-time messaging and notifications.
+- **SQLAlchemy**: Used for database operations, providing a powerful and flexible ORM for managing the bot's data.
 
 ## Contribution
 
