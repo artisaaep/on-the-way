@@ -11,6 +11,15 @@ The project is designed to simplify the process of finding travelling companions
 - Receive notifications about responding passengers or drivers.
 - Contact drivers and passengers via Telegram.
 
+## Built With
+
+- ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white) **HTML**
+- ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat&logo=css3&logoColor=white) **CSS**
+- ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) **JavaScript**
+- ![Svelte](https://img.shields.io/badge/-Svelte-FF3E00?style=flat&logo=svelte&logoColor=white) **Svelte**
+- ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) **Python**
+- ![Telegram](https://img.shields.io/badge/-Telegram-26A5E4?style=flat&logo=telegram&logoColor=white) **Telegram API**
+
 ## Features
 
 ### Telegram Bot
@@ -46,14 +55,13 @@ The project is designed to simplify the process of finding travelling companions
     - **Найти поездку**: Go to the web application to find a trip.
     - **Мой профиль**: Go to your profile page in the web application.
 
-## Built With
+## Frameworks and Technologies Used
 
-- ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white) **HTML5**: Used for designing the structure of the web pages.
-- ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat&logo=css3&logoColor=white) **CSS3**: Used for styling the web pages, ensuring a responsive and user-friendly interface.
-- ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) **JavaScript**: Provides dynamic behavior to the web application, enhancing user interactions.
-- ![Svelte](https://img.shields.io/badge/-Svelte-FF3E00?style=flat&logo=svelte&logoColor=white) **Svelte**: Utilized for building the web application's front-end, offering a modern, efficient way to create highly reactive user interfaces.
-- ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) **Python**: Powers the backend logic of the bot, handling user interactions, data processing, and communication with the Telegram API.
-- ![Telegram](https://img.shields.io/badge/-Telegram-26A5E4?style=flat&logo=telegram&logoColor=white) **Telegram API**: Enables communication between the bot and Telegram, allowing for real-time messaging and notifications.
+- **HTML and CSS**: Used for designing and styling the web pages, ensuring a responsive and user-friendly interface.
+- **JavaScript**: Provides dynamic behavior to the web application, enhancing user interactions.
+- **Svelte**: Utilized for building the web application's front-end, offering a modern, efficient way to create highly reactive user interfaces.
+- **Python**: Powers the backend logic of the bot, handling user interactions, data processing, and communication with the Telegram API.
+- **Telegram API**: Enables communication between the bot and Telegram, allowing for real-time messaging and notifications.
 
 ## Contribution
 
