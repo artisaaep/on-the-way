@@ -96,6 +96,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - You can create a trip by clicking on `Создать поездку` button
 - You can find a trip by clicking on `Найти поездку` button
 - You can view your profile and add cars by clicking on `Мой профиль` button
-
+\\
 **Post-Course Collaboration and Support**
 We are ready to continue working on this project after the end of the course. Our only requirement is part-time employment.
