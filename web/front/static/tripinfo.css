@@ -37,7 +37,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin-top: 0;
     position: absolute;
     bottom: 0;
     margin-bottom: 5%;
@@ -83,7 +83,7 @@ body {
     padding: 3%;
     padding-top: 0;
     width: 90%;
-    height: 72%;
+    height: 76%;
     border: 1.3px solid black;
     border-radius: 10px;
     margin-top: 0;
@@ -96,7 +96,27 @@ body {
     margin-top: 5%;
 }
 
-#trip .param-name p, #trip .param-val p {
+input {
+    height: 2em;
+    text-align: center;
+    font-size: 4vw;
+    width: 7em;
+    height: 1.5em;
+}
+
+input::placeholder {
+    color: black;
+    font-size: 4vw;
+}
+#where {
+    width: 6em;
+}
+#where::placeholder {
+    font-size: 3vw;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+#trip .param-name p, input, #trip .param-val p {
     margin: 4%;
     padding: 0;
     padding-top: 1%;
@@ -107,7 +127,7 @@ body {
     justify-content: center;
 }
 
-#trip .param-val p {
+#trip .param-val p, input {
     border: 1px solid black;
     background-color: #c4c1c1;
 }

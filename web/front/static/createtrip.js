@@ -220,10 +220,13 @@ async function submitTrip() {
     }).then(async response => {
         if (response.ok) {
             let id = window.Telegram.WebApp.initDataUnsafe.user.id;
+            const trips = await (await fetch(url + "/api/trips", {
+                method: "GET",
+            })).json();
             let kb = {
                 inline_keyboard: [[{
                     text: 'Подробнее',
-                    web_app: { url: `${url}/static/tripinfo.html`}
+                    web_app: { url: `${url}/static/tripinfo.html?${trips[trips.length-1].id}`}
                 }]]
             };
             let text = `Ваша поездка *${tripData.origin} - ${tripData.destination}* успешно создана! 🚙
@@ -232,7 +235,6 @@ async function submitTrip() {
 
             let encodedText = encodeURIComponent(text);
             let encodedReplyMarkup = encodeURIComponent(JSON.stringify(kb));
-            console.log("aaa");
             await fetch(`https://api.telegram.org/bot6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown&reply_markup=${encodedReplyMarkup}`);
             // TODO: token from .env
             window.location.href = "tripcreated.html";

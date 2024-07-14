@@ -23,6 +23,23 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 async function apply(trip_id) {
+    let id = window.Telegram.WebApp.initDataUnsafe.user.id;
+    const user = await (await fetch(url + "/api/users/" + id, {
+        method: "GET",
+    })).json();
+    const trip = await (await fetch(url + "/api/trips/" + trip_id, {
+        method: "GET",
+    })).json();
+    let text = `К вашей поездке *${trip.start_location} - ${trip.end_location}* хочет присоединиться _${user.name}_`;
+    let kb = {
+        inline_keyboard: [[{
+            text: `Профиль пользователя ${user.name}`,
+            url: `tg://user?id=${user.id}`
+        }]]
+    };
+    let encodedText = encodeURIComponent(text);
+    let encodedReplyMarkup = encodeURIComponent(JSON.stringify(kb));
+    await fetch(`https://api.telegram.org/bot6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs/sendMessage?chat_id=${trip.driver.id}&text=${encodedText}&parse_mode=Markdown&reply_markup=${encodedReplyMarkup}`);
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
         method: "PUT",
         headers: {
@@ -33,8 +50,15 @@ async function apply(trip_id) {
             "has_kids": false,
             "has_pets": false
         })
-    }).then(response => {
+    }).then(async(response) => {
         if (response.ok) {
+            let id = window.Telegram.WebApp.initDataUnsafe.user.id;
+            let kb = {
+                inline_keyboard: [[{
+                    text: 'Подробнее',
+                    web_app: { url: `${url}/static/tripinfo.html`}
+                }]]
+            };
             const btn = document.getElementById("choose-" + trip_id);
             btn.onclick = rejectDecorator(trip_id);
             btn.textContent = "Отменить";
@@ -45,6 +69,16 @@ async function apply(trip_id) {
 }
 
 async function reject(trip_id) {
+    let id = window.Telegram.WebApp.initDataUnsafe.user.id;
+    const user = await (await fetch(url + "/api/users/" + id, {
+        method: "GET",
+    })).json();
+    const trip = await (await fetch(url + "/api/trips/" + trip_id, {
+        method: "GET",
+    })).json();
+    let text = `_${user.name}_ передумал ехать по маршруту *${trip.start_location} - ${trip.end_location}*`;
+    let encodedText = encodeURIComponent(text);
+    await fetch(`https://api.telegram.org/bot6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs/sendMessage?chat_id=${trip.driver.id}&text=${encodedText}&parse_mode=Markdown`);
     await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
         method: "DELETE",
     }).then(response => {
