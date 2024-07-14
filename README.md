@@ -69,11 +69,33 @@ The project is designed to simplify the process of finding travelling companions
 
 We welcome contributions to our project! If you would like to contribute, please create a pull request or open an issue for discussion.
 
-## Contact
-
+## Contacts
+**Artem Ostapenko**
+- Telegram: [@artisaep](https://t.me/artisaep)
+- Email: [a.ostapenko@innopolis.university](mailto:a.ostapenko@innopolis.university)
+**Maria Rokkel**
+- Telegram: [@mars_min](https://t.me/mars_min)
+- Email: [m.rokkel@innopolis.university](mailto:m.rokkel@innopolis.university)
+**Ivan Lobazov**
+- Telegram: [@XriXis](https://t.me/XriXis)
+- Email: [i.lobazov@innopolis.university](mailto:i.lobazov@innopolis.university)
+**Daria Nikolaeva**
+- Telegram: [@aalikorn](https://t.me/aalikorn)
+- Email: [d.nikolaeva@innopolis.university](mailto:d.nikolaeva@innopolis.university)
+**Egor Agapov**
 - Telegram: [@AEZuraa](https://t.me/AEZuraa)
 - Email: [e.agapov@innopolis.university](mailto:e.agapov@innopolis.university)
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## For customer
+**User Onboarding and Support**
+- You can create an account in our bot, by writing `/start`.
+- You can create a trip by clicking on `Создать поездку` button
+- You can find a trip by clicking on `Найти поездку` button
+- You can view your profile and add cars by clicking on `Мой профиль` button
+
+**Post-Course Collaboration and Support**
+We are ready to continue working on this project after the end of the course. Our only requirement is part-time employment.
