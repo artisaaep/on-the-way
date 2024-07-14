@@ -38,7 +38,7 @@ class User(BaseModel):
     name: Optional[str] = None
     age: Optional[int]
     alias: str
-    car_ids: List[int]
+    car_ids: Optional[List[int]]
     rides_amount: Optional[int]
 
     @classmethod
@@ -48,7 +48,7 @@ class User(BaseModel):
             name=obj.name,
             age=obj.age,
             alias=obj.alias,
-            car_ids=map(int, obj.car_ids.split()) if obj.car_ids else [],
+            car_ids=[*map(int, obj.car_ids.split())] if obj.car_ids else [],
             rides_amount=obj.rides_amount,
         )
 

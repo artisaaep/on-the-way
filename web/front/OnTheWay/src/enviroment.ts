@@ -12,7 +12,7 @@
 
 const env = {
     BOT_TOKEN: "6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs",
-    BASE_WEBAPP_URL: "http://127.0.0.1:8000",
+    BASE_WEBAPP_URL: "https://78c6-195-144-21-112.ngrok-free.app",
 }
 
 export const url: string = env.BASE_WEBAPP_URL;

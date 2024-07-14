@@ -3,10 +3,10 @@
     import {url} from "../enviroment";
 </script>
 <div id="page-container" style="
-        --font-reg: {url}/fonts/Kreadon-Regular.ttf;
-        --font-regular: {url}/fonts/Kreadon-Regular.ttf;
-        --font-medium: {url}/fonts/Kreadon-Medium.ttf;
-        --font-demi: {url}/fonts/Kreadon-demi.ttf;
+        --font-reg: {url}/static/fonts/Kreadon-Regular.ttf;
+        --font-regular: {url}/static/fonts/Kreadon-Regular.ttf;
+        --font-medium: {url}/static/fonts/Kreadon-Medium.ttf;
+        --font-demi: {url}/static/fonts/Kreadon-demi.ttf;
     ">
     <slot/>
 </div>

@@ -11,12 +11,14 @@ from aiogram.types.web_app_info import WebAppInfo
 from shared.database_class import Database
 from telegram.bot_init import bot
 from telegram.config_reader import base_webapp_url
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 router = Router()
 db = Database()
 
 
 class Form(StatesGroup):
+    number = State()
     name = State()
     age = State()
     sex = State()
@@ -24,17 +26,34 @@ class Form(StatesGroup):
     finish = State()
 
 
+@router.message(Form.number)
+async def num(message: types.Message, state: FSMContext):
+    markup = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="Предоставить данные", request_contact=True)]
+        ],
+        resize_keyboard=True,
+        one_time_keyboard=True,
+    )
+    await message.answer("Начинаем создание вашего профиля\nНажмите на кнопку ниже, чтобы предоставить ваш номер телефона", reply_markup=markup)
+    await state.set_state(Form.name)
+
 @router.message(Form.name)
 async def create(message: types.Message, state: FSMContext):
-    await message.answer("Укажите Ваше имя\U0001f607", reply_markup=ReplyKeyboardRemove())
+    await state.update_data(number=f'+{message.contact.phone_number}')
+    await message.answer("Теперь укажите Ваше имя и фамилию\U0001f607", reply_markup=ReplyKeyboardRemove())
     await state.set_state(Form.age)
 
 
 @router.message(Form.age)
 async def set_name(message: types.Message, state: FSMContext):
-    await state.update_data(name=message.text)
-    await message.answer("Прекрасно, а теперь укажите Ваш возраст\u263a\ufe0f", reply_markup=ReplyKeyboardRemove())
-    await state.set_state(Form.sex)
+    if len(message.text.split()) < 2:
+        await message.answer("Вы не указали имя или фамилию, попробуйте ещё раз")
+        await state.set_state(Form.age)
+    else:
+        await state.update_data(name=message.text)
+        await message.answer("Прекрасно, а теперь укажите Ваш возраст\u263a\ufe0f", reply_markup=ReplyKeyboardRemove())
+        await state.set_state(Form.sex)
 
 
 @router.message(Form.sex)
@@ -71,33 +90,29 @@ async def set_sex(message: types.Message, state: FSMContext):
 
 @router.message(Form.finish)
 async def set_photo(message: types.Message, state: FSMContext):
+    if message.photo is None:
+        await state.set_state(Form.finish)
+        return
     data = await state.get_data()
     db.create_profile(
         user_id=message.from_user.id,
         alias=message.from_user.username,
         name=data['name'],
         age=data['age'],
-        sex=data['sex']
+        sex=data['sex'],
+        number=data['number']
     )
-    if message.photo is not None:
-        await bot.download(
-            message.photo[-1],
-            destination=Path(__file__).parent.parent / "shared" / "photos" / f"{message.from_user.id}.jpg"
-        )
-    else:
-        await state.set_state(Form.photo)
+    await bot.download(
+        message.photo[-1],
+        destination=Path(__file__).parent.parent / "shared" / "photos" / f"{message.from_user.id}.jpg"
+    )
 
-    markup = InlineKeyboardMarkup(
-        inline_keyboard=[
-            [
-                InlineKeyboardButton(text="Создать поездку",
+    builder = InlineKeyboardBuilder()
+    builder.row(InlineKeyboardButton(text="Создать поездку",
                                      web_app=WebAppInfo(url=base_webapp_url + "/static/createtrip.html")),
                 InlineKeyboardButton(text="Найти поездку",
-                                     web_app=WebAppInfo(url=base_webapp_url + "/static/availabletrips.html")),
-            ],
-        ],
-        resize_keyboard=True,
-        one_time_keyboard=True,
-    )
+                                     web_app=WebAppInfo(url=base_webapp_url + "/app/availabletrips.html")))
+    builder.row(InlineKeyboardButton(text="Мой профиль",
+                                     web_app=WebAppInfo(url=base_webapp_url + "/app/profile.html")))
     await message.answer("Отлично!\U0001f973 Анкета создана, можете начать ваше чудесное путешествие\U0001f699",
-                         reply_markup=markup)
+                         reply_markup=builder.as_markup())
