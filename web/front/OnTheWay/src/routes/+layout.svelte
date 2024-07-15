@@ -2,11 +2,12 @@
     import "../app.css";
     import {url} from "../enviroment";
 </script>
+
 <div id="page-container" style="
-        --font-reg: {url}/static/fonts/Kreadon-Regular.ttf;
-        --font-regular: {url}/static/fonts/Kreadon-Regular.ttf;
-        --font-medium: {url}/static/fonts/Kreadon-Medium.ttf;
-        --font-demi: {url}/static/fonts/Kreadon-demi.ttf;
+        --font-reg: url({url}/static/fonts/Kreadon-Regular.ttf);
+        --font-regular: url({url}/static/fonts/Kreadon-Regular.ttf);
+        --font-medium: url({url}/static/fonts/Kreadon-Medium.ttf));
+        --font-demi: url({url}/static/fonts/Kreadon-demi.ttf);
     ">
     <slot/>
 </div>
@@ -34,8 +35,12 @@
 
     #page-container {
         position: relative;
-        min-height: 40vh;
+        min-height: 90vh;
+        min-width: 90vw;
+        height: 100%;
+        width: 100%;
         margin: 0;
+        padding: 0;
         justify-content: center;
         background-color: var(--tg-theme-bg-color);
         color: var(--tg-theme-text-color);

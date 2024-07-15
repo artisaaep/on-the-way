@@ -33,8 +33,8 @@ export interface BaseTrip {
     has_child_seat: null | undefined | boolean;
     is_request: boolean
     departure_date: string
-    clarify_from: string
-    clarify_to: string
+    clarify_from: string | undefined
+    clarify_to: string | undefined
 }
 
 
