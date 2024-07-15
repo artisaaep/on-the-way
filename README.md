@@ -39,7 +39,7 @@ The project is designed to simplify the process of finding travelling companions
 
 ## Demo of our Product
 
-[**Link to the demo of our bot**]()
+[**Link to the demo of our bot**](https://drive.google.com/file/d/1j3GORHiYfxBORnNtq-5lU_wba27c75gW/view?usp=share_link)
 
 ## Link to the up-to-date deployed version of our product
 
