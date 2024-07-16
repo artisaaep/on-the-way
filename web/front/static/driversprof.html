@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="driversprof.css">
+    <link rel="stylesheet" href="addcar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="scripts/links.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="verh">
+        <button id="back" onclick="goBack()">Назад</button>
+    </div>
+    <p id="name">Артём Остапенко</p>
+    
+    <div class="bio">
+        <img src="" alt="Аватарка" id="avatar">
+        <div id="textt">
+            <p id="age">Возраст: 18</p>
+            <p id="sex">Пол: Мужской</p>
+            <p id="rides">Количество поездок: 0</p>
+        </div>
+    </div>
+    <div class="maininfa">
+        <a id="date" class="date">30.02.2024<br></a>
+        <a id="from" class="from">Иннополис</a>
+        <a class="strelka">&#8594;</a>
+        <a id="to" class="to">Казань<br></a>
+        <a id="clari-from" class="clari-from">Технопарк</a>
+        <a id="time" class="time">16:00</a>
+        <a id="clari-to" class="clari-to">Тандем</a>
+    </div>
+    <div class="options">
+        <div id="pets">
+            <a>Животные<br></a>
+            <a id="z1">&#10004;</a>
+        </div>
+        <div id="kids">
+            <a>Детское кресло<br></a>
+            <a id="z2">&#10004;</a>
+        </div>
+        <div id="minikids">
+            <a>Бустер<br></a>
+            <a id="z3">&#10006;</a>
+        </div>
+        <div id="bag">
+            <a>Багаж<br></a>
+            <a id="z4">&#10004;</a>
+        </div>
+    </div>
+    <div id="car">
+        <a id="mashina">Машина:</a>
+        <a id="named">Розовый Daewoo Matiz А666АА 716</a>
+    </div>
+    <div id="info">
+        <a>важная информация от водителя <a></a>
+    </div>
+    <br>
+    <div id="ch+pr">
+        <a id="price">Цена: 250 руб</a>
+        <button id="choose" onclick="choose()">Выбрать</button>
+    </div>
+</body>
+<script src="scripts/driversprof.js"></script>
+</html>
