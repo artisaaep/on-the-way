@@ -55,6 +55,10 @@ body {
     color: #000;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 #dir-button1 {
     margin-left: 2%;
     margin-right: 2%;
