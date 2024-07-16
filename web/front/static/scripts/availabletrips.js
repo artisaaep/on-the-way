@@ -70,6 +70,10 @@ const applyDecorator = (trip_id) => {
     }
 }
 
+async function wide(trip_id) {
+    window.location.href = "driversprof.html?" + trip_id;
+}
+
 async function main() {
     window.Telegram.WebApp.expand();
     const bar = document.getElementById("main-scrolling-div");
@@ -103,7 +107,7 @@ async function main() {
         }
         
         bar.innerHTML += `
-            <div class="card" id="trip-card-by-id-${trip.id}">
+            <div onclick="wide(${trip.id})" class="card" id="card">
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
                 <a class="driver_name">${trip.driver.name}</a>
                 <div class="maininfa">
@@ -154,7 +158,7 @@ async function main() {
         }
         
         bar2.innerHTML += `
-            <div class="card" id="trip-card-by-id-${trip.id}">
+            <div onclick="wide(${trip.id})" class="card" id="trip-card-by-id-${trip.id}">
                 <img class="avatar" alt="driver-avatar" src="${url}/api/users/${trip.driver.id}/photo">
                 <a class="request_name">${trip.driver.name}</a>
                 <div class="maininfa">

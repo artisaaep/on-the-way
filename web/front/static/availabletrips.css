@@ -21,6 +21,20 @@
     display: block;
 }
 
+button, .card {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.card:hover{
+    background-color: rgb(168, 168, 168);
+}
+
+.driver_choose:hover {
+    background-color: rgb(163, 163, 0);
+}
+
 #filter {
     position: fixed;
     left: 70%;
