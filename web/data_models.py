@@ -66,9 +66,13 @@ class BaseTrip(BaseModel):
     price: int
     available_seats: Optional[int]
     has_child_seat: Optional[bool]
+    has_buster: Optional[bool]
+    allow_luggage: Optional[bool]
+    allow_pets: Optional[bool]
     departure_date: Optional[str]
     clarify_from: Optional[str]
     clarify_to: Optional[str]
+    add_info: Optional[str]
 
     model_config = {"from_attributes": True}
 
@@ -90,11 +94,15 @@ class Trip(BaseTrip):
             departure_time=self.departure_time,
             seats_available=self.available_seats,
             has_child_seat=self.has_child_seat,
+            has_buster=self.has_buster,
+            allow_luggage=self.allow_luggage,
+            allow_pets=self.allow_pets,
             price=self.price,
             car_id=self.car.id if self.car else 0,
             departure_date=self.departure_date,
             clarify_from=self.clarify_from,
             clarify_to=self.clarify_to,
+            add_indo=self.add_info,
         )
         return sqlalchemy_trip
 
@@ -140,11 +148,15 @@ class Trip(BaseTrip):
             departure_time=orm.departure_time,
             available_seats=orm.seats_available,
             has_child_seat=orm.has_child_seat,
+            has_buster=orm.has_buster,
+            allow_luggage=orm.allow_luggage,
+            allow_pets=orm.allow_pets,
             price=orm.price,
             car=session.query(SQLCar).filter(SQLCar.id == orm.car_id).first(),
             departure_date=orm.departure_date,
             clarify_from=orm.clarify_from,
             clarify_to=orm.clarify_to,
+            add_info=orm.add_info,
         )
 
         return trip_model
@@ -165,10 +177,14 @@ class NewTrip(BaseTrip):
             departure_time=self.departure_time,
             available_seats=self.available_seats,
             has_child_seat=self.has_child_seat,
+            has_buster=self.has_buster,
+            allow_luggage=self.allow_luggage,
+            allow_pets=self.allow_pets,
             price=self.price,
             departure_date=self.departure_date,
             clarify_from=self.clarify_from,
             clarify_to=self.clarify_to,
+            add_info=self.add_info,
         )
 
 

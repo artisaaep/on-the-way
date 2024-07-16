@@ -1,5 +1,5 @@
 import {writable, Writable} from "svelte/store";
-import {NewTrip} from "../../lib/Types";
+import {NewTrip, Passenger} from "../../lib/Types";
 
 export let step= writable(0);
 export let data: NewTrip = {
@@ -16,7 +16,11 @@ export let data: NewTrip = {
 
     car_id: undefined,
 
+    has_child_seat: false,
+    has_buster: false,
+    allow_luggage: false,
+    allow_pets: false,
     available_seats: 1,
-    has_child_seat: undefined,
+    add_info: undefined,
     price: 100,
 };

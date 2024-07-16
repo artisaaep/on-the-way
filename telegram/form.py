@@ -109,7 +109,7 @@ async def set_photo(message: types.Message, state: FSMContext):
 
     builder = InlineKeyboardBuilder()
     builder.row(InlineKeyboardButton(text="Создать поездку",
-                                     web_app=WebAppInfo(url=base_webapp_url + "/static/createtrip.html")),
+                                     web_app=WebAppInfo(url=base_webapp_url + "/app/createTrip.html")),
                 InlineKeyboardButton(text="Найти поездку",
                                      web_app=WebAppInfo(url=base_webapp_url + "/app/availabletrips.html")))
     builder.row(InlineKeyboardButton(text="Мой профиль",

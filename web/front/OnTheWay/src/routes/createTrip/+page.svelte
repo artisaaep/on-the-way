@@ -7,7 +7,6 @@
     import Vehicle from "./spa-routes/Vehicle.svelte";
     import Cars from "./spa-routes/Cars.svelte";
     import Form from "./spa-routes/Form.svelte";
-    import Router from "svelte-spa-router";
     import "./createTrip.css";
     import {data, step} from "./Common";
 
@@ -23,22 +22,23 @@
     };
 
     const steps = [
-        '#/',
-        '#/from',
-        '#/to',
-        '#/time',
-        '#/options',
-        '#/cars',
-        '#/myCars',
-        '#/submission',
+        '/',
+        '/from',
+        '/to',
+        '/time',
+        '/cars',
+        '/myCars',
+        '/options',
+        '/submission',
     ]
 
     onMount(()=>{
-        window.location.href = steps[$step];
         data.driver_id = window.Telegram.WebApp.initDataUnsafe.user.id;
     })
 </script>
 
 <div id="content-wrap">
-    <Router {routes}/>
+    {#key step}
+        <svelte:component this={routes[steps[$step]]} />
+    {/key}
 </div>

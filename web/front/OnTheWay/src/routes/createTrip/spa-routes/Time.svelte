@@ -25,13 +25,13 @@
         </div>
     </div>
     <div class="nav-buttons">
-        <button class="next" id="dir-button1" on:click={()=>{
+        <button class="next" on:click={()=>{
             data.departure_time = `${timeFrom}-${timeTo}`;
             $step--;
         }}>
             Назад
         </button>
-        <button class="next" id="dir-button2" on:click={()=>{
+        <button class="next" on:click={()=>{
             data.departure_time = `${timeFrom}-${timeTo}`;
             $step++;
         }}>

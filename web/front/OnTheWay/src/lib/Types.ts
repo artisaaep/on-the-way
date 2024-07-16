@@ -35,6 +35,10 @@ export interface BaseTrip {
     departure_date: string
     clarify_from: string | undefined
     clarify_to: string | undefined
+    has_buster: boolean | undefined
+    allow_luggage: boolean | undefined
+    allow_pets: boolean | undefined
+    add_info: string | null | undefined
 }
 
 

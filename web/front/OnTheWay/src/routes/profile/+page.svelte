@@ -46,7 +46,8 @@
                 <p>У вас ещё нет добавленных машин.</p>
             {:else }
                 <ul id="cars-ul">
-                    {carFetcher(cars, user.id)}
+                    {carFetcher(cars, user)}
+                    <!--TODO: this is (each block) not work properly for unknown reason-->
                     {#each cars as car}
                         <li><p class="car"><b>{car.color} {car.brand} {car.number}</b></p></li>
                     {/each}
