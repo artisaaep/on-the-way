@@ -10,12 +10,16 @@
     let userUrl: string;
     let user: User | null = null;
 
-    let cars: Car[];
+    let cars: Car[] = [];
 
     onMount(async () => {
         userUrl = url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id;
         window.Telegram.WebApp.expand();
-        user = userFetcher();
+        user = await userFetcher();
+        if (user.car_ids){
+            await carFetcher(cars, user);
+            cars = [...cars];
+        }
     });
 
 </script>
@@ -42,14 +46,13 @@
     <div id="cars">
         <p id="MyCars">Мои машины:</p>
         <div class="mashini">
-            {#if user.car_ids}
+            {#if !user.car_ids}
                 <p>У вас ещё нет добавленных машин.</p>
             {:else }
                 <ul id="cars-ul">
-                    {carFetcher(cars, user)}
                     <!--TODO: this is (each block) not work properly for unknown reason-->
                     {#each cars as car}
-                        <li><p class="car"><b>{car.color} {car.brand} {car.number}</b></p></li>
+                        <li><p class="car">{car.color} {car.brand} {car.number}</p></li>
                     {/each}
                 </ul>
             {/if}

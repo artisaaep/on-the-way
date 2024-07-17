@@ -2,6 +2,10 @@ export function myProfile() {
     window.location.href = 'profile.html';
 }
 
+export function finished_trips() {
+    window.location.href = 'trips.html';
+}
+
 export function goBack() {
     window.history.back();
 }

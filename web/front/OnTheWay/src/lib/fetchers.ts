@@ -5,6 +5,7 @@ export async function carFetcher(destination: Car[], user: User): Promise<void> 
     if (!user) {
         return;
     }
+    console.log(user.car_ids);
     for (const id of user.car_ids) {
         destination.push(await (await fetch(url + "/api/cars/" + id, {})).json());
     }

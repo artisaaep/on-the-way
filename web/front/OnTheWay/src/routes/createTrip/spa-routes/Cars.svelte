@@ -9,6 +9,7 @@
     let cars: Car[] = [];
     onMount(() => {
         carFetcher(cars, userFetcher());
+        cars = [...cars];
     })
 
     let currentCar: string | undefined = undefined;

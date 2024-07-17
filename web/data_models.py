@@ -5,7 +5,8 @@ from pydantic.main import Model
 from sqlalchemy.orm import Session
 
 from shared.database import get_db
-from shared.base_models import Trip as SQLTrip, Car as SQLCar, TripPassenger, User as SQLUser
+from shared.base_models import Trip as SQLTrip, Car as SQLCar, TripPassenger, User as SQLUser, \
+    FinishedTrip as SQLFinishedTrip, FinishedTrip
 from web.utils.id_generators import generator
 
 
@@ -73,6 +74,7 @@ class BaseTrip(BaseModel):
     clarify_from: Optional[str]
     clarify_to: Optional[str]
     add_info: Optional[str]
+    is_request: bool
 
     model_config = {"from_attributes": True}
 
@@ -103,11 +105,12 @@ class Trip(BaseTrip):
             clarify_from=self.clarify_from,
             clarify_to=self.clarify_to,
             add_indo=self.add_info,
+            is_requested=self.is_requested,
         )
         return sqlalchemy_trip
 
     @classmethod
-    def from_orm(cls, orm: SQLTrip):
+    def from_orm(cls, orm: SQLTrip | FinishedTrip):
         session = next(get_db())
         sql_driver = orm.driver
         body_driver = User(
@@ -147,16 +150,17 @@ class Trip(BaseTrip):
             end_location=orm.end_location,
             departure_time=orm.departure_time,
             available_seats=orm.seats_available,
-            has_child_seat=orm.has_child_seat,
-            has_buster=orm.has_buster,
-            allow_luggage=orm.allow_luggage,
-            allow_pets=orm.allow_pets,
+            has_child_seat=not not orm.has_child_seat,
+            has_buster=not not orm.has_buster,
+            allow_luggage=not not orm.allow_luggage,
+            allow_pets=not not orm.allow_pets,
             price=orm.price,
             car=session.query(SQLCar).filter(SQLCar.id == orm.car_id).first(),
             departure_date=orm.departure_date,
             clarify_from=orm.clarify_from,
             clarify_to=orm.clarify_to,
             add_info=orm.add_info,
+            is_request=not not orm.is_request,
         )
 
         return trip_model
@@ -185,6 +189,7 @@ class NewTrip(BaseTrip):
             clarify_from=self.clarify_from,
             clarify_to=self.clarify_to,
             add_info=self.add_info,
+            is_request=self.is_request,
         )
 
 

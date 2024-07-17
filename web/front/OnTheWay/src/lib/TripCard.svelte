@@ -1,6 +1,7 @@
 <script lang="ts">
     import type {Trip} from "./Types";
     import {url} from "../enviroment";
+    import './TripCard.css';
 
     export let trip: Trip;
 
@@ -41,7 +42,7 @@
 </script>
 
 <div class="card">
-    <img class="avatar" alt="driver-avatar" src="{url}/api/users/${trip.driver.id}/photo">
+    <img class="avatar" alt="driver-avatar" src="{url}/api/users/{trip.driver.id}/photo">
     <p class="owner_name">{trip.driver.name}</p>
     <div class="main-info">
         <div class="from_main">
@@ -61,9 +62,9 @@
     <div class="pr-ch">
         <p class="price">{trip.price} руб.</p>
         {#if isAttached_}
-            <button class="choose" on:click={() => reject(trip.id)} id="choose-{trip.id}">Отменить</button>
+            <button class="choose" on:click={() => reject(trip.id)} id="choose-not-ok-{trip.id}">Отменить</button>
         {:else}
-            <button class="choose" on:click={() => apply(trip.id)} id="choose-{trip.id}">Выбрать</button>
+            <button class="choose" on:click={() => apply(trip.id)} id="choose-ok-{trip.id}">Выбрать</button>
         {/if}
     </div>
     <div class="additional-info">
@@ -71,130 +72,3 @@
         <p class="free-places">Свободных мест: {trip.available_seats}</p>
     </div>
 </div>
-
-<style>
-    .card {
-        padding: 2.5%;
-        text-align: center;
-        border: 0;
-        border-radius: 10px;
-        width: 90%;
-        background-color: #E3E1E1;
-        min-height: 50%;
-        box-shadow: 0 3px 1cqmax rgba(0, 0, 0, 0.3);
-        margin: 3% auto auto;
-    }
-
-    .avatar {
-        width: 5em;
-        height: 5em;
-        object-fit: cover;
-        border-radius: 50%;
-        border: solid 0.1px black;
-        float: left;
-    }
-
-    .owner_name {
-        font-family: Kreadon_demi;
-        margin-left: 5%;
-        font-size: 16px;
-        background-color: var(--owner-bg-col);
-        border: 0;
-        border-radius: 10px;
-        padding: 0.5% 5%;
-    }
-
-    .main-info {
-        padding-top: 10%;
-        margin-top: 10%;
-        width: 100%;
-
-    }
-
-    .from_main {
-        width: 35%;
-        float: left;
-        align-items: center;
-        text-align: center;
-        margin-top: 6%;
-    }
-
-    .date {
-        font-family: Kreadon_medium;
-        font-size: 11px;
-        width: 10%;
-    }
-
-    .from {
-        font-family: Kreadon_demi;
-        margin-left: 0%;
-        font-size: 15px;
-
-    }
-
-    .arrow {
-        font-family: Kreadon_demi;
-        font-size: 15px;
-
-    }
-
-    .to_main {
-        width: 35%;
-        float: right;
-        align-items: center;
-        text-align: center;
-        margin-top: -17%;
-        margin-right: -6%;
-    }
-
-    .to {
-        font-family: Kreadon_demi;
-        font-size: 15px;
-    }
-
-    .bott {
-        width: 20%;
-        float: left;
-        align-items: center;
-        text-align: center;
-        margin-top: 1%;
-        margin-left: -4%;
-
-    }
-
-    .clari-from {
-        font-family: Kreadon_regular;
-        font-size: 10px;
-
-    }
-
-    .time {
-        font-family: Kreadon_medium;
-        font-size: 11px;
-        padding-top: 5%;
-
-    }
-
-    .clari-to {
-        font-family: Kreadon_regular;
-        font-size: 10px;
-        margin-top: 10%;
-    }
-
-    .additional-info {
-        float: left;
-        margin-top: -8.5%;
-
-    }
-
-    .rides {
-        font-family: Kreadon_medium;
-        font-size: 11px;
-    }
-
-    .free-places {
-        font-family: Kreadon_medium;
-        font-size: 11px;
-    }
-
-</style>

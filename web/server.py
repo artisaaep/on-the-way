@@ -6,7 +6,7 @@ from starlette.staticfiles import StaticFiles
 from uvicorn import run
 from fastapi import FastAPI, HTTPException
 
-from web.routers import trips, users, cars
+from web.routers import trips, users, cars, finished
 
 
 @asynccontextmanager
@@ -34,4 +34,5 @@ def start():
     app.include_router(trips.router)
     app.include_router(users.router)
     app.include_router(cars.router)
+    app.include_router(finished.router)
     run(app)
