@@ -32,11 +32,11 @@ async def start(message: types.Message, state: FSMContext):
     else:
         builder = InlineKeyboardBuilder()
         builder.row(InlineKeyboardButton(text="Создать поездку",
-                                         web_app=WebAppInfo(url=base_webapp_url + "/static/createtrip.html")),
+                                         web_app=WebAppInfo(url=base_webapp_url + "/app/createTrip.html")),
                     InlineKeyboardButton(text="Найти поездку",
-                                         web_app=WebAppInfo(url=base_webapp_url + "/static/availabletrips.html")))
+                                         web_app=WebAppInfo(url=base_webapp_url + "/app/availabletrips.html")))
         builder.row(InlineKeyboardButton(text="Мой профиль",
-                                         web_app=WebAppInfo(url=base_webapp_url + "/static/profile.html")))
+                                         web_app=WebAppInfo(url=base_webapp_url + "/app/profile.html")))
         text = "Привет!\n\nЭто сервис по поиску попутчиков <b>on the way</b>. \
 Здесь вы можете найти с кем добраться до пункта назначения или создать поездку как водитель и найти пассажиров. \U0001F699 "
         await message.answer(text, parse_mode='html', reply_markup=builder.as_markup())

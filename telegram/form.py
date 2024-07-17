@@ -92,27 +92,27 @@ async def set_sex(message: types.Message, state: FSMContext):
 async def set_photo(message: types.Message, state: FSMContext):
     if message.photo is None:
         await state.set_state(Form.finish)
-    else:
-        data = await state.get_data()
-        db.create_profile(
-            user_id=message.from_user.id,
-            alias=message.from_user.username,
-            name=data['name'],
-            age=data['age'],
-            sex=data['sex'],
-            number=data['number']
-        )
-        await bot.download(
-            message.photo[-1],
-            destination=Path(__file__).parent.parent / "shared" / "photos" / f"{message.from_user.id}.jpg"
-        )
+        return
+    data = await state.get_data()
+    db.create_profile(
+        user_id=message.from_user.id,
+        alias=message.from_user.username,
+        name=data['name'],
+        age=data['age'],
+        sex=data['sex'],
+        number=data['number']
+    )
+    await bot.download(
+        message.photo[-1],
+        destination=Path(__file__).parent.parent / "shared" / "photos" / f"{message.from_user.id}.jpg"
+    )
 
-        builder = InlineKeyboardBuilder()
-        builder.row(InlineKeyboardButton(text="Создать поездку",
-                                         web_app=WebAppInfo(url=base_webapp_url + "/static/createtrip.html")),
-                    InlineKeyboardButton(text="Найти поездку",
-                                         web_app=WebAppInfo(url=base_webapp_url + "/static/availabletrips.html")))
-        builder.row(InlineKeyboardButton(text="Мой профиль",
-                                         web_app=WebAppInfo(url=base_webapp_url + "/static/profile.html")))
-        await message.answer("Отлично!\U0001f973 Анкета создана, можете начать ваше чудесное путешествие\U0001f699",
-                             reply_markup=builder.as_markup())
+    builder = InlineKeyboardBuilder()
+    builder.row(InlineKeyboardButton(text="Создать поездку",
+                                     web_app=WebAppInfo(url=base_webapp_url + "/app/createTrip.html")),
+                InlineKeyboardButton(text="Найти поездку",
+                                     web_app=WebAppInfo(url=base_webapp_url + "/app/availabletrips.html")))
+    builder.row(InlineKeyboardButton(text="Мой профиль",
+                                     web_app=WebAppInfo(url=base_webapp_url + "/app/profile.html")))
+    await message.answer("Отлично!\U0001f973 Анкета создана, можете начать ваше чудесное путешествие\U0001f699",
+                         reply_markup=builder.as_markup())

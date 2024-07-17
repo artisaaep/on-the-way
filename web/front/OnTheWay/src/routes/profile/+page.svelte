@@ -1,62 +1,67 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="profile.css">
-    <link rel="stylesheet" href="popupaddcar.css">
-    <link rel="stylesheet" href="addcar.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="scripts/popupaddcar.js"></script>
-    <script src="scripts/links.js"></script>
-    <script src="scripts/profile.js"></script>
-    <title>Document</title>
-</head>
+<script lang="ts">
+    import {onMount} from "svelte";
+    import {url} from "../../enviroment.js";
+    import type {Car} from "$lib/Types";
+    import type {User} from "$lib/Types"
+    import AddCar from "$lib/AddCar.svelte";
+    import './profile.css';
+    import {carFetcher, userFetcher} from "$lib/fetchers";
+
+    let userUrl: string;
+    let user: User | null = null;
+
+    let cars: Car[] = [];
+
+    onMount(async () => {
+        userUrl = url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id;
+        window.Telegram.WebApp.expand();
+        user = await userFetcher();
+        if (user.car_ids){
+            await carFetcher(cars, user);
+            cars = [...cars];
+        }
+    });
+
+</script>
+{#if user}
     <div class="navig">
-        <p id="My-profile"><img id="imgprof" src="icons/profile-1341-svgrepo-com.svg"> Мой профиль</p>
-        <button id="back" onclick="goBack()">Назад</button>
+        <p id="My-profile"><img id="imgprof" src="{url}/static/icons/profile-1341-svgrepo-com.svg" alt="mark-profile">
+            Мой
+            профиль</p>
+        <button id="back" on:click={()=>{window.history.back()}}>Назад</button>
     </div>
-    <p id="name"></p>
-    <img alt="Аватарка" id="avatar"/>
+    <div class="lala">
+        <p id="name">{user.name}</p>
+    </div>
+
+    <img src="{userUrl}/photo" alt="Аватарка" id="avatar"/>
     <div class="bio">
-        <p id="age">Возраст: 18</p>
-        <p id="rides">0</p>
+        <p id="age">Возраст: {user.age}</p>
+        <p id="sex">Пол: {user.sex ? "Женский" : "Мужской"}</p>
+        <p id="rides">Поездок: {user.rides_amount}</p>
+    </div>
+    <div class="PhotoCar">
+        <img id="carPhoto" src="{url}/static/icons/image-22.svg" alt="section-icon">
     </div>
     <div id="cars">
         <p id="MyCars">Мои машины:</p>
         <div class="mashini">
-            <ul id="cars-ul">
-            </ul>
+            {#if !user.car_ids}
+                <p>У вас ещё нет добавленных машин.</p>
+            {:else }
+                <ul id="cars-ul">
+                    <!--TODO: this is (each block) not work properly for unknown reason-->
+                    {#each cars as car}
+                        <li><p class="car">{car.color} {car.brand} {car.number}</p></li>
+                    {/each}
+                </ul>
+            {/if}
         </div>
     </div>
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <div class="navig">
-                <button class="close">Закрыть</button>
-            </div>
-            
-            <p id="Hadd">Добавить машину</p>
-            <br>
-            <div class="parameters">
-                <p><b>Модель</b></p>
-                <input type="text" class="vvod" id="p1" placeholder="Пример: BMW X5">
-            </div>
-            <div class="parameters">
-                <p><b>Номер</b></p>
-                <input type="text" class="vvod" id="p2" placeholder="Пример: А123БВ">
-            </div>
-            <div class="parameters"> 
-                <p><b>Цвет</b></p>
-                <input type="text" class="vvod" id="p3"  placeholder="Пример: Белый">
-            </div>
-            <button id="ADD" onclick="addCar()">Добавить</button>
-        </div>
-    </div>
-    <br>
-    <br>
-    <u id="addcar">Добавить машину</u>
-    <button id="redt" onclick ="">Редактировать</button>
-
-</body>
-</html>
+    <AddCar>
+        <a id="addcar">Добавить машину</a>
+    </AddCar>
+    <button id="redt" on:click={()=>{}}>Редактировать</button>
+{:else}
+    <p>nothing to render</p>
+{/if}

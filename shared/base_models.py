@@ -14,7 +14,6 @@ class User(Base):
     alias = Column(String, unique=True, index=True)
     rides_amount = Column(Integer, default=0)
     car_ids = Column(String, nullable=True)
-    number = Column(String, index=True, nullable=True)
 
 
 class Car(Base):
@@ -44,7 +43,7 @@ class Trip(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     driver_id = Column(Integer, ForeignKey('users.id'))
-    driver = relationship("User", back_populates="driven_trips")
+    driver = relationship("User")
     passenger_ids = Column(String, nullable=True)  # space-sliced integers
     start_location = Column(String, index=True)
     end_location = Column(String, index=True)
@@ -52,15 +51,43 @@ class Trip(Base):
     departure_time = Column(String, index=True)
     seats_available = Column(Integer, nullable=True)
     has_child_seat = Column(Boolean, nullable=True)
+    has_buster = Column(Boolean, nullable=True)
+    allow_luggage = Column(Boolean, nullable=True)
+    allow_pets = Column(Boolean, nullable=True)
     car_id = Column(Integer, ForeignKey('cars.id'), nullable=True)
     car = relationship("Car")
     departure_date = Column(String, nullable=True)
     clarify_from = Column(String, nullable=True)
     clarify_to = Column(String, nullable=True)
-    is_request = Column(Integer, nullable=True)
     add_info = Column(String, nullable=True)
+    is_request = Column(Boolean, nullable=False)
+
+
+class FinishedTrip(Base):
+    __tablename__ = 'finished_trips'
+
+    id = Column(Integer, primary_key=True, index=True)
+    driver_id = Column(Integer, ForeignKey('users.id'))
+    driver = relationship("User")
+    passenger_ids = Column(String, nullable=True)  # space-sliced integers
+    start_location = Column(String, index=True)
+    end_location = Column(String, index=True)
+    price = Column(Integer, nullable=True)
+    departure_time = Column(String, index=True)
+    seats_available = Column(Integer, nullable=True)
+    has_child_seat = Column(Boolean, nullable=True)
+    has_buster = Column(Boolean, nullable=True)
+    allow_luggage = Column(Boolean, nullable=True)
+    allow_pets = Column(Boolean, nullable=True)
+    car_id = Column(Integer, ForeignKey('cars.id'), nullable=True)
+    car = relationship("Car")
+    departure_date = Column(String, nullable=True)
+    clarify_from = Column(String, nullable=True)
+    clarify_to = Column(String, nullable=True)
+    add_info = Column(String, nullable=True)
+    is_request = Column(Boolean, nullable=False)
 
 
 User.cars = relationship("Car", order_by=Car.id, back_populates="owner")
 User.trips = relationship("TripPassenger", order_by=TripPassenger.trip_id, back_populates="user")
-User.driven_trips = relationship("Trip", order_by=Trip.id, back_populates="driver")
+

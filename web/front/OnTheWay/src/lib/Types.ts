@@ -8,12 +8,12 @@ export interface NewCar {
 export interface Car extends NewCar {
     id: number
 }
-
 export interface User {
     id: number
     name: null | undefined | string;
     age: null | undefined | number;
-    alias: string
+    alias: string;
+    sex: number;
     car_ids: number[];
     rides_amount: null | undefined | number;
 }
@@ -31,6 +31,14 @@ export interface BaseTrip {
     price: number
     available_seats: null | undefined | number;
     has_child_seat: null | undefined | boolean;
+    is_request: boolean
+    departure_date: string
+    clarify_from: string | undefined
+    clarify_to: string | undefined
+    has_buster: boolean | undefined
+    allow_luggage: boolean | undefined
+    allow_pets: boolean | undefined
+    add_info: string | null | undefined
 }
 
 

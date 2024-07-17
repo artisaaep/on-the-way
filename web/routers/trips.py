@@ -127,3 +127,8 @@ def __check_rider_properties(db: Session, _id: int, rider_id: int) -> (List[str]
     else:
         passengers = []
     return passengers, db_trip
+
+
+@router.get("/history/{user_id}", response_model=list[Trip])
+async def get_history(user_id: int, db: Session = Depends(get_db)):
+    pass
