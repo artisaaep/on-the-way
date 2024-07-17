@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Kreadon"; 
-    src: url("fonts/Kreadon-Regular.ttf") format("truetype"); 
+    src: url("../../../../static/fonts/Kreadon-Regular.ttf") format("truetype");
     font-style: normal; 
     font-weight: 400;
 } 
