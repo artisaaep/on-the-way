@@ -56,9 +56,9 @@
 
 <footer class="footer">
     <button id="My-profile" on:click={myProfile}>
-        <img id="imgprof" src="{url}/static/icons/profile-1341-svgrepo-com.svg" alt="button">Мой профиль
+        <img id="imgprof" src="{url}/static/icons/profile-1341-svgrepo-com.svg" alt="button">Мой <br> профиль
     </button>
     <button id="history" on:click={()=>{}}>
-        <img id="imghist" src="{url}/static/icons/travel-car-svgrepo-com.svg" alt="button">История поездок
+        <img id="imghist" src="{url}/static/icons/travel-car-svgrepo-com.svg" alt="button">История <br> поездок
     </button>
 </footer>
