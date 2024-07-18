@@ -1,0 +1,234 @@
+@font-face {
+    font-family: Kreadon_regular;
+    src: url(fonts/Kreadon-Regular.ttf);
+}
+
+@font-face {
+    font-family: Kreadon_bold;
+    src: url(fonts/Kreadon-Bold.ttf);
+}
+
+@font-face {
+    font-family: Kreadon_demi;
+    src: url(fonts/Kreadon-Demi.ttf);
+}
+
+@font-face {
+    font-family: Kreadon_medium;
+    src: url(fonts/Kreadon-Medium.ttf);
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 15%;
+    border-top-right-radius: 9%;
+    box-shadow: 0px -3px 8px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -2%;
+    box-sizing: border-box;
+}
+
+#imgprof {
+    float: right;
+    height: 40%;
+    width: 40%;
+    position: absolute;
+    top: 35%;
+    right: 43%;
+}
+
+#imghist {
+    float: right;
+    height: 40%;
+    width: 40%;
+    position: absolute;
+    top: 35%;
+    right: -5%;
+}
+
+footer button {
+    width: 50%;
+    height: 80%;
+    font-family: "Kreadon_medium";
+    font-size: 4.3vw;
+    text-align: left;
+    border-radius: 5vw;
+    bottom: 0%;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: rgba(208, 206, 206, 0.9);
+    margin-bottom: 1%;
+    color: black;
+    padding-left: 3%;
+    border: 0px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+#FilterBorder {
+    padding: 6px;
+    margin-left: 15px;
+    width: 18.5%;
+    background-color: #FBEA50;
+    color: black;
+    border-radius: 10px;
+    border-color: black;
+    font-size: 20px;
+    font-family: Kreadon_regular;
+    padding-left: 40px;
+}
+
+#imgfilter {
+    height: 34%;
+    width: 34%;
+    float: left;
+    margin-right: 5%;
+    margin-left: -30px;
+    filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+}
+
+#find {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+    font-family: Kreadon_regular;
+    width: 27%;
+    font-size: 23px;
+    border-radius: 10px;
+    border: 0px;
+    color: black;
+    padding: 2%;
+    background-color: #FBEA50;
+    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 35%;
+}
+
+.roundedSection1,
+.roundedSection2,
+.roundedSection3 {
+    width: 92%;
+    margin-left: 4%;
+    background-color: #E3E1E1;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+.roundedSection3 {
+    height: 270px;
+}
+
+.leftButton,
+.rightButton {
+    background: none;
+    border: 1.5px solid black;
+    text-align: center;
+    padding: 0px;
+    height: 100px;
+    font-size: 29px;
+    width: 43%;
+    border-radius: 10px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    font-family: Kreadon_regular;
+}
+
+.leftButton {
+    margin-left: 3%;
+}
+
+.rightButton {
+    margin-right: 3%;
+}
+
+.leftButton img,
+.rightButton img {
+    width: 40px;
+    height: 40px;
+}
+
+.leftButtonText {
+    position: relative;
+    top: 2px;
+    left: -15px;
+    color: black;
+}
+
+.rightButtonText {
+    position: relative;
+    top: 3px;
+    left: -25px;
+    color: black;
+}
+
+.leftIcon,
+.rightIcon,
+.leftIcon2 {
+    position: relative;
+    top: -2px;
+    right: -45px;
+}
+
+.rightButtonText2 {
+    font-size: 23px;
+    font-family: Kreadon_regular;
+    color: black;
+}
+
+.leftButtonText2 {
+    font-size: 25px;
+    position: relative;
+    top: -15px;
+    left: -15px;
+    color: black;
+}
+
+.additionalSection {
+    padding: 20px;
+    text-align: center;
+}
+
+.additionalTitle {
+    font-size: 25px;
+    font-family: Kreadon_medium;
+    color: #333;
+}
+
+.separator {
+    width: 80%;
+    border: 1px solid #333;
+    margin: 10px auto;
+}
+
+.additionalList {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.additionalList li {
+    display: flex; /* Используем flexbox для выравнивания */
+    justify-content: space-between; /* Равномерно распределяем элементы между собой */
+    align-items: center; /* Выравниваем элементы по центру вертикали */
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-family: Kreadon_regular;
+}
+
+.additionalList li label {
+    flex: 1; /* Расширяем элемент label, чтобы он занимал все доступное пространство */
+}
+
+.additionalList li input[type="checkbox"] {
+    margin-left: 60px; /* Добавляем небольшой отступ между чекбоксом и текстом */
+}
