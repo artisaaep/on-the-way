@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="filter.css">
+</head>
+<body>
+    <div class="filterBorder">
+        <p id="FilterBorder"><img id="imgfilter" src="icons/filter-svgrepo-com.svg"> Фильтр</p>
+    </div>
+
+    <div class="filterBody">
+        <div class="roundedSection1">
+            <button class="leftButton">
+                <img src="images/location-pin-alt-svgrepo-com.svg" class="leftIcon" alt="Left Icon">
+                <br> <span class="leftButtonText">Откуда</span>
+            </button>
+            <button class="rightButton">
+                <img src="images/location-xmark-svgrepo-com.svg" class="rightIcon" alt="Right Icon">
+                <br> <span class="rightButtonText">Куда</span>
+            </button>
+        </div>
+
+        
+
+        <div class="roundedSection2">
+            <button class="leftButton">
+                <img src="images/date-range-svgrepo-com.svg" class="leftIcon2" alt="Left Icon 2">
+                <br> <span class="leftButtonText2">Дата <br> поездки</span>
+            </button>
+            <button class="rightButton">
+                <span class="rightButtonText2">ДД.ММ.ГГ</span>
+            </button>
+        </div>
+
+        
+
+        <div class="roundedSection3">
+            <div class="additionalSection">
+                <p class="additionalTitle">Дополнительно</p>
+                <hr class="separator">
+                <ul class="additionalList">
+                    <li><label for="check1">Поеду с багажом</label><input type="checkbox" id="check1"></li>
+                    <li><label for="check1">Поеду с животным</label><input type="checkbox" id="check1"></li>
+                    <li><label for="check1">Необходимо детское кресло</label><input type="checkbox" id="check1"></li>
+                    <li><label for="check1">Необходим бустер</label><input type="checkbox" id="check1"></li>
+                    <li><label for="check1">Сколько требуется мест</label><input type="checkbox" id="check1"></li>
+                </ul>
+            </div>
+        </div>
+
+        <button id="find" onclick="">Поиск</button>
+    </div>
+
+    <footer class="footer">
+        <button id="My-profile" onclick="myprofile()">
+            <img id="imgprof" src="icons/profile-1341-svgrepo-com.svg">Мой <br> профиль
+        </button>
+        <button id="history" onclick="">
+            <img id="imghist" src="./icons/travel-car-svgrepo-com.svg">История <br> поездок
+        </button>
+    </footer>
+</body>
+</html>
