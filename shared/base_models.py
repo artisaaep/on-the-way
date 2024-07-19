@@ -35,7 +35,16 @@ class TripPassenger(Base):
     has_luggage = Column(Boolean, nullable=True)
     has_kids = Column(Boolean, nullable=True)
     has_pets = Column(Boolean, nullable=True)
-    user = relationship("User", back_populates="trips")
+
+
+class PassengersHistory(Base):
+    __tablename__ = 'Passengers_History'
+
+    user_id = Column(Integer, ForeignKey('users.id'), primary_key=True)
+    trip_id = Column(Integer, ForeignKey('trips.id'), primary_key=True)
+    has_luggage = Column(Boolean, nullable=True)
+    has_kids = Column(Boolean, nullable=True)
+    has_pets = Column(Boolean, nullable=True)
 
 
 class Trip(Base):
@@ -89,5 +98,4 @@ class FinishedTrip(Base):
 
 
 User.cars = relationship("Car", order_by=Car.id, back_populates="owner")
-User.trips = relationship("TripPassenger", order_by=TripPassenger.trip_id, back_populates="user")
 

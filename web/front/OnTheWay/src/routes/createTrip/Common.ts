@@ -25,19 +25,15 @@ export let data: NewTrip = {
     clarify_to: "",
 
     departure_date: currentDate,
-    departure_time: "",
-    timeFrom: currentTime,
-    timeTo: currentTime,
+    departure_time: `${currentTime}-${currentTime}`,
 
     car_id: undefined,
-    kind: "",
 
     has_child_seat: false,
     has_buster: false,
     allow_luggage: false,
     allow_pets: false,
     available_seats: 1,
-    add_info: "",
+    add_info: null,
     price: 100,
-    dop: ""
 };

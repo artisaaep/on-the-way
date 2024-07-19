@@ -50,12 +50,12 @@
                 <p>У вас ещё нет добавленных машин.</p>
             {:else }
                 <ul id="cars-ul">
-                    <!--TODO: this is (each block) not work properly for unknown reason-->
                     {#each cars as car}
                         <li><p class="car">{car.color} {car.brand} {car.number}</p></li>
                     {/each}
                 </ul>
             {/if}
+
         </div>
     </div>
     <AddCar>
