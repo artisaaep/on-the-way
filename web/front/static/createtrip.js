@@ -1,3 +1,14 @@
+let url = "https://d2fd-188-130-155-177.ngrok-free.app";
+function initializeCustomCheckboxes() {
+    const checkboxes = document.querySelectorAll('.checkbox__checkmark');
+    checkboxes.forEach(checkbox => {
+        // Добавить необходимые обработчики событий или стили
+        checkbox.addEventListener('click', () => {
+            const input = checkbox.previousElementSibling;
+            input.checked = true;
+        });
+    });
+}
 document.addEventListener('DOMContentLoaded', (event) => {
     const comments = document.querySelectorAll('.com');
 
@@ -13,6 +24,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
         document.addEventListener(eventType, handleClickOutside);
     });
 });
+
+function backToRole() {
+    console.log("back");
+    window.location.href = "chooserole.html";
+}
+
+
+function main() {
+    window.Telegram.WebApp.expand();
+}
 
 function setCurrentTime() {
     var now = new Date();
@@ -39,8 +60,6 @@ function setCurrentDate() {
     var currentDate = year + '-' + month + '-' + day;
     
     document.getElementById('date-f').value = currentDate;
-    console.log(getElementById('date-f').value);
-    console.log(currentDate);
 }
 
 window.addEventListener('load', setCurrentTime);
@@ -63,8 +82,19 @@ let tripData = {
     bust: false,
     av: '',
     additional: '',
-    car_id: 1
+    car_id: 1,
+    is_request: 0
 };
+
+function driver() {
+    tripData.is_request = 0;
+    goToStep(1);
+}
+
+function passenger() {
+    tripData.is_request = 1;
+    goToStep(1);
+}
 
 function updateTripData() {
     const tripDataDiv = document.getElementById('trip-data');
@@ -148,7 +178,16 @@ function selectCar(date) {
 }
 
 function goBack(cuurent) {
+    if (cuurent == 6) {
+        const ownRadio = document.getElementById('own');
+        console.log(ownRadio);
+        if (!ownRadio.checked) {
+            goToStep(4);
+            return;
+        }
+    }
     goToStep(cuurent - 1);
+
 }
 
 function showSummary() {
@@ -156,7 +195,8 @@ function showSummary() {
 }
 
 async function submitTrip() {
-    console.log(tripData);
+    let input = document.getElementById('av');
+    tripData.available_seats = input.value;
     await fetch(url + "/api/trips/", {
         method: 'POST',
         headers: {
@@ -173,21 +213,31 @@ async function submitTrip() {
             "clarify_from": tripData.addInfoOrigin,
             "clarify_to": tripData.addInfoDest,
             "car_id": tripData.car_id,
-            "driver_id": window.Telegram.WebApp.initDataUnsafe.user.id
+            "driver_id": window.Telegram.WebApp.initDataUnsafe.user.id,
+            "is_request": tripData.is_request,
+            "add_info": tripData.additional
           }),
     }).then(async response => {
         if (response.ok) {
-            console.log('Trip submitted:', tripData);
             let id = window.Telegram.WebApp.initDataUnsafe.user.id;
+            let kb = {
+                inline_keyboard: [[{
+                    text: 'Подробнее',
+                    web_app: { url: `${url}/static/tripinfo.html`}
+                }]]
+            };
             let text = `Ваша поездка *${tripData.origin} - ${tripData.destination}* успешно создана! 🚙
             
-        Нажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️`;
+Нажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️`;
 
             let encodedText = encodeURIComponent(text);
-
-            await fetch(`https://api.telegram.org/bot7384436751:AAEZqciLX_e69D26fKjE4i3qzW9J1b-XISc/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown`);
+            let encodedReplyMarkup = encodeURIComponent(JSON.stringify(kb));
+            console.log("aaa");
+            await fetch(`https://api.telegram.org/bot6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown&reply_markup=${encodedReplyMarkup}`);
             // TODO: token from .env
             window.location.href = "tripcreated.html";
+            
+
         } else {
             window.Telegram.WebApp.showAlert("Something went wrong");
         }
@@ -195,33 +245,42 @@ async function submitTrip() {
 }
 
 async function checkCar() {
-    goToStep(5);
-    const bar = document.getElementById("carchoice");
-    const response = await (await fetch(url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id, {
-        method: "GET",
-    })).json();
-    if (response.car_ids.length == 0){
-        bar.innerHTML = `<p id="no-cars">У вас пока нет машин.</p>`;
-        return;
-    }
-    bar.innerHTML = ``;
-    response.car_ids.forEach(async(id) => {
-        const response = await (await fetch(url + "/api/cars/" + id, {
+    let input = document.getElementById('price-rub');
+    tripData.price = input.value;
+    const ownRadio = document.getElementById('own');
+    if (ownRadio.checked) {
+        goToStep(5);
+        const bar = document.getElementById("carchoice");
+        const response = await (await fetch(url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id, {
             method: "GET",
         })).json();
-        bar.innerHTML += `
-            <li>
-                <label for="car${id}">
-                    <input  type="radio" id="car-${id}" name="${response.brand}">
-                    <div class="checkbox__checkmark"></div>
-                    ${response.brand}
-                </label>
-            </li>
-        `
-    });
+        if (response.car_ids.length == 0){
+            bar.innerHTML = `<p id="no-cars">У вас пока нет машин.</p>`;
+            return;
+        }
+        bar.innerHTML = "";
+        response.car_ids.forEach(async(id) => {
+            const response = await (await fetch(url + "/api/cars/" + id, {
+                method: "GET",
+            })).json();
+            bar.innerHTML += `
+                <li>
+                    <label for="car-${id}">
+                        <input type="radio" id="car-${id}" name="c">
+                        <div class="checkbox__checkmark"></div>
+                        ${response.color} ${response.brand}
+                    </label>
+                </li>
+            `
+        });
+    } else {
+        goToStep(6);
+    }
 }
 
 function goToStep(step) {
     document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
     document.getElementById(`step${step}`).classList.add('active');
 }
+
+main()

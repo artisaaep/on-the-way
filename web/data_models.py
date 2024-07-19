@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from shared.database import get_db
 from shared.base_models import Trip as SQLTrip, Car as SQLCar, TripPassenger, User as SQLUser, \
-    FinishedTrip as SQLFinishedTrip, FinishedTrip
+    FinishedTrip as SQLFinishedTrip, FinishedTrip, PassengersHistory
 from web.utils.id_generators import generator
 
 
@@ -41,6 +41,7 @@ class User(BaseModel):
     alias: str
     car_ids: Optional[List[int]]
     rides_amount: Optional[int]
+    sex: Optional[int]
 
     @classmethod
     def from_orm(cls: type[BaseModel], obj: SQLUser) -> Model:
@@ -51,6 +52,7 @@ class User(BaseModel):
             alias=obj.alias,
             car_ids=[*map(int, obj.car_ids.split())] if obj.car_ids else [],
             rides_amount=obj.rides_amount,
+            sex=obj.sex,
         )
 
 
@@ -119,14 +121,17 @@ class Trip(BaseTrip):
             age=sql_driver.age,
             alias=sql_driver.alias,
             rides_amount=sql_driver.rides_amount,
-            bio=None,
+            sex=sql_driver.sex,
             car_ids=list(map(int, sql_driver.car_ids.split())) if sql_driver.car_ids else [],
         )
         passenger_ids = map(int, orm.passenger_ids.split()) if orm.passenger_ids else []
         passengers = []
         for pid in passenger_ids:
             user = session.query(SQLUser).get(int(pid))
-            trip_passenger = session.query(TripPassenger).filter_by(user_id=user.id, trip_id=orm.id).first()
+            if isinstance(orm, SQLUser):
+                trip_passenger = session.query(TripPassenger).filter_by(user_id=user.id, trip_id=orm.id).first()
+            else:
+                trip_passenger = session.query(PassengersHistory).filter_by(user_id=user.id, trip_id=orm.id).first()
             if user:
                 passengers.append(
                     Passenger(

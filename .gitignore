@@ -4,3 +4,7 @@ __pycache__
 web/front/OnTheWay/node_modules
 web/front/OnTheWay/.svelte-kit
 web/front/OnTheWay/build
+node_modules/
+
+
+.DS_Store

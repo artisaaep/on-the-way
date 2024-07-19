@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -12,8 +12,26 @@
     <link rel="stylesheet" href="popupaddcar.css">
     <link rel="stylesheet" href="addcar.css">
 
-    
-    <div id="step1" class="step active">
+    <div id="step0" class="step active">
+        <div class="step0">
+            <div class="pdiv">
+                <p class="q">В какой роли вы хотели бы</p>
+                <p class="q">совершить поездку?</p>
+            </div>
+            <div id="buttonschoose">
+                <button id="btnc" onclick="driver()">
+                    <p class="buttonchoose">Водитель</p>
+                </button>
+                <button id="btnc" onclick="passenger()">
+                    <p class="buttonchoose">Пассажир</p>
+                </button>
+            </div>
+            <div class="img-cont">
+                <img id="firstimg" src="images/car-svgrepo-com.svg">
+            </div>
+        </div>
+    </div>
+    <div id="step1" class="step">
         <div class="grey-rect">
             <div class="desc-img">
                 <p class="dir-desc">Откуда</p>
@@ -27,7 +45,10 @@
                 </div>
                 <textarea id="comment1" class="com" placeholder="Уточните место отправления..."></textarea>
             </div>
-            <button id="single-but" class="next" onclick="addInfoOrigin()">Далее</button>
+            <div class="nav-buttons">
+                <button class="next" id="dir-button1" onclick="goToStep(0)">Назад</button>
+                <button class="next" id="dir-button2" onclick="addInfoOrigin()">Далее</button>
+            </div>
         </div>
     </div>
 
@@ -111,6 +132,16 @@
                 <p class="choose-price">Цена в рублях:</p>
                 <input type="number" id="price-rub" value="100" step="50" min="0">
             </div>
+            <div class="av-text">
+                Свободных мест
+                <input type="number" list="places" step="1" min="1" max="4" id="av" class="number-input"/>
+                <datalist id="places">
+                    <option value="1">
+                    <option value="2">
+                    <option value="3">
+                    <option value="4">
+                </datalist>
+            </div>
             <div class="nav-buttons">
                 <button class="next" id="dir-button1" onclick="goBack(4)">Назад</button>
                 <button class="next" id="dir-button2" onclick="checkCar()">Далее</button>
@@ -125,12 +156,13 @@
                 <p class="dir-desc">Выберите машину</p>
             </div>
             <div class="car">
-                <ul class="choice">
-                    <div id="carchoice">
-                        
-                    </div>
+                <ul class="choice" id="carchoice">
+                    
                 </ul>
             </div>
+
+            
+            
             <div id="myModal" class="modal">
                 <div class="modal-content">
                     <div class="navig">
@@ -154,7 +186,9 @@
                     <button id="ADDcarBtn">Добавить</button>
                 </div>
             </div>
+
             <u id="addcar">Добавить машину</u>
+            
             <div class="nav-buttons">
                 <button class="next" id="dir-button1" onclick="goBack(5)">Назад</button>
                 <button class="next" id="dir-button2" onclick="goToStep(6)">Далее</button>
@@ -196,18 +230,6 @@
                         <div class="checkbox__checkmark"></div>
                         Есть бустер
                     </label>
-                </li>
-                <li class="param-li" >
-                    <div class="av-text">
-                        Свободных мест
-                        <input type="number" list="places" step="1" min="1" max="4" id="av" class="number-input"/>
-                        <datalist id="places">
-                            <option value="1">
-                            <option value="2">
-                            <option value="3">
-                            <option value="4">
-                        </datalist>
-                    </div>
                 </li>
             </ul>
 
@@ -292,9 +314,8 @@
             </div>
         </div>
     </div>
-
-    <script src="createtrip.js"></script>
-    <script src="scripts/addcar.js"></script>
-    <script src="scripts/popupaddcar.js"></script>
 </body>
+<script src="createtrip.js"></script>
+<script src="scripts/addcar.js"></script>
+<script src="scripts/popupaddcar.js"></script>
 </html>

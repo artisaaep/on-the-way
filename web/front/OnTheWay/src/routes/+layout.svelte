@@ -42,8 +42,8 @@
         margin: 0;
         padding: 0;
         justify-content: center;
-        background-color: var(--tg-theme-bg-color);
-        color: var(--tg-theme-text-color);
+        background-color: white;
+        color: black;
         font-family: Kreadon_regular;
     }
 </style>

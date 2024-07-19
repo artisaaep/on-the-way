@@ -35,6 +35,7 @@ class TripPassenger(Base):
     has_luggage = Column(Boolean, nullable=True)
     has_kids = Column(Boolean, nullable=True)
     has_pets = Column(Boolean, nullable=True)
+    submission_message_id = Column(String, nullable=True)
 
 
 class PassengersHistory(Base):
