@@ -6,8 +6,8 @@
     import type {Car, User} from "$lib/Types";
     import {draw} from "svelte/transition";
     import {data} from "../createTrip/Common";
+    import {user} from '../CurrentUser'
 
-    let user: User | null = null;
     let cars: Car[] = [];
 
     async function main() {
@@ -17,9 +17,9 @@
             window.history.back();
             BackButton.hide();
         });
-        user = await userFetcher();
-        if (user.car_ids) {
-            await carFetcher(cars, user);
+        $user = await userFetcher();
+        if ($user.car_ids) {
+            await carFetcher(cars, $user);
             cars = [...cars];
         }
     }
@@ -28,12 +28,11 @@
         let response = await fetch(`${url}/api/users`, {
             method: "PUT",
             headers: {
-            "Content-Type": "application/json"
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(user)
-
+            body: JSON.stringify($user)
         })
-        user = user;
+        $user = $user;
     }
 
     onMount(main);
@@ -49,8 +48,8 @@
                 <p>имя</p>
             </td>
             <td class="param-val">
-                {#if user}
-                    <input bind:value={user.name}>
+                {#if $user}
+                    <input bind:value={$user.name}>
                 {/if}
             </td>
         </tr>
@@ -59,8 +58,8 @@
                 <p>возраст</p>
             </td>
             <td class="param-val">
-                {#if user}
-                    <input bind:value={user.age}>
+                {#if $user}
+                    <input bind:value={$user.age}>
                 {/if}
             </td>
         </tr>

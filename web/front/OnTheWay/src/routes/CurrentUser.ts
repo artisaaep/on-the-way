@@ -1,4 +1,4 @@
 import {Writable, writable} from "svelte/store";
 import type {User} from "../lib/Types";
 
-export let user: Writable<null | User> = writable(null);
+export let user: Writable<User> = writable();
