@@ -2,7 +2,6 @@
     import {onMount} from "svelte";
     import {url} from "../../enviroment.js";
     import type {Car} from "$lib/Types";
-    import type {User} from "$lib/Types"
     import AddCar from "$lib/AddCar.svelte";
     import './profile.css';
     import {carFetcher, userFetcher} from "$lib/fetchers";
@@ -24,7 +23,6 @@
 
 </script>
 {#if $user}
-
     <div class="lala">
         <p id="name">{$user.name}</p>
     </div>

@@ -10,6 +10,15 @@
 
     let cars: Car[] = [];
 
+    async function removeCar(id: number): Promise<void> {
+        await fetch(`${url}/api/cars/${id}`, {
+            method: "DELETE"
+        })
+        cars = [...cars.filter(car => car.id !== id)]
+        $user.car_ids = [...$user.car_ids.filter(_id => _id !== id)];
+        $user = $user;
+    }
+
     async function main() {
         var BackButton = window.Telegram.WebApp.BackButton;
         BackButton.show();
@@ -33,6 +42,7 @@
             body: JSON.stringify($user)
         })
         $user = $user;
+        window.history.back();
     }
 
     onMount(main);
@@ -72,7 +82,9 @@
             <td class="param-val">
                 <ul>
                     {#each cars as car}
-                        <li><p>{car.color} {car.brand} {car.number}</p></li>
+                        <li>
+                            <button on:click={()=>removeCar(car.id)}>-</button>
+                            <p>{car.color} {car.brand} {car.number}</p></li>
                     {/each}
                 </ul>
             </td>
