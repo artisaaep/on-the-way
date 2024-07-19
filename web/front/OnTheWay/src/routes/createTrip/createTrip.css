@@ -1,4 +1,3 @@
-
 * {
     box-sizing: border-box;
     font-family: Kreadon_regular;
@@ -111,8 +110,8 @@ body {
     height: 14vw;
     width: auto;
     position: absolute;
-    top: -7%;
-    right: 10%;
+    top: 7%;
+    right: 15%;
     z-index: 10;
 }
 
