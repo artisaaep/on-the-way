@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from shared.database import get_db
 from shared.base_models import Trip as SQLTrip, Car as SQLCar, TripPassenger, User as SQLUser, \
-    FinishedTrip as SQLFinishedTrip, FinishedTrip
+    FinishedTrip as SQLFinishedTrip, FinishedTrip, PassengersHistory
 from web.utils.id_generators import generator
 
 
@@ -126,7 +126,10 @@ class Trip(BaseTrip):
         passengers = []
         for pid in passenger_ids:
             user = session.query(SQLUser).get(int(pid))
-            trip_passenger = session.query(TripPassenger).filter_by(user_id=user.id, trip_id=orm.id).first()
+            if isinstance(orm, SQLUser):
+                trip_passenger = session.query(TripPassenger).filter_by(user_id=user.id, trip_id=orm.id).first()
+            else:
+                trip_passenger = session.query(PassengersHistory).filter_by(user_id=user.id, trip_id=orm.id).first()
             if user:
                 passengers.append(
                     Passenger(
