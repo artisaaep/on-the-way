@@ -6,17 +6,17 @@
     import AddCar from "$lib/AddCar.svelte";
     import './profile.css';
     import {carFetcher, userFetcher} from "$lib/fetchers";
+    import {user} from "../CurrentUser";
 
     let userUrl: string;
-    let user: User | null = null;
 
     let cars: Car[] = [];
 
     onMount(async () => {
         userUrl = url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id;
         window.Telegram.WebApp.expand();
-        user = await userFetcher();
-        if (user.car_ids){
+        $user = await userFetcher();
+        if ($user.car_ids) {
             await carFetcher(cars, user);
             cars = [...cars];
         }
@@ -61,7 +61,7 @@
     <AddCar>
         <a id="addcar">Добавить машину</a>
     </AddCar>
-    <button id="redt" on:click={()=>{}}>Редактировать</button>
+    <button id="redt" on:click={()=>{window.location.href = 'profileInfo.html';}}>Редактировать</button>
 {:else}
     <p>nothing to render</p>
 {/if}

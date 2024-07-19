@@ -25,6 +25,10 @@ function parseColorToRgb(color) {
     }
     return [r, g, b];
 }
+
+function again() {
+    window.location.href = "createtrip.html";
+}
 function inv() {
     const tg = window.Telegram.WebApp;
     if (tg.themeParams.bg_color && isDarkColor(tg.themeParams.bg_color)) {

@@ -13,8 +13,8 @@ class Database:
     def exists(self, user_id: int) -> bool:
         return self.db.query(User).filter(User.id == user_id).first() is not None
 
-    def create_profile(self, user_id: int, name: str = "", age: int = 0, sex: int = -1, alias: str = "") -> None:
-        user = User(id=user_id, name=name, age=age, sex=sex, alias=alias, rides_amount=0)
+    def create_profile(self, user_id: int, name: str = "", age: int = 0, sex: int = -1, alias: str = "", number: str = "") -> None:
+        user = User(id=user_id, name=name, age=age, sex=sex, alias=alias, rides_amount=0, number=number)
         self.db.add(user)
         self.db.commit()
 

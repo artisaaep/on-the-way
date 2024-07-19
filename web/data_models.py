@@ -41,6 +41,7 @@ class User(BaseModel):
     alias: str
     car_ids: Optional[List[int]]
     rides_amount: Optional[int]
+    sex: Optional[int]
 
     @classmethod
     def from_orm(cls: type[BaseModel], obj: SQLUser) -> Model:
@@ -51,6 +52,7 @@ class User(BaseModel):
             alias=obj.alias,
             car_ids=[*map(int, obj.car_ids.split())] if obj.car_ids else [],
             rides_amount=obj.rides_amount,
+            sex=obj.sex,
         )
 
 

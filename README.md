@@ -1,93 +1,100 @@
-# On the way
+# On The Way
 
-
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.pg.innopolis.university/a.ostapenko/on-the-way.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.pg.innopolis.university/a.ostapenko/on-the-way/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
+This project is a Telegram bot together with a web application to find travelling companions on the Innopolis-Kazan route.
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+The project is designed to simplify the process of finding travelling companions for students, employees, and residents of Innopolis and Kazan. Our bot will allow you to:
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- Create adverts to search for travelling companions from the driver and passenger side.
+- View available offers.
+- Receive notifications about responding passengers or drivers.
+- Contact drivers and passengers via Telegram.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## Built With
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+- ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white) 
+- ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat&logo=css3&logoColor=white) 
+- ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) 
+- ![Svelte](https://img.shields.io/badge/-Svelte-FF3E00?style=flat&logo=svelte&logoColor=white) 
+- ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) 
+- ![Telegram](https://img.shields.io/badge/-Telegram-26A5E4?style=flat&logo=telegram&logoColor=white) 
+- ![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-EE0000?style=flat&logo=sqlalchemy&logoColor=white)
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+## Features
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+### Telegram Bot
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+- **Registration and Authentication**: Users can register and log in to the system.
+- **Создать поездку**: Users can go to the web application to create a trip.
+- **Найти поездку**: Users can go to the web application to find a trip.
+- **Мой профиль**: Users can go to their profile page in the web application.
+- **Notifications**: Users receive notifications of passengers or drivers who respond to their requests.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+### Web Application
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+- **User Profile**: Each user has their own profile page where they can add or remove cars they own, as well as edit basic information about themselves.
+- **Trip Management**: Users can create and delete their trip requests.
+- **Search and Filtering**: Users can search and filter trips based on various criteria.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## Demo of our Product
+
+[**Link to the demo of our bot**](https://drive.google.com/file/d/1j3GORHiYfxBORnNtq-5lU_wba27c75gW/view?usp=share_link)
+
+## Link to the up-to-date deployed version of our product
+
+[**On The Way Telegram Bot**](https://t.me/OnTheWayApp_bot)
+
+## Usage Instructions
+
+1. Follow the link to our Telegram bot: [**On The Way Telegram Bot**](https://t.me/OnTheWayApp_bot).
+2. Click the "Start" button to initiate the bot.
+3. Next, click on the "Начать регистрацию" button to register with the bot.
+4. Register by providing the required information.
+5. Once registered, you will have three options:
+    - **Создать поездку**: Go to the web application to create a trip.
+    - **Найти поездку**: Go to the web application to find a trip.
+    - **Мой профиль**: Go to your profile page in the web application.
+
+## Frameworks and Technologies Used
+
+- **HTML and CSS**: Used for designing and styling the web pages, ensuring a responsive and user-friendly interface.
+- **JavaScript**: Provides dynamic behavior to the web application, enhancing user interactions.
+- **Svelte**: Utilized for building the web application's front-end, offering a modern, efficient way to create highly reactive user interfaces.
+- **Python**: Powers the backend logic of the bot, handling user interactions, data processing, and communication with the Telegram API.
+- **Telegram API**: Enables communication between the bot and Telegram, allowing for real-time messaging and notifications.
+- **SQLAlchemy**: Used for database operations, providing a powerful and flexible ORM for managing the bot's data.
+
+## Contribution
+
+We welcome contributions to our project! If you would like to contribute, please create a pull request or open an issue for discussion.
+
+## Contacts
+#### Artem Ostapenko
+- Telegram: [@artisaep](https://t.me/artisaep)
+- Email: [a.ostapenko@innopolis.university](mailto:a.ostapenko@innopolis.university)  
+#### Maria Rokkel
+- Telegram: [@mars_min](https://t.me/mars_min)
+- Email: [m.rokkel@innopolis.university](mailto:m.rokkel@innopolis.university)
+#### Ivan Lobazov
+- Telegram: [@XriXis](https://t.me/XriXis)
+- Email: [i.lobazov@innopolis.university](mailto:i.lobazov@innopolis.university)
+#### Daria Nikolaeva
+- Telegram: [@aalikorn](https://t.me/aalikorn)
+- Email: [d.nikolaeva@innopolis.university](mailto:d.nikolaeva@innopolis.university)
+#### Egor Agapov
+- Telegram: [@AEZuraa](https://t.me/AEZuraa)
+- Email: [e.agapov@innopolis.university](mailto:e.agapov@innopolis.university)
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## For customer
+### User Onboarding and Support
+- You can create an account in our bot, by writing `/start`.
+- You can create a trip by clicking on `Создать поездку` button
+- You can find a trip by clicking on `Найти поездку` button
+- You can view your profile and add cars by clicking on `Мой профиль` button
+### Post-Course Collaboration and Support
+We are ready to continue working on this project after the end of the course. Our only requirement is part-time employment.

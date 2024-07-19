@@ -10,12 +10,12 @@ export interface Car extends NewCar {
 }
 export interface User {
     id: number
-    name: null | undefined | string;
-    age: null | undefined | number;
+    name: null | string;
+    age: null | number;
     alias: string;
     sex: number;
     car_ids: number[];
-    rides_amount: null | undefined | number;
+    rides_amount: null | number;
 }
 
 export interface Passenger extends User {
