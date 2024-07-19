@@ -1,19 +1,13 @@
-@font-face {
-    font-family: "Kreadon"; 
-    src: url("static/fonts/Kreadon-Regular.ttf") format("truetype"); 
-    font-style: normal; 
-    font-weight: 400;
-} 
 
 * {
     box-sizing: border-box;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
 }
 
 html, body {
     height: 100%;
     margin: 0;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
 }
 
 button {
@@ -58,7 +52,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     margin-top: 0;
     position: relative;
 }
@@ -100,7 +94,7 @@ body {
     margin-left: 2%;
     margin-right: 2%;
     font-size: 7vw;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     color: #000;
     margin-top: 5%;
     margin-bottom: 2%;
@@ -142,7 +136,7 @@ body {
     width: 50%;
     height: 100%;
     font-size: 3vh;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     padding: 0;
     background-color: inherit;
     color: #000;
@@ -213,7 +207,7 @@ body {
 
 .next {
     font-size: 3vh;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     background-color: #FBEA50D9;
     border-radius: 10px;
     padding: 2%;
@@ -251,7 +245,7 @@ body {
     border-radius: 10px;
     border: 1.3px solid black;
     font-size: 5vw;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     color: #000;
     background-color: #d0cbcb;
     text-align: center;
@@ -267,7 +261,7 @@ body {
 }
 
 .ft {
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     font-size: 3vh;
     margin-left: 3%;
     margin-right: 3%;
@@ -287,7 +281,7 @@ body {
     border-radius: 10px;
     border: 1.3px solid black;
     font-size: 5vw;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     color: #000;
     background-color: #d0cbcb;
     text-align: center;
@@ -297,7 +291,7 @@ body {
 
 .choose-d {
     font-size: 5.3vw;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     color: #000;
     position: absolute;
     left: 0;
@@ -306,7 +300,7 @@ body {
 
 .choose-t {
     font-size: 5.3vw;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     color: #000;
     margin-bottom: 2%;
     margin-left: 3%;
@@ -334,7 +328,7 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
 }
 
 .choice li {
@@ -348,7 +342,7 @@ body {
     padding-left: 7%;
     cursor: pointer;
     user-select: none;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
 }
 
 .choice input[type="checkbox"], .choice input[type="radio"] {
@@ -470,7 +464,7 @@ body {
     position: relative;
     padding-left: 7%;
     cursor: pointer;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
 }
 
 .number-input {
@@ -481,7 +475,7 @@ body {
     border: 1px solid #333;
     margin-left: 9%;
     text-align: center;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     background-color: inherit;
     font-size: 4vw;
 }
@@ -522,13 +516,13 @@ body {
 
 .buttonchoose {
     font-size: 4vh;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     color: black;
 }
 
 .q {
     font-size: 3.4vh;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     margin-bottom: 0;
     margin-top: 0;
 }
@@ -565,7 +559,7 @@ body {
 #trip .param-name p, #trip .param-val p {
     margin: 1%;
     padding: 0;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     margin-right: 0;
 }
 

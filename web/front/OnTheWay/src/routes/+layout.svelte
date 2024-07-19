@@ -4,10 +4,10 @@
 </script>
 
 <div id="page-container" style="
-        --font-reg: url({url}/static/fonts/Kreadon-Regular.ttf);
-        --font-regular: url({url}/static/fonts/Kreadon-Regular.ttf);
-        --font-medium: url({url}/static/fonts/Kreadon-Medium.ttf));
-        --font-demi: url({url}/static/fonts/Kreadon-demi.ttf);
+        --font-reg: url('{url}/static/fonts/Kreadon-Regular.ttf');
+        --font-regular: url('{url}/static/fonts/Kreadon-Regular.ttf');
+        --font-medium: url('{url}/static/fonts/Kreadon-Medium.ttf)');
+        --font-demi: url('{url}/static/fonts/Kreadon-demi.ttf');
     ">
     <slot/>
 </div>
