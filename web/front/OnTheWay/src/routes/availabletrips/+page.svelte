@@ -26,7 +26,7 @@
     {#key trips}
         {#if trips}
             {#each trips as trip}
-                {#if trip.is_request === type}
+                {#if trip.is_request === !type}
                     <TripCard trip={trip}/>
                 {/if}
             {/each}

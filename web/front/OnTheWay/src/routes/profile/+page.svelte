@@ -17,7 +17,7 @@
         window.Telegram.WebApp.expand();
         $user = await userFetcher();
         if ($user.car_ids) {
-            await carFetcher(cars, user);
+            await carFetcher(cars, $user);
             cars = [...cars];
         }
     });
