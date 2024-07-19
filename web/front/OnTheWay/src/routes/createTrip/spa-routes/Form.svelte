@@ -3,6 +3,7 @@
     import {url} from "../../../enviroment";
 
     async function submitTrip() {
+        console.log(data)
         await fetch(url + "/api/trips/", {
             method: 'POST',
             headers: {
@@ -14,6 +15,7 @@
                 await finish()
             } else {
                 window.Telegram.WebApp.showAlert("Something went wrong");
+                console.log(response)
             }
         });
     }

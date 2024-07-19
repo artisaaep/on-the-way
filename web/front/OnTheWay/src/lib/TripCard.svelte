@@ -11,6 +11,17 @@
             .includes(window.Telegram.WebApp.initDataUnsafe.user.id as number);
 
     async function apply(trip_id: number) {
+        await fetch(url + "/api/mediator/await_submission?riderId=" + window.Telegram.WebApp.initDataUnsafe.user.id + "&driverId=" + trip.driver.id, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "has_luggage": false,
+                "has_kids": false,
+                "has_pets": false
+            })
+        });
         let response = await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
             method: "PUT",
             headers: {

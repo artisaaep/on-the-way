@@ -138,6 +138,7 @@ class Trip(BaseTrip):
                         id=user.id,
                         name=user.name,
                         age=user.age,
+                        sex=user.sex,
                         alias=user.alias,
                         rides_amount=user.rides_amount,
                         car_ids=list(map(int, user.car_ids.split())) if user.car_ids else [],
@@ -176,6 +177,7 @@ class NewTrip(BaseTrip):
     driver_id: int
 
     def to_full(self, db: Session = next(get_db())):  # -> Trip
+        print(vars(self))
         return Trip(
             passengers=[],
             id=generator(SQLTrip),

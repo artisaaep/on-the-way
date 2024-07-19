@@ -7,20 +7,20 @@ export let data: NewTrip = {
     is_request: true,
 
     start_location: "",
-    clarify_from: undefined,
+    clarify_from: "",
     end_location: "",
-    clarify_to: undefined,
+    clarify_to: "",
 
     departure_date: "2024-06-23",
     departure_time: "",
 
-    car_id: undefined,
+    car_id: 0,
 
     has_child_seat: false,
     has_buster: false,
     allow_luggage: false,
     allow_pets: false,
     available_seats: 1,
-    add_info: undefined,
+    add_info: "",
     price: 100,
 };

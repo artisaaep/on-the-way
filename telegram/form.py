@@ -24,6 +24,7 @@ class Form(StatesGroup):
     sex = State()
     photo = State()
     finish = State()
+    cycle = State()
 
 
 @router.message(Form.number)
@@ -116,3 +117,12 @@ async def set_photo(message: types.Message, state: FSMContext):
                                      web_app=WebAppInfo(url=base_webapp_url + "/app/profile.html")))
     await message.answer("Отлично!\U0001f973 Анкета создана, можете начать ваше чудесное путешествие\U0001f699",
                          reply_markup=builder.as_markup())
+    await state.set_state(Form.cycle)
+@router.message(Form.cycle)
+async def accepting(message: types.Message, state: FSMContext):
+    if message.text.split()[0] != "Принять" or message.text.split()[0] != "Отклонить" or len(message.text.split()) != 3:
+        await state.set_state(Form.cycle)
+    else:
+        do = message.text.split()[0]
+        who = message.text.split()[1]
+        where = message.text.split()[2]
