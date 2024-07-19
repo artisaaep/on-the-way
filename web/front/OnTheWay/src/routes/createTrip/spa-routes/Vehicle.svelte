@@ -10,32 +10,6 @@
 
         if (ownRadio.checked) {
             data.kind = "На своей машине";
-            const bar = document.getElementById("carchoice") as HTMLElement;
-            const response = await (await fetch(url + "/api/users/" + window.Telegram.WebApp.initDataUnsafe.user.id, {
-                method: "GET",
-            })).json();
-
-            if (response.car_ids.length == 0) {
-                bar.innerHTML = `<p id="no-cars">У вас пока нет машин.</p>`;
-                return;
-            }
-
-            bar.innerHTML = "";
-            for (const id of response.car_ids) {
-                const carResponse = await (await fetch(url + "/api/cars/" + id, {
-                    method: "GET",
-                })).json();
-
-                bar.innerHTML += `
-                    <li>
-                        <label for="car-${id}">
-                            <input type="radio" id="car-${id}" name="c">
-                            <div class="checkbox__checkmark"></div>
-                            ${carResponse.color} ${carResponse.brand}
-                        </label>
-                    </li>
-                `;
-            }
         } else if (carshRadio.checked) {
             data.kind = "Каршеринг";
         } else if (taxiRadio.checked) {
@@ -44,13 +18,13 @@
     }
     let carType: string;
     $: if (carType === "taxi") {
-        console.log("taxi");
         data.car_id = 0;
     } else if (carType === "taxi") {
         data.car_id = 1;
     }
 
 </script>
+{#if $data.is_request === false}
 <img src="{url}/static/images/ruble-svgrepo-com.svg" class="date-img" alt="calendar">
 <div class="grey-rect">
     <p class="dir-desc">Вид и цена поездки</p>
@@ -96,12 +70,27 @@
             <option value="4">
         </datalist>
     </div>
+</div>
+{:else}
+<div class="grey-rect">
+<div class="av-text">
+    Сколько свободных мест нужно?
+    <input type="number" list="places" step="1" min="1" max="4" id="av" class="number-input" bind:value={data.available_seats}/>
+    <datalist id="places">
+        <option value="1">
+        <option value="2">
+        <option value="3">
+        <option value="4">
+    </datalist>
+</div>
+</div>
+{/if}
 <!--    endTODO   -->
 
     
-</div>
+
 <div class="nav-buttons">
-    <button class="next" on:click={() => { checkCar(); (()=>{$step--}) }}>Назад</button>
+    <button class="next" on:click={() => { checkCar(); $step-- }}>Назад</button>
 <!--        TODO: validation over vehicle choice       -->
-    <button class="next" on:click={() => { checkCar(); (data.carType === "own") ? $step++ : $step += 2 }}>Далее</button>
+    <button class="next" on:click={() => { checkCar(); (data.kind === "На своей машине") ? $step++ : $step += 2 }}>Далее</button>
 </div>

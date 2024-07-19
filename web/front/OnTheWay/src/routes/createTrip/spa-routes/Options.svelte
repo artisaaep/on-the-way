@@ -6,20 +6,20 @@
         data.allow_pets = document.getElementById('an').checked;
         data.has_child_seat = document.getElementById('ch').checked;
         data.has_buster = document.getElementById('bu').checked;
+        data.dop = "";
         if (data.allow_luggage) {
-            data.dop += "Есть место для багажа."
+            data.dop += "Можно с багажом. "
         }
         if (data.allow_pets) {
-            data.dop += "Можно с животными."
+            data.dop += "Можно с животными. "
         }
         if (data.has_child_seat) {
-            data.dop += "Есть детское кресло."
+            data.dop += "Детское кресло. "
         }
         if (data.has_buster) {
-            data.dop += "Есть бустер."
+            data.dop += "Бустер. "
         }
     }
-
 </script>
 
 <div class="grey-rect">

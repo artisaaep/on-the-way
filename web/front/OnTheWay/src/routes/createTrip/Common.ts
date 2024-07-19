@@ -37,7 +37,7 @@ export let data: NewTrip = {
     allow_luggage: false,
     allow_pets: false,
     available_seats: 1,
-    add_info: undefined,
+    add_info: "",
     price: 100,
     dop: ""
 };
