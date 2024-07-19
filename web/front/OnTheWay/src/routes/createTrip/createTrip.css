@@ -562,6 +562,28 @@ body {
     margin-right: 0;
 }
 
+#trip .param-val p {
+    margin: 1%;
+    padding: 0;
+    font-family: Kreadon_regular;
+    margin-right: 0;
+    background-color: #d0cbcb;
+    border-radius: 7px;
+    border: #000 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.data-dop {
+    background-color: #d0cbcb;
+    border-radius: 7px;
+    border: #000 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #trip {
     width: 80%;
     margin: 0;
