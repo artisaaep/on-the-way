@@ -78,6 +78,7 @@
                         <p>{data.departure_time}</p>
                     </td>
                 </tr>
+                {#if data.is_request === false}
                 <tr class="line">
                     <td class="param-name">
                         <p>вид</p>
@@ -94,6 +95,7 @@
                         <p>{data.price}</p>
                     </td>
                 </tr>
+                {/if}
                 <tr class="line">
                     <td class="param-name">
                         <p>мест</p>

@@ -24,7 +24,7 @@
     }
 
 </script>
-{#if $data.is_request === false}
+{#if data.is_request === false}
 <img src="{url}/static/images/ruble-svgrepo-com.svg" class="date-img" alt="calendar">
 <div class="grey-rect">
     <p class="dir-desc">Вид и цена поездки</p>
@@ -73,7 +73,7 @@
 </div>
 {:else}
 <div class="grey-rect">
-<div class="av-text">
+<div class="av-text" id="av-pl-pass">
     Сколько свободных мест нужно?
     <input type="number" list="places" step="1" min="1" max="4" id="av" class="number-input" bind:value={data.available_seats}/>
     <datalist id="places">
