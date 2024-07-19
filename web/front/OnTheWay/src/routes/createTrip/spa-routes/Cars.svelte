@@ -52,8 +52,9 @@
     <AddCar>
         <u id="addcar">Добавить машину</u>
     </AddCar>
-    <div class="nav-buttons">
-        <button class="next" on:click={()=>{$step--}}>Назад</button>
-        <button class="next" on:click={()=>{if (validateCarChoice()) {$step++}}}>Далее</button>
-    </div>
+    
+</div>
+<div class="nav-buttons">
+    <button class="next" on:click={()=>{$step--}}>Назад</button>
+    <button class="next" on:click={()=>{if (validateCarChoice()) {$step++}}}>Далее</button>
 </div>

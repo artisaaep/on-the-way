@@ -1,10 +1,8 @@
 <script lang="ts">
     import {url} from '../../../enviroment'
     import {data, step} from "../Common";
-
-    let timeFrom: string = "00:00";
-    let timeTo: string = "00:00";
 </script>
+
 <img src="{url}/static/images/date-range-svgrepo-com.svg" class="date-img" alt="calendar">
 <div class="grey-rect">
     <div class="desc-img">
@@ -17,25 +15,25 @@
     <div class="time">
         <p class="choose-t">Временной диапазон начала поездки:</p>
         <div id="time-range">
-            <p class="ft">от</p>
-            <input type="time" class="time-f" bind:value={timeFrom}>
+            <input type="time" class="time-f" bind:value={data.timeFrom}>
 
-            <p class="ft">до</p>
-            <input type="time" class="time-f" bind:value={timeTo}>
+            <p class="ft">-</p>
+            <input type="time" class="time-f" bind:value={data.timeTo}>
         </div>
     </div>
-    <div class="nav-buttons">
-        <button class="next" on:click={()=>{
-            data.departure_time = `${timeFrom}-${timeTo}`;
-            $step--;
-        }}>
-            Назад
-        </button>
-        <button class="next" on:click={()=>{
-            data.departure_time = `${timeFrom}-${timeTo}`;
-            $step++;
-        }}>
-            Далее
-        </button>
-    </div>
+    
+</div>
+<div class="nav-buttons">
+    <button class="next" on:click={()=>{
+        data.departure_time = `${data.timeFrom}-${data.timeTo}`;
+        $step--;
+    }}>
+        Назад
+    </button>
+    <button class="next" on:click={()=>{
+        data.departure_time = `${data.timeFrom}-${data.timeTo}`;
+        $step++;
+    }}>
+        Далее
+    </button>
 </div>

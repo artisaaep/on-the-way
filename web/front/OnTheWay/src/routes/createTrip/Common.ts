@@ -1,20 +1,36 @@
 import {writable, Writable} from "svelte/store";
 import {NewTrip, Passenger} from "../../lib/Types";
 
+export const activeButton = writable("");
+
 export let step= writable(0);
+
+const today = new Date();
+const year = today.getFullYear();
+const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+const day = String(today.getDate()).padStart(2, '0');
+const currentDate = `${year}-${month}-${day}`;
+
+const hours = String(today.getHours()).padStart(2, '0');
+const minutes = String(today.getMinutes()).padStart(2, '0');
+const currentTime = `${hours}:${minutes}`;
+
 export let data: NewTrip = {
     driver_id: 0,
     is_request: true,
 
     start_location: "",
-    clarify_from: undefined,
+    clarify_from: "",
     end_location: "",
-    clarify_to: undefined,
+    clarify_to: "",
 
-    departure_date: "2024-06-23",
+    departure_date: currentDate,
     departure_time: "",
+    timeFrom: currentTime,
+    timeTo: currentTime,
 
     car_id: undefined,
+    kind: "",
 
     has_child_seat: false,
     has_buster: false,
@@ -23,4 +39,5 @@ export let data: NewTrip = {
     available_seats: 1,
     add_info: undefined,
     price: 100,
+    dop: ""
 };

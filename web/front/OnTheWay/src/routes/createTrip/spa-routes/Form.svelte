@@ -43,16 +43,77 @@
 
 </script>
 <div class="grey-rect">
-    <div class="desc-img" id="sub-d">
-        <p class="dir-desc" id="submit-data">Подтвердите данные о поездке</p>
-    </div>
-    <div id="trip-data">
-        <p>Откуда: {data.start_location} ({data.clarify_from})</p>
-        <p>Куда: {data.end_location} ({data.clarify_to})</p>
-        <p>Дата и время: {data.departure_date} {data.departure_time}</p>
-    </div>
-    <div class="nav-buttons">
-        <button class="next" id="dir-button1" on:click={()=>{$step--}}>Назад</button>
-        <button class="next" id="dir-button2" on:click={submitTrip}>Подтвердить</button>
-    </div>
+         <table id="trip">
+                <tr class="line">
+                    <td class="param-name">
+                        <p>откуда</p>
+                    </td>
+                    <td class="param-val">
+                        <p>{data.start_location}</p>
+                        <p>{data.clarify_from}</p>
+                    </td>
+                </tr>
+                <tr class="line">
+                    <td class="param-name">
+                        <p>куда</p>
+                    </td>
+                    <td class="param-val">
+                        <p>{data.end_location}</p>
+                        <p>{data.clarify_to}</p>
+                    </td>
+                </tr>
+                <tr class="line">
+                    <td class="param-name">
+                        <p>дата</p>
+                    </td>
+                    <td class="param-val">
+                        <p>{data.departure_date}</p>
+                    </td>
+                </tr>
+                <tr class="line">
+                    <td class="param-name">
+                        <p>время</p>
+                    </td>
+                    <td class="param-val">
+                        <p>{data.departure_time}</p>
+                    </td>
+                </tr>
+                <tr class="line">
+                    <td class="param-name">
+                        <p>вид</p>
+                    </td>
+                    <td class="param-val">
+                        <p>{data.kind}</p>
+                    </td>
+                </tr>
+                <tr class="line">
+                    <td class="param-name">
+                        <p>цена</p>
+                    </td>
+                    <td class="param-val">
+                        <p>{data.price}</p>
+                    </td>
+                </tr>
+                <tr class="line">
+                    <td class="param-name">
+                        <p>мест</p>
+                    </td>
+                    <td class="param-val">
+                        <p>{data.available_seats}</p>
+                    </td>
+                </tr>
+                <tr class="line">
+                    <td class="param-name">
+                        <p>прочее</p>
+                    </td>
+                    <td class="param-val">
+                        <p>{data.add_info}</p>
+                    </td>
+                </tr>
+            </table>
+            <p class="data-dop">{data.dop}</p>   
+</div>
+<div class="nav-buttons">
+    <button class="next" id="dir-button1" on:click={()=>{$step--}}>Назад</button>
+    <button class="next" id="dir-button2" on:click={submitTrip}>Подтвердить</button>
 </div>
