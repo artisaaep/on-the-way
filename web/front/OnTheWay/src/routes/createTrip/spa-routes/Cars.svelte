@@ -7,12 +7,12 @@
     import {carFetcher, userFetcher} from "$lib/fetchers";
 
     let cars: Car[] = [];
-    onMount(() => {
-        carFetcher(cars, userFetcher());
+    onMount(async () => {
+        await carFetcher(cars, await userFetcher());
         cars = [...cars];
     })
 
-    let currentCar: string | undefined = undefined;
+    let currentCar: number;
 
     $: data.car_id = currentCar ? +currentCar : undefined;
 
@@ -37,7 +37,7 @@
                 {#each cars as car}
                     <li>
                         <label for="car-${car.id}">
-                            <input bind:group={currentCar} type="radio" id="car-${car.id}" name="c" value="{car.id}">
+                            <input bind:group={currentCar} type="radio" id="car-${car.id}" name="c" value={car.id}>
                             <div class="checkbox__checkmark"></div>
                             {car.color} {car.brand}, {car.number}
                         </label>
@@ -52,8 +52,9 @@
     <AddCar>
         <u id="addcar">Добавить машину</u>
     </AddCar>
-    <div class="nav-buttons">
-        <button class="next" on:click={()=>{$step--}}>Назад</button>
-        <button class="next" on:click={()=>{if (validateCarChoice()) {$step++}}}>Далее</button>
-    </div>
+    
+</div>
+<div class="nav-buttons">
+    <button class="next" on:click={()=>{$step--}}>Назад</button>
+    <button class="next" on:click={()=>{if (validateCarChoice()) {$step++}}}>Далее</button>
 </div>

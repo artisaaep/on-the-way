@@ -10,26 +10,16 @@
     import "./createTrip.css";
     import {data, step} from "./Common";
 
-    const routes: { [key: string]: ComponentType } = {
-        '/': Choice,
-        '/from': Place,
-        '/to': Place,
-        '/time': Time,
-        '/options': Options,
-        '/cars': Vehicle,
-        '/myCars': Cars,
-        '/submission': Form,
-    };
 
-    const steps = [
-        '/',
-        '/from',
-        '/to',
-        '/time',
-        '/cars',
-        '/myCars',
-        '/options',
-        '/submission',
+    const order = [
+        Choice,
+        Place,
+        Place,
+        Time,
+        Vehicle,
+        Cars,
+        Options,
+        Form,
     ]
 
     onMount(()=>{
@@ -39,6 +29,6 @@
 
 <div id="content-wrap">
     {#key step}
-        <svelte:component this={routes[steps[$step]]} />
+        <svelte:component this={order[$step]} />
     {/key}
 </div>

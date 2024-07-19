@@ -1,10 +1,11 @@
 <script lang="ts">
     import {url} from '../../../enviroment'
     import {data, step} from "../Common";
-
-    let timeFrom: string = "00:00";
-    let timeTo: string = "00:00";
+    const separate_time = data.departure_time.split('-');
+    let timeFrom: string = separate_time[0];
+    let timeTo: string = separate_time[1];
 </script>
+
 <img src="{url}/static/images/date-range-svgrepo-com.svg" class="date-img" alt="calendar">
 <div class="grey-rect">
     <div class="desc-img">
@@ -17,10 +18,9 @@
     <div class="time">
         <p class="choose-t">Временной диапазон начала поездки:</p>
         <div id="time-range">
-            <p class="ft">от</p>
             <input type="time" class="time-f" bind:value={timeFrom}>
 
-            <p class="ft">до</p>
+            <p class="ft">-</p>
             <input type="time" class="time-f" bind:value={timeTo}>
         </div>
     </div>

@@ -28,7 +28,7 @@ class Car(NewCar):
             owner_id=obj.owner_id,
             number=obj.number,
             brand=obj.brand,
-            color=obj.brand,
+            color=obj.color,
         )
 
 
@@ -106,8 +106,8 @@ class Trip(BaseTrip):
             departure_date=self.departure_date,
             clarify_from=self.clarify_from,
             clarify_to=self.clarify_to,
-            add_indo=self.add_info,
-            is_requested=self.is_requested,
+            add_info=self.add_info,
+            is_request=self.is_request,
         )
         return sqlalchemy_trip
 

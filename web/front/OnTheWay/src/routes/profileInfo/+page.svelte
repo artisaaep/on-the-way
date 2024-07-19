@@ -45,7 +45,7 @@
     <table id="trip">
         <tr class="line">
             <td class="param-name">
-                <p>имя</p>
+                <p>Имя</p>
             </td>
             <td class="param-val">
                 {#if $user}
@@ -53,9 +53,10 @@
                 {/if}
             </td>
         </tr>
+        <br>
         <tr class="line">
             <td class="param-name">
-                <p>возраст</p>
+                <p>Возраст</p>
             </td>
             <td class="param-val">
                 {#if $user}
@@ -63,9 +64,10 @@
                 {/if}
             </td>
         </tr>
+        <br>
         <tr class="line">
             <td class="param-name">
-                <p>машины</p>
+                <p>Машины</p>
             </td>
             <td class="param-val">
                 <ul>
@@ -77,6 +79,8 @@
         </tr>
         <tr class="line">
             <td class="submit">
-                <button id="redt" on:click={submit}>Применить</button>
+                <button id="primenit" on:click={submit}>Применить</button>
+            </td>
+        </tr>
     </table>
 </div>
