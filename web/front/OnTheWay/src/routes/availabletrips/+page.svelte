@@ -22,6 +22,7 @@
 {/key}
 <br><br>
 <div class="scrolling" id="main-scrolling-div" style="--owner-bg-col: {name_color}">
+    <br>
     {#key trips}
         {#if trips}
             {#each trips as trip}

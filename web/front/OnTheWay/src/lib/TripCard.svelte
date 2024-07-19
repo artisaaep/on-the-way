@@ -46,16 +46,16 @@
     <p class="owner_name">{trip.driver.name}</p>
     <div class="main-info">
         <div class="from_main">
-            <p class="from">{trip.start_location}</p><br>
+            <p class="from">{trip.start_location}</p>
             <p class="clari-from">{trip.clarify_from}</p>
         </div>
         <div class="bott">
-            <p class="date">{trip.departure_date}<br></p>
-            <p class="arrow">&#8594;</p><br>
+            <p class="date">{trip.departure_date}</p>
+            <p class="arrow">&#8594;</p>
             <p class="time">{trip.departure_time}</p>
         </div>
         <div class="to_main">
-            <p class="to"><br>{trip.end_location}</p><br>
+            <p class="to">{trip.end_location}</p>
             <p class="clari-to">{trip.clarify_to}</p>
         </div>
     </div>
@@ -68,7 +68,7 @@
         {/if}
     </div>
     <div class="additional-info">
-        <p class="rides">Поездок: {trip.driver.rides_amount} <br></p>
+        <p class="rides">Поездок: {trip.driver.rides_amount} </p>
         <p class="free-places">Свободных мест: {trip.available_seats}</p>
     </div>
 </div>

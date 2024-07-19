@@ -24,12 +24,7 @@
 
 </script>
 {#if $user}
-    <div class="navig">
-        <p id="My-profile"><img id="imgprof" src="{url}/static/icons/profile-1341-svgrepo-com.svg" alt="mark-profile">
-            Мой
-            профиль</p>
-        <button id="back" on:click={()=>{window.history.back()}}>Назад</button>
-    </div>
+
     <div class="lala">
         <p id="name">{$user.name}</p>
     </div>
