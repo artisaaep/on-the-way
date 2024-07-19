@@ -14,12 +14,11 @@
     font-size: calc(0.8em + 1vw);
     font-family: Kreadon_medium;
     padding: 1% 1% 1% 5%;
-    box-shadow: 1.5px 1.5px 2px rgb(0, 0, 0, 0.2);;
-
+    box-shadow: 1.5px 1.5px 2px rgb(0, 0, 0, 0.2);
 }
 
 .tab {
-    font-size: calc(0.8em + 1vw);
+    font-size: calc(0.7em + 0.9vw);
     margin-top: 8%;
     display: flex;
     flex-wrap: wrap;
@@ -43,16 +42,18 @@
 }
 
 #drivers {
-    width: 46%;
+    width: 49.5%;
     float: left;
     border-top-right-radius: 1.2rem;
-    margin-left: -2.5%;
+    margin-left: 5%;
 }
 
 #passengers {
     float: right;
     border-top-left-radius: 1.2rem;
-    width: 46.5%;
+    width: 50%;
+    right: 0;
+    margin-right: -2%;
 }
 
 .tab > input[type="radio"]:checked + label {
@@ -103,6 +104,7 @@ footer {
     align-items: center;
     margin-left: -2%;
     box-sizing: border-box;
+    right: 0;
 }
 
 footer button {
