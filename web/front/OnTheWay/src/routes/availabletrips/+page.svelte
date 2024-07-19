@@ -39,10 +39,10 @@
 <footer class="footer">
     <button id="My-profile" on:click={()=>{window.location.href = 'profile.html';}}>
         <img id="imgprof" src="{url}/static/icons/profile-1341-svgrepo-com.svg" alt="button">
-        Мой профиль
+        Мой <br> профиль
     </button>
     <button id="history" on:click={()=>{window.location.href = 'history.html';}}>
         <img id="imghist" src="{url}/static/icons/travel-car-svgrepo-com.svg" alt="button">
-        История поездок
+        История <br> поездок
     </button>
 </footer>

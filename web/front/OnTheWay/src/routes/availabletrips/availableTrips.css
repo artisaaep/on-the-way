@@ -2,13 +2,83 @@
     margin-bottom: 20%;
 }
 
+#filter {
+    position: fixed;
+    left: 70%;
+    float: right;
+    width: 25%;
+    background-color: rgba(251, 234, 80, 0.85);
+    color: black;
+    border-radius: 10px;
+    border: 0 black;
+    font-size: calc(0.8em + 1vw);
+    font-family: Kreadon_medium;
+    padding: 1% 1% 1% 5%;
+    box-shadow: 1.5px 1.5px 2px rgb(0, 0, 0, 0.2);;
+
+}
+
+.tab {
+    font-size: calc(0.8em + 1vw);
+    margin-top: 8%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.tab > input[type="radio"] {
+    display: none;
+}
+
+.tab > label {
+    display: block;
+    padding: 2%;
+    cursor: pointer;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+    text-decoration: none;
+    color: black;
+    background: #E3E1E1;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+#drivers {
+    width: 46%;
+    float: left;
+    border-top-right-radius: 1.2rem;
+    margin-left: -2.5%;
+}
+
+#passengers {
+    float: right;
+    border-top-left-radius: 1.2rem;
+    width: 46.5%;
+}
+
+.tab > input[type="radio"]:checked + label {
+    cursor: default;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    border-bottom: 0;
+    box-shadow: inset 0 8px 10px rgba(0, 0, 0, 0.1);
+}
+
+#imgfilter {
+    height: 25%;
+    width: 25%;
+    float: left;
+    margin-right: 5%;
+    margin-left: -12%;
+}
+
 #imghist {
     float: right;
     height: 40%;
     width: 40%;
     position: absolute;
-    top: 35%;
-    right: -5%;
+    top: 33%;
+    right: -7%;
 }
 
 #imgprof {
@@ -16,7 +86,7 @@
     height: 40%;
     width: 40%;
     position: absolute;
-    top: 35%;
+    top: 33%;
     right: 43%;
 }
 
@@ -39,7 +109,7 @@ footer button {
     width: 50%;
     height: 80%;
     font-family: "Kreadon_medium";
-    font-size: 4.3vw;
+    font-size: calc(0.8em + 1vw);
     text-align: left;
     border-radius: 5vw;
     bottom: 0%;
