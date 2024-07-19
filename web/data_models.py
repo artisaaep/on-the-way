@@ -121,7 +121,7 @@ class Trip(BaseTrip):
             age=sql_driver.age,
             alias=sql_driver.alias,
             rides_amount=sql_driver.rides_amount,
-            bio=None,
+            sex=sql_driver.sex,
             car_ids=list(map(int, sql_driver.car_ids.split())) if sql_driver.car_ids else [],
         )
         passenger_ids = map(int, orm.passenger_ids.split()) if orm.passenger_ids else []
