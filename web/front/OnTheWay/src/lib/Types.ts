@@ -28,8 +28,6 @@ export interface BaseTrip {
     start_location: string
     end_location: string
     departure_time: string
-    timeFrom: string
-    timeTo: string
     price: number
     available_seats: null | undefined | number;
     has_child_seat: null | undefined | boolean;
@@ -40,9 +38,7 @@ export interface BaseTrip {
     has_buster: boolean | undefined
     allow_luggage: boolean | undefined
     allow_pets: boolean | undefined
-    add_info: string | null | undefined
-    kind: string
-    dop: string
+    add_info: string | null
 }
 
 

@@ -35,8 +35,7 @@
             body: JSON.stringify(car),
         }).then(async response => {
             if (response.ok) {
-                // closeModal()
-                window.location.reload();
+                closeModal()
             } else {
                 window.Telegram.WebApp.showAlert("Something went wrong");
             }

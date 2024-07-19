@@ -1,6 +1,28 @@
 <script lang="ts">
     import {data, step} from "../Common";
     import {url} from "../../../enviroment";
+    import {onMount} from "svelte";
+    import {Car} from "$lib/Types";
+    import {carFetcher} from "$lib/fetchers";
+
+    let car_: Car;
+    onMount(async () => {
+        car_ = await (await fetch(url + "/api/cars/" + data.car_id, {})).json();
+    })
+
+    let options: string = '';
+    if (data.allow_luggage) {
+        options += "Есть место для багажа."
+    }
+    if (data.allow_pets) {
+        options += "Можно с животными."
+    }
+    if (data.has_child_seat) {
+        options += "Есть детское кресло."
+    }
+    if (data.has_buster) {
+        options += "Есть бустер."
+    }
 
     async function submitTrip() {
         await fetch(url + "/api/trips/", {
@@ -43,75 +65,77 @@
 
 </script>
 <div class="grey-rect">
-         <table id="trip">
-                <tr class="line">
-                    <td class="param-name">
-                        <p>откуда</p>
-                    </td>
-                    <td class="param-val">
-                        <p>{data.start_location}</p>
-                        <p>{data.clarify_from}</p>
-                    </td>
-                </tr>
-                <tr class="line">
-                    <td class="param-name">
-                        <p>куда</p>
-                    </td>
-                    <td class="param-val">
-                        <p>{data.end_location}</p>
-                        <p>{data.clarify_to}</p>
-                    </td>
-                </tr>
-                <tr class="line">
-                    <td class="param-name">
-                        <p>дата</p>
-                    </td>
-                    <td class="param-val">
-                        <p>{data.departure_date}</p>
-                    </td>
-                </tr>
-                <tr class="line">
-                    <td class="param-name">
-                        <p>время</p>
-                    </td>
-                    <td class="param-val">
-                        <p>{data.departure_time}</p>
-                    </td>
-                </tr>
-                <tr class="line">
-                    <td class="param-name">
-                        <p>вид</p>
-                    </td>
-                    <td class="param-val">
-                        <p>{data.kind}</p>
-                    </td>
-                </tr>
-                <tr class="line">
-                    <td class="param-name">
-                        <p>цена</p>
-                    </td>
-                    <td class="param-val">
-                        <p>{data.price}</p>
-                    </td>
-                </tr>
-                <tr class="line">
-                    <td class="param-name">
-                        <p>мест</p>
-                    </td>
-                    <td class="param-val">
-                        <p>{data.available_seats}</p>
-                    </td>
-                </tr>
-                <tr class="line">
-                    <td class="param-name">
-                        <p>прочее</p>
-                    </td>
-                    <td class="param-val">
-                        <p>{data.add_info}</p>
-                    </td>
-                </tr>
-            </table>
-            <p class="data-dop">{data.dop}</p>   
+    <table id="trip">
+        <tr class="line">
+            <td class="param-name">
+                <p>откуда</p>
+            </td>
+            <td class="param-val">
+                <p>{data.start_location}</p>
+                <p>{data.clarify_from}</p>
+            </td>
+        </tr>
+        <tr class="line">
+            <td class="param-name">
+                <p>куда</p>
+            </td>
+            <td class="param-val">
+                <p>{data.end_location}</p>
+                <p>{data.clarify_to}</p>
+            </td>
+        </tr>
+        <tr class="line">
+            <td class="param-name">
+                <p>дата</p>
+            </td>
+            <td class="param-val">
+                <p>{data.departure_date}</p>
+            </td>
+        </tr>
+        <tr class="line">
+            <td class="param-name">
+                <p>время</p>
+            </td>
+            <td class="param-val">
+                <p>{data.departure_time}</p>
+            </td>
+        </tr>
+        <tr class="line">
+            <td class="param-name">
+                <p>Транспорт</p>
+            </td>
+            <td class="param-val">
+                {#if car_}
+                    <p>{car_.color ? car_.color + ' ' : ''}{car_.brand}{car_.number ? ', ' + car_.number : ''}</p>
+                {/if}
+            </td>
+        </tr>
+        <tr class="line">
+            <td class="param-name">
+                <p>цена</p>
+            </td>
+            <td class="param-val">
+                <p>{data.price}</p>
+            </td>
+        </tr>
+        <tr class="line">
+            <td class="param-name">
+                <p>мест</p>
+            </td>
+            <td class="param-val">
+                <p>{data.available_seats}</p>
+            </td>
+        </tr>
+        <tr class="line">
+            <td class="param-name">
+                <p>прочее</p>
+            </td>
+            <td class="param-val">
+                <p>{data.add_info}</p>
+            </td>
+        </tr>
+    </table>
+    <p class="data-dop">{options}</p>
 </div>
 <div class="nav-buttons">
     <button class="next" id="dir-button1" on:click={()=>{$step--}}>Назад</button>
