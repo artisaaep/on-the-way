@@ -4,6 +4,18 @@
     const separate_time = data.departure_time.split('-');
     let timeFrom: string = separate_time[0];
     let timeTo: string = separate_time[1];
+    function validateDate(): boolean {
+        const currentDate = new Date();
+        const selectedDate = new Date(data.departure_date);
+        currentDate.setHours(0, 0, 0, 0);
+        selectedDate.setHours(0, 0, 0, 0);
+        
+        if (selectedDate < currentDate) {
+            window.Telegram.WebApp.showAlert("Дата и время поездки не могут быть раньше текщих даты и времени");
+            return false;
+        }
+        return true;
+    }
 </script>
 
 <img src="{url}/static/images/date-range-svgrepo-com.svg" class="date-img" alt="calendar">
@@ -33,8 +45,10 @@
         Назад
     </button>
     <button class="next" on:click={()=>{
-        data.departure_time = `${timeFrom}-${timeTo}`;
-        $step++;
+        if (validateDate()) {
+            data.departure_time = `${timeFrom}-${timeTo}`;
+            $step++;
+        }
     }}>
         Далее
     </button>
