@@ -24,18 +24,18 @@
             <input type="time" class="time-f" bind:value={timeTo}>
         </div>
     </div>
-    <div class="nav-buttons">
-        <button class="next" on:click={()=>{
-            data.departure_time = `${timeFrom}-${timeTo}`;
-            $step--;
-        }}>
-            Назад
-        </button>
-        <button class="next" on:click={()=>{
-            data.departure_time = `${timeFrom}-${timeTo}`;
-            $step++;
-        }}>
-            Далее
-        </button>
-    </div>
+</div>
+<div class="nav-buttons">
+    <button class="next" on:click={()=>{
+        data.departure_time = `${timeFrom}-${timeTo}`;
+        $step--;
+    }}>
+        Назад
+    </button>
+    <button class="next" on:click={()=>{
+        data.departure_time = `${timeFrom}-${timeTo}`;
+        $step++;
+    }}>
+        Далее
+    </button>
 </div>

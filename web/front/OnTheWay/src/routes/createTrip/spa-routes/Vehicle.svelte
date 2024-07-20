@@ -44,9 +44,20 @@
             <p class="choose-price">Цена в рублях:</p>
             <input type="number" id="price-rub" step="50" min="0" bind:value={data.price}>
         </div>
-    {/if}
-    <div class="grey-rect">
+
         <div class="av-text">
+            Свободных мест
+            <input type="number" list="places" step="1" min="1" max="4" id="av" class="number-input"
+                   bind:value={data.available_seats}/>
+            <datalist id="places">
+                <option value="1">
+                <option value="2">
+                <option value="3">
+                <option value="4">
+            </datalist>
+        </div>
+    {:else}
+        <div class="av-text" id="av-pl-pass">
             Сколько свободных мест нужно?
             <input type="number" list="places" step="1" min="1" max="4" id="av" class="number-input"
                    bind:value={data.available_seats}/>
@@ -57,12 +68,12 @@
                 <option value="4">
             </datalist>
         </div>
-    </div>
+    {/if}
 </div>
 
 
 <div class="nav-buttons">
     <button class="next" on:click={() => { $step-- }}>Назад</button>
     <!--        TODO: validation over vehicle choice       -->
-    <button class="next" on:click={() => { (data.car_id!==0 && data.car_id!==1) ? $step++ : $step += 2; console.log(data) }}>Далее</button>
+    <button class="next" on:click={() => { (data.car_id!==0 && data.car_id!==1 && data.is_request === false) ? $step++ : $step += 2; console.log(data) }}>Далее</button>
 </div>
