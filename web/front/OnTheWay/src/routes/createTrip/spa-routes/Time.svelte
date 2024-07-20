@@ -4,8 +4,10 @@
     const separate_time = data.departure_time.split('-');
     let timeFrom: string = separate_time[0];
     let timeTo: string = separate_time[1];
+    const currentDate = new Date();
+    const currentDateString = currentDate.toISOString().split('T')[0];
+    console.log(currentDateString);
     function validateDate(): boolean {
-        const currentDate = new Date();
         const selectedDate = new Date(data.departure_date);
         currentDate.setHours(0, 0, 0, 0);
         selectedDate.setHours(0, 0, 0, 0);
@@ -25,7 +27,7 @@
     </div>
     <div class="date">
         <p class="choose-d">Дата:</p>
-        <input type="date" id="date-f" bind:value={data.departure_date}/>
+        <input type="date" id="date-f" bind:value={data.departure_date} min={currentDateString}/>
     </div>
     <div class="time">
         <p class="choose-t">Временной диапазон начала поездки:</p>
