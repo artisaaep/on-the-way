@@ -64,9 +64,9 @@ body {
 }
 
 .grey-rect {
-    margin-top: 50%;
+    margin-top: 100px;
     width: 83.9vw;
-    height: 60vh;
+    height: 65vh;
     background-color: #E3E1E1;
     margin: auto;
     margin-bottom: 3%;
@@ -78,6 +78,10 @@ body {
     font-family: "Kreadon";
     margin-top: 0;
     position: relative;
+}
+
+.container {
+    margin-top: 20%; 
 }
 
 
@@ -586,9 +590,12 @@ body {
 
 .param-val input {
     height: 2.9em;
-    background-color: rgba(0, 0, 0, 0);
-    font-size: 2.1vh;
-    padding: 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 2.7vh;
+    padding: 1px;
+    margin-left: 3%;
 }
 
 .submit {
