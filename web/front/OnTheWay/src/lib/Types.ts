@@ -38,7 +38,7 @@ export interface BaseTrip {
     has_buster: boolean | undefined
     allow_luggage: boolean | undefined
     allow_pets: boolean | undefined
-    add_info: string | null | undefined
+    add_info: string | null
 }
 
 

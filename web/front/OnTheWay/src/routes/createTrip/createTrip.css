@@ -1,12 +1,26 @@
 * {
     box-sizing: border-box;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
 }
 
 html, body {
     height: 100%;
     margin: 0;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
+}
+
+button {
+    border-radius: 0;
+}
+
+#content-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
 }
 
 body {
@@ -28,7 +42,7 @@ body {
 
 .grey-rect {
     width: 83.9vw;
-    height: 70vh;
+    height: 65vh;
     background-color: #E3E1E1;
     margin: auto;
     margin-bottom: 3%;
@@ -37,10 +51,26 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     margin-top: 0;
     position: relative;
 }
+
+
+#right1, #right2 {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 0.1px solid black;
+    border-left: 0.65px solid black;
+}
+
+#left1, #left2 {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border: 0.1px solid black;
+    border-right: 0.65px solid black;
+}
+
 
 
 .desc-img{
@@ -56,9 +86,6 @@ body {
 
 #addcar {
     font-size: 3vh;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 38%;
 }
 
 
@@ -66,9 +93,10 @@ body {
     margin-left: 2%;
     margin-right: 2%;
     font-size: 7vw;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     color: #000;
-    margin-top: 10%;
+    margin-top: 5%;
+    margin-bottom: 2%;
 }
 
 
@@ -82,8 +110,8 @@ body {
     height: 14vw;
     width: auto;
     position: absolute;
-    top: -7%;
-    right: 10%;
+    top: 7%;
+    right: 15%;
     z-index: 10;
 }
 
@@ -107,7 +135,7 @@ body {
     width: 50%;
     height: 100%;
     font-size: 3vh;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     padding: 0;
     background-color: inherit;
     color: #000;
@@ -146,9 +174,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 20%;
+    margin-top: 5%;
 }
 
 
@@ -174,9 +200,13 @@ body {
     outline: none;
 }
 
+.data-dop {
+    width: 80%;
+}
+
 .next {
     font-size: 3vh;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     background-color: #FBEA50D9;
     border-radius: 10px;
     padding: 2%;
@@ -195,7 +225,7 @@ body {
 }
 
 .date, .time {
-    width: 70%;
+    width: 80%;
     position: relative;
     border: 1px solid black;
     border-radius: 10px;
@@ -214,7 +244,7 @@ body {
     border-radius: 10px;
     border: 1.3px solid black;
     font-size: 5vw;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     color: #000;
     background-color: #d0cbcb;
     text-align: center;
@@ -230,7 +260,7 @@ body {
 }
 
 .ft {
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     font-size: 3vh;
     margin-left: 3%;
     margin-right: 3%;
@@ -240,7 +270,7 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    height: 33%;
+    height: 46%;
     margin-top: 5%;
     margin-bottom: 3%;
 }
@@ -250,7 +280,7 @@ body {
     border-radius: 10px;
     border: 1.3px solid black;
     font-size: 5vw;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     color: #000;
     background-color: #d0cbcb;
     text-align: center;
@@ -260,7 +290,7 @@ body {
 
 .choose-d {
     font-size: 5.3vw;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     color: #000;
     position: absolute;
     left: 0;
@@ -269,7 +299,7 @@ body {
 
 .choose-t {
     font-size: 5.3vw;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     color: #000;
     margin-bottom: 2%;
     margin-left: 3%;
@@ -280,7 +310,6 @@ body {
     width: 70%;
     border: 1.3px solid black;
     border-radius: 10px;
-    margin-top: 7%;
     font-size: 4.5vw;
 }
 
@@ -298,7 +327,7 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
 }
 
 .choice li {
@@ -312,7 +341,7 @@ body {
     padding-left: 7%;
     cursor: pointer;
     user-select: none;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
 }
 
 .choice input[type="checkbox"], .choice input[type="radio"] {
@@ -434,7 +463,7 @@ body {
     position: relative;
     padding-left: 7%;
     cursor: pointer;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
 }
 
 .number-input {
@@ -445,7 +474,7 @@ body {
     border: 1px solid #333;
     margin-left: 9%;
     text-align: center;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     background-color: inherit;
     font-size: 4vw;
 }
@@ -467,17 +496,6 @@ body {
     margin-bottom: 2%;
 }
 
-#trip-data {
-    padding: 3%;
-    padding-top: 0;
-    width: 90%;
-    height: 63%;
-    border: 1.3px solid black;
-    border-radius: 10px;
-    margin-top: 2%;
-    margin-bottom: 4%;
-}
-
 #buttonschoose {
     display: flex;
     flex-direction: column;
@@ -497,13 +515,13 @@ body {
 
 .buttonchoose {
     font-size: 4vh;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     color: black;
 }
 
 .q {
     font-size: 3.4vh;
-    font-family: "Kreadon";
+    font-family: Kreadon_regular;
     margin-bottom: 0;
     margin-top: 0;
 }
@@ -535,4 +553,48 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#trip .param-name p, #trip .param-val p {
+    margin: 1%;
+    padding: 0;
+    font-family: Kreadon_regular;
+    margin-right: 0;
+}
+
+#trip .param-val p {
+    margin: 1%;
+    padding: 0;
+    font-family: Kreadon_regular;
+    margin-right: 0;
+    background-color: #d0cbcb;
+    border-radius: 7px;
+    border: #000 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.data-dop {
+    background-color: #d0cbcb;
+    border-radius: 7px;
+    border: #000 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#trip {
+    width: 80%;
+    margin: 0;
+    margin-top: 5%;
+}
+
+
+.param-val {
+    width: 70%;
+}
+
+#av-pl-pass {
+    margin-top: 20%;
 }

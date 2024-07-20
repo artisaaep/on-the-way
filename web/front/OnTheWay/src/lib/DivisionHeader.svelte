@@ -3,7 +3,7 @@
 
     export let type: boolean = true;
     export let default_label: string;
-    export let optional_label:string;
+    export let optional_label: string;
 </script>
 
 <div id="zakrep">

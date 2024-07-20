@@ -10,6 +10,15 @@
 
     let cars: Car[] = [];
 
+    async function removeCar(id: number): Promise<void> {
+        await fetch(`${url}/api/cars/${id}`, {
+            method: "DELETE"
+        })
+        cars = [...cars.filter(car => car.id !== id)]
+        $user.car_ids = [...$user.car_ids.filter(_id => _id !== id)];
+        $user = $user;
+    }
+
     async function main() {
         var BackButton = window.Telegram.WebApp.BackButton;
         BackButton.show();
@@ -33,6 +42,7 @@
             body: JSON.stringify($user)
         })
         $user = $user;
+        window.history.back();
     }
 
     onMount(main);
@@ -45,7 +55,7 @@
     <table id="trip">
         <tr class="line">
             <td class="param-name">
-                <p>имя</p>
+                <p>Имя</p>
             </td>
             <td class="param-val">
                 {#if $user}
@@ -53,9 +63,10 @@
                 {/if}
             </td>
         </tr>
+        <br>
         <tr class="line">
             <td class="param-name">
-                <p>возраст</p>
+                <p>Возраст</p>
             </td>
             <td class="param-val">
                 {#if $user}
@@ -63,20 +74,25 @@
                 {/if}
             </td>
         </tr>
+        <br>
         <tr class="line">
             <td class="param-name">
-                <p>машины</p>
+                <p>Машины</p>
             </td>
             <td class="param-val">
                 <ul>
                     {#each cars as car}
-                        <li><p>{car.color} {car.brand} {car.number}</p></li>
+                        <li>
+                            <button on:click={()=>removeCar(car.id)}>-</button>
+                            <p>{car.color} {car.brand} {car.number}</p></li>
                     {/each}
                 </ul>
             </td>
         </tr>
         <tr class="line">
             <td class="submit">
-                <button id="redt" on:click={submit}>Применить</button>
+                <button id="primenit" on:click={submit}>Применить</button>
+            </td>
+        </tr>
     </table>
 </div>

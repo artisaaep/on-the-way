@@ -1,10 +1,25 @@
 <script lang="ts">
     import {url} from '../../../enviroment'
     import {data, step} from "../Common";
-
-    let timeFrom: string = "00:00";
-    let timeTo: string = "00:00";
+    const separate_time = data.departure_time.split('-');
+    let timeFrom: string = separate_time[0];
+    let timeTo: string = separate_time[1];
+    const currentDate = new Date();
+    const currentDateString = currentDate.toISOString().split('T')[0];
+    console.log(currentDateString);
+    function validateDate(): boolean {
+        const selectedDate = new Date(data.departure_date);
+        currentDate.setHours(0, 0, 0, 0);
+        selectedDate.setHours(0, 0, 0, 0);
+        
+        if (selectedDate < currentDate) {
+            window.Telegram.WebApp.showAlert("Дата и время поездки не могут быть раньше текщих даты и времени");
+            return false;
+        }
+        return true;
+    }
 </script>
+
 <img src="{url}/static/images/date-range-svgrepo-com.svg" class="date-img" alt="calendar">
 <div class="grey-rect">
     <div class="desc-img">
@@ -12,30 +27,31 @@
     </div>
     <div class="date">
         <p class="choose-d">Дата:</p>
-        <input type="date" id="date-f" bind:value={data.departure_date}/>
+        <input type="date" id="date-f" bind:value={data.departure_date} min={currentDateString}/>
     </div>
     <div class="time">
         <p class="choose-t">Временной диапазон начала поездки:</p>
         <div id="time-range">
-            <p class="ft">от</p>
             <input type="time" class="time-f" bind:value={timeFrom}>
 
-            <p class="ft">до</p>
+            <p class="ft">-</p>
             <input type="time" class="time-f" bind:value={timeTo}>
         </div>
     </div>
-    <div class="nav-buttons">
-        <button class="next" on:click={()=>{
-            data.departure_time = `${timeFrom}-${timeTo}`;
-            $step--;
-        }}>
-            Назад
-        </button>
-        <button class="next" on:click={()=>{
+</div>
+<div class="nav-buttons">
+    <button class="next" on:click={()=>{
+        data.departure_time = `${timeFrom}-${timeTo}`;
+        $step--;
+    }}>
+        Назад
+    </button>
+    <button class="next" on:click={()=>{
+        if (validateDate()) {
             data.departure_time = `${timeFrom}-${timeTo}`;
             $step++;
-        }}>
-            Далее
-        </button>
-    </div>
+        }
+    }}>
+        Далее
+    </button>
 </div>

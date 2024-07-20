@@ -3,25 +3,40 @@
     import {url} from "../../enviroment";
     import type {Trip} from "$lib/Types";
     import {onMount} from "svelte";
-    let trips: Trip[];
-    const fetcher = async () => {
-        trips = await (await fetch(url + `/api/finished/${window.Telegram.WebApp.initDataUnsafe.user.id}`, {
-            method: "GET",
-        })).json();
-        console.log(trips);
-    };
-    onMount(()=>{
-        console.log("Mounted");
-        fetcher();
-    });
-</script>
-<div class="scrolling" id="main-scrolling-div" style="--owner-bg-col: red">
-    {#if trips}
-        {#each trips as trip}
-            <FinishedTrip trip={trip}/>
-        {/each}
-    {:else}
-        <p>Вы еще не совершили ни одну поедку.</p>
-    {/if}
-</div>
+    import DivisionHeader from "$lib/DivisionHeader.svelte";
 
+    let own_trips: Trip[];
+    let participated_trips: Trip[];
+    let type: boolean = true;
+    onMount(async () => {
+            own_trips = await (await fetch(`${url}/api/finished/driver/${window.Telegram.WebApp.initDataUnsafe.user.id}`, {
+                method: "GET",
+            })).json();
+            participated_trips = await (await fetch(`${url}/api/finished/rider/${window.Telegram.WebApp.initDataUnsafe.user.id}`, {
+                method: "GET"
+            })).json();
+        }
+    );
+</script>
+{#key type}
+    <DivisionHeader bind:type={type} default_label="Мои заявки" optional_label="Мои отклики"/>
+    <div class="scrolling" id="main-scrolling-div" style="--owner-bg-col: red">
+        {#if type}
+            {#if own_trips}
+                {#each own_trips as trip}
+                    <FinishedTrip trip={trip}/>
+                {/each}
+            {:else}
+                <p>Вы еще не совершили ни одну поедку.</p>
+            {/if}
+        {:else}
+            {#if participated_trips}
+                {#each participated_trips as trip}
+                    <FinishedTrip trip={trip}/>
+                {/each}
+            {:else}
+                <p>Вы еще не учавствовали ни в одной поедке.</p>
+            {/if}
+        {/if}
+    </div>
+{/key}

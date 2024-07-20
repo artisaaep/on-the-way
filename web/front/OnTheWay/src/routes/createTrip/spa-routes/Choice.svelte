@@ -17,6 +17,6 @@
         </button>
     </div>
     <div class="img-cont">
-        <img id="firstimg" src="{url}static/images/car-svgrepo-com.svg" alt="hzcho">
+        <img id="firstimg" src="{url}/static/images/car-svgrepo-com.svg" alt="hzcho">
     </div>
 </div>

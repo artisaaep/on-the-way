@@ -43,5 +43,8 @@ async def delete_car(_id: int, db: Session = Depends(get_db)):
     if car is None:
         raise HTTPException(status_code=404, detail="Trip not found")
     db.delete(car)
+    if car.owner_id is not None:
+        user: SQLUser = db.query(SQLUser).filter(SQLUser.id == car.owner_id).first()
+        user.car_ids = ' '.join(_id for _id in user.car_ids.split() if _id != int(car.id))
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
