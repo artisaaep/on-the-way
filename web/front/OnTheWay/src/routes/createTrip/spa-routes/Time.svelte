@@ -23,12 +23,12 @@
 
         else if (selectedDate.getTime() === currentDateMidnight.getTime() && 
             (hoursFrom < currentTime.getHours() || (hoursFrom === currentTime.getHours() && minutesFrom < currentTime.getMinutes()))) {
-            window.Telegram.WebApp.showAlert("Время начала поездки не может быть раньше текущего времени");
+            window.Telegram.WebApp.showAlert("Время поездки не может быть раньше текущего времени");
             return false;
         }
 
         else if (hoursTo < hoursFrom || (hoursTo === hoursFrom && minutesTo < minutesFrom)) {
-            window.Telegram.WebApp.showAlert("Время конца поездки не может быть раньше времени начала");
+            window.Telegram.WebApp.showAlert("Время конца промежутка не может быть раньше времени начала");
             return false;
         }
 
