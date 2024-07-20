@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <link rel="stylesheet" href="tripinfo.css">
@@ -16,7 +17,7 @@
                         <p>откуда</p>
                     </td>
                     <td class="param-val">
-                        <p>Казань</p>
+                        <input id="from" input placeholder=""><input id="clarfrom" placeholder="">
                     </td>
                 </tr>
                 <tr class="line">
@@ -24,7 +25,7 @@
                         <p>куда</p>
                     </td>
                     <td class="param-val">
-                        <p>Иннополис</p><p>технопарк</p>
+                        <input id="to" placeholder=""><input id="clarto" placeholder="">
                     </td>
                 </tr>
                 <tr class="line">
@@ -32,7 +33,7 @@
                         <p>дата</p>
                     </td>
                     <td class="param-val">
-                        <p>08-07-2024</p>
+                        <input id="date" placeholder="">
                     </td>
                 </tr>
                 <tr class="line">
@@ -40,7 +41,7 @@
                         <p>время</p>
                     </td>
                     <td class="param-val">
-                        <p>10:00 - 11:00</p>
+                        <input id="time" placeholder="">
                     </td>
                 </tr>
                 <tr class="line">
@@ -48,7 +49,7 @@
                         <p>цена</p>
                     </td>
                     <td class="param-val">
-                        <p>350р</p>
+                        <input id="cost" placeholder="">
                     </td>
                 </tr>
                 <tr class="line">
@@ -56,15 +57,16 @@
                         <p>кол-во мест</p>
                     </td>
                     <td class="param-val">
-                        <p>4</p>
+                        <input id="free" placeholder="">
                     </td>
                 </tr>
             </table>
         </div>
         <div class="nav-buttons">
-            <button class="next" id="dir-button1" onclick="">Редактировать</button>
-            <button class="next" id="dir-button2" onclick="">Назад</button>
+            <button class="next" id="dir-button1" onclick="edit()">Редактировать</button>
+            <button class="next" id="dir-button2" onclick="window.Telegram.WebApp.close()">Назад</button>
         </div>
     </div>
 </body>
+<script src="scripts/tripinfo.js"></script>
 </html>
