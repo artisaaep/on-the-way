@@ -12,16 +12,16 @@
 
     let options: string = '';
     if (data.allow_luggage) {
-        options += "Есть место для багажа."
+        options += "Есть место для багажа. "
     }
     if (data.allow_pets) {
-        options += "Можно с животными."
+        options += "Можно с животными. "
     }
     if (data.has_child_seat) {
-        options += "Есть детское кресло."
+        options += "Есть детское кресло. "
     }
     if (data.has_buster) {
-        options += "Есть бустер."
+        options += "Есть бустер. "
     }
 
     async function submitTrip() {
@@ -45,11 +45,14 @@
     async function finish() {
         let id = window.Telegram.WebApp.initDataUnsafe.user.id;
         // TODO: transfer it to the backend
+        const trips = await (await fetch(url + "/api/trips", {
+                method: "GET",
+            })).json();
         let kb = {
             inline_keyboard: [[{
                 text: 'Подробнее',
                 // TODO page for tripInfo
-                web_app: {url: `${url}/static/tripinfo.html`}
+                web_app: {url: `${url}/app/tripinfo.html?${trips[trips.length-1].id}`},
             }]]
         };
         let text = `Ваша поездка *${data.start_location} - ${data.end_location}* успешно создана! 🚙

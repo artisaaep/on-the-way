@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    font-family: "Kreadon";
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: "Kreadon";
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.grey-rect {
+    width: 83.9vw;
+    height: 70vh;
+    background-color: #E3E1E1;
+    margin: auto;
+    margin-bottom: 3%;
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Kreadon";
+    margin-top: 0;
+    position: relative;
+}
+
+.nav-buttons {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 5%;
+}
+
+.next {
+    font-size: 3vh;
+    font-family: "Kreadon";
+    background-color: #FBEA50D9;
+    border-radius: 10px;
+    padding: 2%;
+    padding-left: 10%;
+    padding-right: 10%;
+    border: 1.3px solid black;
+    color: #000;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#dir-button1 {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#dir-button2 {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.dir-desc {
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 6vw;
+    font-family: "Kreadon";
+    color: #000;
+    margin-top: 5%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4%;
+}
+
+#trip-data {
+    padding: 3%;
+    padding-top: 0;
+    width: 90%;
+    height: 76%;
+    border: 1.3px solid black;
+    border-radius: 10px;
+    margin-top: 0;
+    margin-bottom: 1%;
+}
+
+#trip {
+    width: 100%;
+    border-collapse: collapse; 
+    margin-top: 5%;
+}
+
+input {
+    height: 2em;
+    text-align: center;
+    font-size: 4vw;
+    width: 7em;
+    height: 1.5em;
+}
+
+input::placeholder {
+    color: black;
+    font-size: 4vw;
+}
+#where {
+    width: 6em;
+}
+#where::placeholder {
+    font-size: 3vw;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+#trip .param-name p, input, #trip .param-val p {
+    margin: 4%;
+    padding: 0;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#trip .param-val p, input {
+    border: 1px solid black;
+    background-color: #c4c1c1;
+}
+

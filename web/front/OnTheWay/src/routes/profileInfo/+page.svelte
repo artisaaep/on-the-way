@@ -42,7 +42,7 @@
             body: JSON.stringify($user)
         })
         $user = $user;
-        window.history.back();
+        window.location.reload();
     }
 
     onMount(main);
