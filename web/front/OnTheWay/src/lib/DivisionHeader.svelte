@@ -1,16 +1,27 @@
 <script lang="ts">
     import {url} from "../enviroment.js";
+    import Filter from "$lib/Filter.svelte";
+    import {Trip} from "$lib/Types";
 
     export let type: boolean = true;
     export let default_label: string;
     export let optional_label: string;
+
+    export let tripShowLeftCollection: Trip[];
+    export let tripShowRightCollection: Trip[];
+
+    export let destinationCollection: Trip[];
+
+    destinationCollection = type ? tripShowLeftCollection : tripShowRightCollection;
 </script>
 
 <div id="zakrep">
-    <button id="filter" on:click={()=>{}}>
-        <img id="imgfilter" src="{url}/static/icons/filter-svgrepo-com.svg" alt="filter">
-        Фильтр
-    </button>
+    <Filter bind:tripShowCollection={destinationCollection}>
+        <a id="filter">
+            <img id="imgfilter" src="{url}/static/icons/filter-svgrepo-com.svg" alt="filter">
+            Фильтр
+        </a>
+    </Filter>
     <div class="tab">
         <input
                 id="tab-btn-1"
@@ -71,32 +82,6 @@
         border: 1px solid black;
         border-bottom: 0;
         box-shadow: inset 0 8px 10px rgba(0, 0, 0, 0.1);
-    }
-
-
-    #filter {
-        position: fixed;
-        left: 70%;
-        float: right;
-        width: 25%;
-        background-color: rgba(251, 234, 80, 0.85);
-        color: black;
-        border-radius: 10px;
-        border: 0 black;
-        font-size: 15px;
-        font-family: Kreadon_medium;
-        padding: 1% 1% 1% 5%;
-        box-shadow: 1.5px 1.5px 2px rgb(0, 0, 0, 0.2);;
-
-    }
-
-
-    #imgfilter {
-        height: 25%;
-        width: 25%;
-        float: left;
-        margin-right: 5%;
-        margin-left: -12%;
     }
 
     #drivers {

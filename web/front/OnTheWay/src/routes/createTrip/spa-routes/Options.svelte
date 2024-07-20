@@ -1,25 +1,5 @@
 <script>
     import {data, step} from "../Common";
-
-    function addInfo() {
-        data.allow_luggage = document.getElementById('lag').checked;
-        data.allow_pets = document.getElementById('an').checked;
-        data.has_child_seat = document.getElementById('ch').checked;
-        data.has_buster = document.getElementById('bu').checked;
-        data.dop = "";
-        if (data.allow_luggage) {
-            data.dop += "Можно с багажом. "
-        }
-        if (data.allow_pets) {
-            data.dop += "Можно с животными. "
-        }
-        if (data.has_child_seat) {
-            data.dop += "Детское кресло. "
-        }
-        if (data.has_buster) {
-            data.dop += "Бустер. "
-        }
-    }
 </script>
 
 <div class="grey-rect">
@@ -60,22 +40,18 @@
 
     <textarea id="add" class="com" placeholder="Дополнительные сведения о поездке..." bind:value={data.add_info}/>
 
-    
-</div>
-<div class="nav-buttons">
-    <button class="next" on:click={()=>{
-        if (data.kind === "На своей машине")
-            $step--
-        else
-            $step-=2
-    }}>
-        Назад
-    </button>
-    <button class="next"
-        on:click={() => {
-            addInfo(); 
-            $step++;
+    <div class="nav-buttons">
+        <button class="next" on:click={()=>{
+            if (data.car_id!==0 && data.car_id!==1)
+                $step--
+            else
+                $step-=2
         }}>
-        Далее
-    </button>
+            Назад
+        </button>
+        <button class="next"
+                on:click={()=>{$step++}}>
+            Далее
+        </button>
+    </div>
 </div>

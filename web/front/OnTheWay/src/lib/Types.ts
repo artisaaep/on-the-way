@@ -60,3 +60,14 @@ export interface UserOptions {
     has_kids: boolean
     has_pets: boolean
 }
+
+
+export interface Filter {
+    allow_luggage: boolean,
+    allow_pets: boolean,
+    child_seat: boolean,
+    booster: boolean,
+    seats: number | null,
+    date: null | string,
+    from: null | string
+}

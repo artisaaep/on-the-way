@@ -12,7 +12,7 @@
         {:else}
             <p class="dir-desc">Куда</p>
         {/if}
-        <img src="{url}/static/images/location-pin-alt-svgrepo-com.svg"
+        <img src="{url}/static/icons/location-pin-alt-svgrepo-com.svg"
              class="dir-image"
              alt="Location Pin"
         />

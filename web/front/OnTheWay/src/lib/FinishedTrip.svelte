@@ -1,7 +1,7 @@
 <script lang="ts">
     import type {Trip} from "./Types";
     import {url} from "../enviroment";
-    import './FinishedTrip.css';
+    import './assets/FinishedTrip.css';
 
     export let trip: Trip;
 </script>

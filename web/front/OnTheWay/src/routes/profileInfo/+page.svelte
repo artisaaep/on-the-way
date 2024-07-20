@@ -20,7 +20,7 @@
     }
 
     async function main() {
-        var BackButton = window.Telegram.WebApp.BackButton;
+        let BackButton = window.Telegram.WebApp.BackButton;
         BackButton.show();
         BackButton.onClick(function () {
             window.history.back();

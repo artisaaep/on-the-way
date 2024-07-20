@@ -35,7 +35,7 @@
 
     #page-container {
         position: relative;
-        min-height: 90vh;
+        min-height: 100vh;
         min-width: 90vw;
         height: 100%;
         width: 100%;
