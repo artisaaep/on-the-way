@@ -9,13 +9,29 @@
     console.log(currentDateString);
     function validateDate(): boolean {
         const selectedDate = new Date(data.departure_date);
-        currentDate.setHours(0, 0, 0, 0);
+        const currentDateMidnight = new Date(currentDateString);
+        currentDateMidnight.setHours(0, 0, 0, 0);
         selectedDate.setHours(0, 0, 0, 0);
-        
-        if (selectedDate < currentDate) {
-            window.Telegram.WebApp.showAlert("Дата и время поездки не могут быть раньше текщих даты и времени");
+        const currentTime = new Date();
+        const [hoursFrom, minutesFrom] = timeFrom.split(':').map(Number);
+        const [hoursTo, minutesTo] = timeTo.split(':').map(Number);
+
+        if (selectedDate < currentDateMidnight) {
+            window.Telegram.WebApp.showAlert("Дата поездки не может быть раньше текущей даты");
             return false;
         }
+
+        else if (selectedDate.getTime() === currentDateMidnight.getTime() && 
+            (hoursFrom < currentTime.getHours() || (hoursFrom === currentTime.getHours() && minutesFrom < currentTime.getMinutes()))) {
+            window.Telegram.WebApp.showAlert("Время начала поездки не может быть раньше текущего времени");
+            return false;
+        }
+
+        else if (hoursTo < hoursFrom || (hoursTo === hoursFrom && minutesTo < minutesFrom)) {
+            window.Telegram.WebApp.showAlert("Время конца поездки не может быть раньше времени начала");
+            return false;
+        }
+
         return true;
     }
 </script>
@@ -35,7 +51,7 @@
             <input type="time" class="time-f" bind:value={timeFrom}>
 
             <p class="ft">-</p>
-            <input type="time" class="time-f" bind:value={timeTo}>
+            <input type="time" class="time-f" bind:value={timeTo} min={timeFrom}>
         </div>
     </div>
 </div>
