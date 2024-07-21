@@ -50,12 +50,9 @@
             window.Telegram.WebApp.showAlert("Something went wrong");
         }
     }
-    async function driversprof() {
-        window.location.href = "driversprof.html?" + trip.id;
-    }
 </script>
 <div class="centre">
-    <div class="card" on:click={driversprof}>
+    <div class="card">
         <div class="verh">
             <img class="avatar" alt="driver-avatar" src="{url}/api/users/{trip.driver.id}/photo">
             <div class="verhtext">
@@ -92,4 +89,5 @@
             </div>
         </div>
     </div>
+    <a href="driversprof.html?{trip.id}">Посмотреть подробнее</a>
 </div>
