@@ -5,6 +5,13 @@
     import {Car} from "$lib/Types";
     import {carFetcher} from "$lib/fetchers";
 
+    function formatDate(date: Date): string {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); 
+        const year = date.getFullYear();
+        return `${day}-${month}-${year}`;
+    }
+
     let car_: Car;
     onMount(async () => {
         car_ = await (await fetch(url + "/api/cars/" + data.car_id, {})).json();
@@ -12,19 +19,20 @@
 
     let options: string = '';
     if (data.allow_luggage) {
-        options += "Есть место для багажа."
+        options += "Можно с багажом. "
     }
     if (data.allow_pets) {
-        options += "Можно с животными."
+        options += "Можно с животными. "
     }
     if (data.has_child_seat) {
-        options += "Есть детское кресло."
+        options += "Детское кресло. "
     }
     if (data.has_buster) {
-        options += "Есть бустер."
+        options += "Бустер. "
     }
 
     async function submitTrip() {
+        data.departure_date = formatDate(new Date(data.departure_date)); 
         console.log(data)
         await fetch(url + "/api/trips/", {
             method: 'POST',
@@ -74,7 +82,9 @@
             </td>
             <td class="param-val">
                 <p>{data.start_location}</p>
+                {#if data.clarify_from != ""}
                 <p>{data.clarify_from}</p>
+                {/if}
             </td>
         </tr>
         <tr class="line">
@@ -83,7 +93,9 @@
             </td>
             <td class="param-val">
                 <p>{data.end_location}</p>
+                {#if data.clarify_to != ""}
                 <p>{data.clarify_to}</p>
+                {/if}
             </td>
         </tr>
         <tr class="line">
@@ -91,7 +103,7 @@
                 <p>дата</p>
             </td>
             <td class="param-val">
-                <p>{data.departure_date}</p>
+                <p>{formatDate(new Date(data.departure_date))}</p>
             </td>
         </tr>
         <tr class="line">
@@ -105,39 +117,23 @@
         {#if data.is_request === false}
             <tr class="line">
                 <td class="param-name">
-                    <p>вид</p>
-                </td>
-                <td class="param-val">
-                    <p>{data.kind}</p>
-                </td>
-            </tr>
-            <tr class="line">
-                <td class="param-name">
                     <p>цена</p>
                 </td>
                 <td class="param-val">
                     <p>{data.price}</p>
                 </td>
             </tr>
-        {/if}
         <tr class="line">
             <td class="param-name">
                 <p>Транспорт</p>
             </td>
             <td class="param-val">
                 {#if car_}
-                    <p>{car_.color ? car_.color + ' ' : ''}{car_.brand}{car_.number ? ', ' + car_.number : ''}</p>
+                    <p>{car_.color ? car_.color + ' ' : ''}{car_.brand}</p>
                 {/if}
             </td>
         </tr>
-        <tr class="line">
-            <td class="param-name">
-                <p>цена</p>
-            </td>
-            <td class="param-val">
-                <p>{data.price}</p>
-            </td>
-        </tr>
+        {/if}
         <tr class="line">
             <td class="param-name">
                 <p>мест</p>
@@ -146,6 +142,7 @@
                 <p>{data.available_seats}</p>
             </td>
         </tr>
+        {#if data.add_info != null}
         <tr class="line">
             <td class="param-name">
                 <p>прочее</p>
@@ -154,6 +151,7 @@
                 <p>{data.add_info}</p>
             </td>
         </tr>
+        {/if}
     </table>
     <p class="data-dop">{options}</p>
 </div>
