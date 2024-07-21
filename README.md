@@ -13,7 +13,6 @@ The project is designed to simplify the process of finding travelling companions
 
 ## Built With
 
-- ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 - ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 - ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 - ![SvelteKit](https://img.shields.io/badge/-SvelteKit-FF3E00?style=flat&logo=svelte&logoColor=white)
@@ -61,12 +60,12 @@ The project is designed to simplify the process of finding travelling companions
 
 ## Frameworks and Technologies Used
 
-- **HTML and CSS**: Used for designing and styling the web pages, ensuring a responsive and user-friendly interface.
+- **CSS**: Used for designing and styling the web pages, ensuring a responsive and user-friendly interface.
 - **JavaScript**: Provides dynamic behavior to the web application, enhancing user interactions.
 - **SvelteKit**: Utilized for building the web application's front-end with server-side rendering and optimized performance.
 - **Python**: Powers the backend logic of the bot, handling user interactions, data processing, and communication with the Telegram API.
 - **SQLAlchemy**: Used for database operations, providing a powerful and flexible ORM for managing the bot's data.
-- **aiogram**: Facilitates the development of the Telegram bot by providing an asynchronous framework for handling bot commands and events.
+- **Aiogram**: Facilitates the development of the Telegram bot by providing an asynchronous framework for handling bot commands and events.
 - **FastAPI**: Used to create the backend API for the web application, providing high performance and easy integration with Python-based services.
 
 ## Contribution
