@@ -12,6 +12,31 @@
 <p id="color-value"></p>
 
 <style>
+    @font-face {
+        font-family: 'Kreadon_demi';
+        font-style: normal;
+        font-weight: 400;
+        src: url('../../../../../static/fonts/Kreadon-Demi.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Kreadon_bold';
+        font-style: normal;
+        font-weight: 400;
+        src: url('../../../../../static/fonts/Kreadon-Bold.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Kreadon_medium';
+        font-style: normal;
+        font-weight: 400;
+        src: url('../../../../../static/fonts/Kreadon-Medium.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Kreadon_regular';
+        font-style: normal;
+        font-weight: 400;
+        src: url('../../../../../static/fonts/Kreadon-Regular.ttf') format('truetype');
+    }
+
     p {
         text-align: center;
         color: black;

@@ -16,9 +16,6 @@
             BackButton.hide();
         });
         let trip_id = window.location.href.split('?')[1];
-        console.log(await fetch(url + "/api/trips/" + trip_id, {
-            method: "GET",
-        }));
         trip = await (await fetch(url + "/api/trips/" + trip_id, {
             method: "GET",
         })).json();
@@ -44,31 +41,37 @@
             <p id="rides">Количество поездок: {trip.driver.rides_amount}</p>
         </div>
     </div>
-    <div class="maininfa">
-        <a id="date" class="date">{trip.departure_date}<br></a>
-        <a id="from" class="from">{trip.start_location}</a>
-        <a class="strelka">&#8594;</a>
-        <a id="to" class="to">{trip.end_location}<br></a>
-        <a id="clari-from" class="clari-from">{trip.clarify_from}</a>
-        <a id="time" class="time">{trip.departure_time}</a>
-        <a id="clari-to" class="clari-to">{trip.clarify_to}</a>
+    <div class="main-info">
+        <div class="from_main">
+            <p class="from">{trip.start_location}</p>
+            <p class="clari-from">{trip.clarify_from}</p>
+        </div>
+        <div class="bott">
+            <p class="date">{trip.departure_date}</p>
+            <p class="arrow">&#8594;</p>
+            <p class="time">{trip.departure_time}</p>
+        </div>
+        <div class="to_main">
+            <p class="to">{trip.end_location}</p>
+            <p class="clari-to">{trip.clarify_to}</p>
+        </div>
     </div>
     <div class="options">
         <div id="pets">
             <a>Животные<br></a>
-            <a id="z1">{trip.allow_pets?'✔':'✖'}</a>
+            <a id="z1">{trip.allow_pets?'✔️':'✖️'}</a>
         </div>
         <div id="kids">
             <a>Детское кресло<br></a>
-            <a id="z2">{trip.has_child_seat?'✔':'✖'}</a>
+            <a id="z2">{trip.has_child_seat?'✔️':'✖️'}</a>
         </div>
         <div id="minikids">
             <a>Бустер<br></a>
-            <a id="z3">{trip.has_buster?'✔':'✖'}</a>
+            <a id="z3">{trip.has_buster?'✔️':'✖️'}</a>
         </div>
         <div id="bag">
             <a>Багаж<br></a>
-            <a id="z4">{trip.allow_luggage?'✔':'✖'}</a>
+            <a id="z4">{trip.allow_luggage?'✔️':'✖️'}</a>
         </div>
     </div>
     <div id="car">
@@ -79,9 +82,8 @@
         <a>важная информация от водителя</a>
     </div>
     <br>
-    <div id="ch+pr">
+    <div id="pr">
         <a id="price">Цена: {trip.price} руб</a>
-        <button id="choose" on:click={window.Telegram.WebApp.close}>Выбрать</button>
     </div>
 {:else}
     nothing

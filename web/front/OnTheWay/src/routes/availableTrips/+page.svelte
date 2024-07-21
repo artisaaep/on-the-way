@@ -19,12 +19,12 @@
         ridersTrips = trips.filter((trip: Trip) => trip.is_request);
         appliedTrips = [
             ...appliedTrips,
-            ...await (await fetch(`${url}"/awaited/${window.Telegram.WebApp.initDataUnsafe.user.id}`, {
+            ...await (await fetch(`${url}/api/trips/awaited/${window.Telegram.WebApp.initDataUnsafe.user.id}`, {
                 method: "GET",
             })).json()
         ];
     };
-    onMount(()=>{
+    onMount(() => {
         fetcher();
         window.Telegram.WebApp.expand();
     })
@@ -32,7 +32,7 @@
     let type: boolean = true;
     $: name_color = type ? "#fbea50ab" : "#d0cecee6";
 </script>
-{#if trips && trips.length !== 0}
+{#key trips}
     {#key type}
         <DivisionHeader bind:type={type}
                         bind:tripShowLeftCollection={driversTrips}
@@ -41,7 +41,7 @@
                         default_label="Заявки водителей"
                         optional_label="Заявки пассажиров"/>
     {/key}
-{/if}
+{/key}
 <br><br>
 <div class="scrolling" id="main-scrolling-div" style="--owner-bg-col: {name_color}">
     <br>
