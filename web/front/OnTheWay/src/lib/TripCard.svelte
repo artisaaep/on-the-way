@@ -94,40 +94,28 @@
             </div>
             <div class="pr-ch">
                 <p class="price">{trip.price} руб.</p>
-                {#if isAttached_}
-                    <button class="choose" on:click={() => reject(trip.id)} id="choose-not-ok-{trip.id}">Отменить</button>
+                {#if type === 2}
+                    <button class="choose"
+                            on:click={() => rejectSubmission(trip.id)}
+                            id="choose-rej-ok-{trip.id}"
+                            style="background-color: #991B1BFF">
+                        Отказаться
+                    </button>
+                {:else if type === 1}
+                    <button class="choose"
+                            on:click={() => rejectApplication(trip.id)}
+                            id="choose-not-ok-{trip.id}">
+                        Отменить
+                    </button>
                 {:else}
-                    <button class="choose" on:click={() => apply(trip.id)} id="choose-ok-{trip.id}">Выбрать</button>
+                    <button class="choose"
+                            on:click={() => awaitSubmission(trip.id)}
+                            id="choose-ok-{trip.id}">
+                        Выбрать
+                    </button>
                 {/if}
             </div>
         </div>
-    </div>
-    <div class="pr-ch">
-        <p class="price">{trip.price} руб.</p>
-        {#if type === 2}
-            <button class="choose"
-                    on:click={() => rejectSubmission(trip.id)}
-                    id="choose-rej-ok-{trip.id}"
-                    style="background-color: #991B1BFF">
-                Отказаться
-            </button>
-        {:else if type === 1}
-            <button class="choose"
-                    on:click={() => rejectApplication(trip.id)}
-                    id="choose-not-ok-{trip.id}">
-                Отменить
-            </button>
-        {:else}
-            <button class="choose"
-                    on:click={() => awaitSubmission(trip.id)}
-                    id="choose-ok-{trip.id}">
-                Выбрать
-            </button>
-        {/if}
-    </div>
-    <div class="additional-info">
-        <p class="rides">Поездок: {trip.driver.rides_amount} </p>
-        <p class="free-places">Свободных мест: {trip.available_seats}</p>
     </div>
     <a href="driversprof.html?{trip.id}">Посмотреть подробнее</a>
 </div>
