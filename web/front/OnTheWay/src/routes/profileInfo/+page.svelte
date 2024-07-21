@@ -81,20 +81,19 @@
                     <p>Машины</p>
                 </td>
                 <td class="param-val">
-                    <ul>
+                    <ul class="car-list">
                         {#each cars as car}
                             <li>
-                                <button on:click={()=>removeCar(car.id)}>-</button>
-                                <p>{car.color} {car.brand} {car.number}</p></li>
+                                <button class="remove-car-button" on:click={() => removeCar(car.id)}>&times;</button>
+                                <p>{car.color} {car.brand} {car.number}</p>
+                            </li>
                         {/each}
                     </ul>
                 </td>
             </tr>
-            <tr class="line">
-                <td class="submit">
-                    <button id="primenit" on:click={submit}>Применить</button>
-                </td>
-            </tr>
         </table>
+        <div class="submit-container">
+            <button id="primenit" on:click={submit}>Применить</button>
+        </div>
     </div>
 </div>
