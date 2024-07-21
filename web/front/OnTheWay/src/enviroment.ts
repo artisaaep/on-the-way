@@ -11,7 +11,7 @@
 // );
 
 const env = {
-    BASE_WEBAPP_URL: "https://1c25-188-130-155-169.ngrok-free.app",
+    BASE_WEBAPP_URL: "https://ee21-188-130-155-165.ngrok-free.app",
 }
 
 export const url: string = env.BASE_WEBAPP_URL;
