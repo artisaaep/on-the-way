@@ -1,6 +1,13 @@
 <script lang="ts">
     import {url} from "../../../enviroment";
     import {data, step, activeButton} from "../Common";
+    function validate(): boolean {
+        if (data.start_location == "") {
+            window.Telegram.WebApp.showAlert("Пожалуйста, выберите город отправления");
+            return false;
+        }
+        return true;
+    }
 
 </script>
 
@@ -81,6 +88,6 @@
 </div>
 <div class="nav-buttons">
     <button class="next" on:click={() => $step--}>Назад</button>
-    <button class="next" on:click={() => {$step++;}}>Далее</button>
+    <button class="next" on:click={() => {if (validate()) {$step++;}}}>Далее</button>
 </div>
   

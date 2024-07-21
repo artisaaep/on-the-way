@@ -11,7 +11,8 @@
 // );
 
 const env = {
-    BASE_WEBAPP_URL: "https://ee21-188-130-155-165.ngrok-free.app",
+    BOT_TOKEN: "6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs",
+    BASE_WEBAPP_URL: "https://7f4f-188-130-155-149.ngrok-free.app",
 }
 
 export const url: string = env.BASE_WEBAPP_URL;

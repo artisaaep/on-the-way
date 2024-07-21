@@ -1,11 +1,10 @@
 <script lang="ts">
-    import {data, step} from "../Common";
+    import {data, step, carType} from "../Common";
     import {url} from "../../../enviroment";
 
-    let carType: string;
-    $: if (carType === "taxi") {
+    $: if (carType.carType === "taxi") {
         data.car_id = 0;
-    } else if (carType === "carsh") {
+    } else if (carType.carType === "carsh") {
         data.car_id = 1;
     } else {
         data.car_id = undefined;
@@ -20,21 +19,21 @@
             <ul class="choice">
                 <li>
                     <label for="own">
-                        <input bind:group={carType} type="radio" id="own" name="r" value="own">
+                        <input bind:group={carType.carType} type="radio" id="own" name="r" value="own">
                         <div class="checkbox__checkmark"></div>
                         На своей машине
                     </label>
                 </li>
                 <li>
                     <label for="carsh">
-                        <input bind:group={carType} type="radio" id="carsh" name="r" value="carsh">
+                        <input bind:group={carType.carType} type="radio" id="carsh" name="r" value="carsh">
                         <div class="checkbox__checkmark"></div>
                         Каршеринг
                     </label>
                 </li>
                 <li>
                     <label for="taxi">
-                        <input bind:group={carType} type="radio" id="taxi" name="r" value="taxi">
+                        <input bind:group={carType.carType} type="radio" id="taxi" name="r" value="taxi">
                         <div class="checkbox__checkmark"></div>
                         Совместное такси
                     </label>

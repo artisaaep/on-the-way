@@ -39,7 +39,7 @@
                         <label for="car-${car.id}">
                             <input bind:group={currentCar} type="radio" id="car-${car.id}" name="c" value={car.id}>
                             <div class="checkbox__checkmark"></div>
-                            {car.color} {car.brand}, {car.number}
+                            {car.color} {car.brand}
                         </label>
                     </li>
                 {/each}

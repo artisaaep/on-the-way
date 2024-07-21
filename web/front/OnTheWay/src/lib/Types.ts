@@ -71,3 +71,7 @@ export interface Filter {
     date: null | string,
     from: null | string
 }
+
+export interface CarType {
+    carType: string
+}
