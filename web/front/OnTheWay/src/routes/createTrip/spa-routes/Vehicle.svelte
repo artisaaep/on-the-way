@@ -48,7 +48,7 @@
     <div class="grey-rect">
         <div class="av-text">
             Сколько свободных мест нужно?
-            <input type="number" list="places" step="1" min="1" max="4" id="av" class="number-input"
+            <input type="number" list="places" step="1" min="1" max="4" id="av" class="number-input" placeholder="4"
                    bind:value={data.available_seats}/>
             <datalist id="places">
                 <option value="1">
