@@ -23,15 +23,14 @@
     function applyFilter() {
         tripShowCollection = tripShowCollection.filter((trip: Trip) => {
                 return [
-                    trip.has_buster <= filter.booster,
-                    trip.allow_pets <= filter.allow_pets,
-                    trip.has_child_seat <= filter.child_seat,
-                    trip.allow_luggage <= filter.allow_luggage,
-                    trip.available_seats <= filter.seats,
+                    trip.has_buster >= filter.booster,
+                    trip.allow_pets >= filter.allow_pets,
+                    trip.has_child_seat >= filter.child_seat,
+                    trip.allow_luggage >= filter.allow_luggage,
+                    trip.available_seats >= filter.seats,
                     filter.date ? trip.departure_date === filter.date : true,
                     filter.from ? trip.start_location === filter.from : true,
                 ].every((i) => i)
-            console.log(trip.has_buster <= filter.booster)
             }
         );
         console.log(tripShowCollection);

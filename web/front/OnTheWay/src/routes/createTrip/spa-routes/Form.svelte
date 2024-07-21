@@ -58,7 +58,6 @@
 
         let encodedText = encodeURIComponent(text);
         let encodedReplyMarkup = encodeURIComponent(JSON.stringify(kb));
-        console.log("aaa");
         await fetch(`https://api.telegram.org/bot6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown&reply_markup=${encodedReplyMarkup}`);
         // endTODO
         window.location.href = `${url}/static/tripcreated.html`;

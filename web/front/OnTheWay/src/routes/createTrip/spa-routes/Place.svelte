@@ -81,6 +81,6 @@
 </div>
 <div class="nav-buttons">
     <button class="next" on:click={() => $step--}>Назад</button>
-    <button class="next" on:click={() => {$step++; console.log(data)}}>Далее</button>
+    <button class="next" on:click={() => {$step++;}}>Далее</button>
 </div>
   

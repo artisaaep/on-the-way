@@ -64,5 +64,5 @@
 <div class="nav-buttons">
     <button class="next" on:click={() => { $step-- }}>Назад</button>
     <!--        TODO: validation over vehicle choice       -->
-    <button class="next" on:click={() => { (data.car_id!==0 && data.car_id!==1) ? $step++ : $step += 2; console.log(data) }}>Далее</button>
+    <button class="next" on:click={() => { (data.car_id!==0 && data.car_id!==1) ? $step++ : $step += 2; }}>Далее</button>
 </div>

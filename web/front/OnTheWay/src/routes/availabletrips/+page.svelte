@@ -9,34 +9,34 @@
     let trips: Trip[] = [];
     let tripsToShow: Trip[] = [];
     let driversTrips: Trip = [];
-    let ridersTrips:Trip = []
+    let ridersTrips: Trip = []
     const fetcher = async () => {
         trips = [...trips, ...await (await fetch(url + "/api/trips", {
             method: "GET",
         })).json()];
-        console.log(trips);
         driversTrips = trips.filter((trip: Trip) => !trip.is_request);
         ridersTrips = trips.filter((trip: Trip) => trip.is_request);
-        tripsToShow = [...driversTrips];
     };
     onMount(fetcher)
 
     let type: boolean = true;
     $: name_color = type ? "#fbea50ab" : "#d0cecee6";
 </script>
-{#key type}
-    <DivisionHeader bind:type={type}
-                    bind:tripShowLeftCollection={driversTrips}
-                    bind:tripShowRightCollection={ridersTrips}
-                    bind:destinationCollection={tripsToShow}
-                    default_label="Заявки водителей"
-                    optional_label="Заявки пассажиров"/>
-{/key}
+{#if trips && trips.length!==0}
+    {#key type}
+        <DivisionHeader bind:type={type}
+                        bind:tripShowLeftCollection={driversTrips}
+                        bind:tripShowRightCollection={ridersTrips}
+                        bind:destinationCollection={tripsToShow}
+                        default_label="Заявки водителей"
+                        optional_label="Заявки пассажиров"/>
+    {/key}
+{/if}
 <br><br>
 <div class="scrolling" id="main-scrolling-div" style="--owner-bg-col: {name_color}">
     <br>
     {#key tripsToShow}
-        {#if tripsToShow && tripsToShow.length!==0}
+        {#if tripsToShow && tripsToShow.length !== 0}
             {#each tripsToShow as trip}
                 <TripCard trip={trip}/>
             {/each}
