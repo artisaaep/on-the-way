@@ -6,6 +6,13 @@
     export let trip: Trip;
     export let isSubmitted: boolean;
 
+    function formatDate(date: Date): string {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}-${month}-${year}`;
+    }
+
     let isApproved: boolean =
         trip.passengers
             .map(passenger => passenger.id)
@@ -76,7 +83,7 @@
                         <p class="clari-from">{trip.clarify_from}</p>
                     </div>
                     <div class="bott">
-                        <p class="date">{trip.departure_date}</p>
+                        <p class="date">{formatDate(new Date(trip.departure_date))}</p>
                         <p class="arrow">&#8594;</p>
                         <p class="time">{trip.departure_time}</p>
                     </div>

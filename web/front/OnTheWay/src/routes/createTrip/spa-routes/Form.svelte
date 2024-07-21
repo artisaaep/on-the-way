@@ -34,7 +34,6 @@
     }
 
     async function submitTrip() {
-        data.departure_date = formatDate(new Date(data.departure_date));
         console.log(data)
         if (data.available_seats === null) {
             data.available_seats = 4;

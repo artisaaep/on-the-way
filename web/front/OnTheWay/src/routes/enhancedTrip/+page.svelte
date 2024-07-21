@@ -4,6 +4,14 @@
     import "./enhancedTrip.css"
     import {url} from "../../enviroment";
 
+    function formatDate(date: Date): string {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}-${month}-${year}`;
+    }
+
+
     let trip: Trip;
     let sex: string;
     let photo: string;
@@ -45,7 +53,7 @@
         </div>
     </div>
     <div class="maininfa">
-        <a id="date" class="date">{trip.departure_date}<br></a>
+        <a id="date" class="date">{formatDate(new Date(trip.departure_date))}<br></a>
         <a id="from" class="from">{trip.start_location}</a>
         <a class="strelka">&#8594;</a>
         <a id="to" class="to">{trip.end_location}<br></a>
