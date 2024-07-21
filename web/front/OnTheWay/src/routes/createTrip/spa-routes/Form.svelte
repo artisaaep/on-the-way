@@ -56,9 +56,6 @@
     async function finish() {
         let id = window.Telegram.WebApp.initDataUnsafe.user.id;
         // TODO: transfer it to the backend
-        const trips = await (await fetch(url + "/api/trips", {
-                method: "GET",
-            })).json();
         let kb = {
             inline_keyboard: [[{
                 text: 'Подробнее',

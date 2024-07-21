@@ -116,11 +116,14 @@
                 </tr>
             </table>
         </div>
+        
+    </div>
+    <div class="three-buttons">
         <div class="nav-buttons">
-            <button class="next" id="dir-button1" on:click={submit}>Применить</button>
-            <button class="next" id="delete" on:click={deleteTrip}>Удалить поездку</button>
-            <button class="next" id="dir-button2" on:click={window.Telegram.WebApp.close}>Закрыть</button>
+        <button class="next" id="dir-button1" on:click={submit}>Применить</button>
+        <button class="next" id="dir-button2" on:click={window.Telegram.WebApp.close}>Закрыть</button>
         </div>
+        <button class="next" id="delete" on:click={deleteTrip}>Удалить поездку</button>
     </div>
 {:else}
     Поездки не существует

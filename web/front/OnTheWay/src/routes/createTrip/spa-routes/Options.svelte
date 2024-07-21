@@ -40,7 +40,7 @@
 
     <textarea id="add" class="com" placeholder="Дополнительные сведения о поездке..." bind:value={data.add_info}/>
 
-    
+
 </div>
 <div class="nav-buttons">
     <button class="next" on:click={()=>{

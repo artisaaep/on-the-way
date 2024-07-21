@@ -21,7 +21,7 @@
             return false;
         }
 
-        else if (selectedDate.getTime() === currentDateMidnight.getTime() && 
+        else if (selectedDate.getTime() === currentDateMidnight.getTime() &&
             (hoursFrom < currentTime.getHours() || (hoursFrom === currentTime.getHours() && minutesFrom < currentTime.getMinutes()))) {
             window.Telegram.WebApp.showAlert("Время начала поездки не может быть раньше текущего времени");
             return false;
@@ -34,7 +34,7 @@
 
         return true;
     }
-    
+
 </script>
 
 <img src="{url}/static/images/date-range-svgrepo-com.svg" class="date-img" alt="calendar">
