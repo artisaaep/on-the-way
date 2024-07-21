@@ -12,8 +12,9 @@
 
 </script>
 <img src="{url}/static/images/ruble-svgrepo-com.svg" class="date-img" alt="calendar">
-<div class="grey-rect">
+
     {#if data.is_request === false}
+        <div class="grey-rect">
         <p class="dir-desc">Вид и цена поездки</p>
         <div class="type">
             <ul class="choice">
@@ -45,7 +46,20 @@
             <p class="choose-price">Цена в рублях:</p>
             <input type="number" id="price-rub" step="50" min="0" bind:value={data.price}>
         </div>
-    {/if}
+            <div class="av-text">
+                Свободных мест 
+                <input type="number" list="places" step="1" min="1" max="4" id="av" class="number-input" placeholder="4"
+                       bind:value={data.available_seats}/>
+                <datalist id="places">
+                    <option value="1">
+                    <option value="2">
+                    <option value="3">
+                    <option value="4">
+                </datalist>
+            </div>
+        </div>
+
+    {:else}
     <div class="grey-rect">
         <div class="av-text">
             Сколько свободных мест нужно?
@@ -59,7 +73,8 @@
             </datalist>
         </div>
     </div>
-</div>
+    {/if}
+
 
 
 <div class="nav-buttons">

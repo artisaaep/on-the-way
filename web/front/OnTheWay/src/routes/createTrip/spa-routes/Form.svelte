@@ -14,7 +14,9 @@
 
     let car_: Car;
     onMount(async () => {
-        car_ = await (await fetch(url + "/api/cars/" + data.car_id, {})).json();
+        if (data.car_id) {
+            car_ = await (await fetch(url + "/api/cars/" + data.car_id, {})).json();
+        }
     })
 
     let options: string = '';
@@ -34,8 +36,11 @@
     async function submitTrip() {
         data.departure_date = formatDate(new Date(data.departure_date));
         console.log(data)
-        if (data.available_seats===null){
+        if (data.available_seats === null) {
             data.available_seats = 4;
+        }
+        if (data.car_id===undefined){
+            data.car_id=null;
         }
         await fetch(url + "/api/trips/", {
             method: 'POST',
@@ -56,11 +61,13 @@
     async function finish() {
         let id = window.Telegram.WebApp.initDataUnsafe.user.id;
         // TODO: transfer it to the backend
+        const trips = await (await fetch(url + "/api/trips", {
+            method: "GET",
+        })).json();
         let kb = {
             inline_keyboard: [[{
                 text: 'Подробнее',
-                // TODO page for tripInfo
-                web_app: {url: `${url}/app/tripinfo.html?${trips[trips.length-1].id}`},
+                web_app: {url: `${url}/app/tripinfo.html?${trips[trips.length - 1].id}`},
             }]]
         };
         let text = `Ваша поездка *${data.start_location} - ${data.end_location}* успешно создана! 🚙
@@ -71,7 +78,7 @@
         let encodedReplyMarkup = encodeURIComponent(JSON.stringify(kb));
         await fetch(`https://api.telegram.org/bot6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown&reply_markup=${encodedReplyMarkup}`);
         // endTODO
-        window.location.href = `${url}/static/tripcreated.html`;
+        window.location.href = `createTrip/tripCreated.html`;
     }
 
 
@@ -85,7 +92,7 @@
             <td class="param-val">
                 <p>{data.start_location}</p>
                 {#if data.clarify_from != ""}
-                <p>{data.clarify_from}</p>
+                    <p>{data.clarify_from}</p>
                 {/if}
             </td>
         </tr>
@@ -96,7 +103,7 @@
             <td class="param-val">
                 <p>{data.end_location}</p>
                 {#if data.clarify_to != ""}
-                <p>{data.clarify_to}</p>
+                    <p>{data.clarify_to}</p>
                 {/if}
             </td>
         </tr>
@@ -125,16 +132,16 @@
                     <p>{data.price}</p>
                 </td>
             </tr>
-        <tr class="line">
-            <td class="param-name">
-                <p>Транспорт</p>
-            </td>
-            <td class="param-val">
-                {#if car_}
-                    <p>{car_.color ? car_.color + ' ' : ''}{car_.brand}</p>
-                {/if}
-            </td>
-        </tr>
+            <tr class="line">
+                <td class="param-name">
+                    <p>Транспорт</p>
+                </td>
+                <td class="param-val">
+                    {#if car_}
+                        <p>{car_.color ? car_.color + ' ' : ''}{car_.brand}</p>
+                    {/if}
+                </td>
+            </tr>
         {/if}
         <tr class="line">
             <td class="param-name">
@@ -145,14 +152,14 @@
             </td>
         </tr>
         {#if data.add_info != null}
-        <tr class="line">
-            <td class="param-name">
-                <p>прочее</p>
-            </td>
-            <td class="param-val">
-                <p>{data.add_info}</p>
-            </td>
-        </tr>
+            <tr class="line">
+                <td class="param-name">
+                    <p>прочее</p>
+                </td>
+                <td class="param-val">
+                    <p>{data.add_info}</p>
+                </td>
+            </tr>
         {/if}
     </table>
     <p class="data-dop">{options}</p>
