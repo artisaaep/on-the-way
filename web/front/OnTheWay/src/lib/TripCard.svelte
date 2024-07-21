@@ -46,7 +46,7 @@
             method: 'DELETE'
         });
         if (response.ok) {
-            isApproved = false;
+            isSubmitted = false;
         } else {
             window.Telegram.WebApp.showAlert("Something went wrong");
         }

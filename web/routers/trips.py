@@ -94,10 +94,10 @@ async def cansel_rider(
                                        TripPassenger.trip_id == _id).first())
     rider: SQLUser = db.query(SQLUser).filter(SQLUser.id == rider_id).first()
     db.commit()
-    bot = Bot(token=config.bot_token.get_secret_value())
-    await bot.send_message(chat_id=db_trip.driver_id,
-                           text=f"""Пассажир @{rider.alias} отказался от поездки с вами 
-                           {db_trip.departure_date}, {db_trip.departure_time}""")
+    async with Bot(token=config.bot_token.get_secret_value()) as bot:
+        await bot.send_message(chat_id=db_trip.driver_id,
+                               text=f"""Пассажир @{rider.alias} отказался от поездки с вами 
+                                    {db_trip.departure_date}, {db_trip.departure_time}""")
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 

@@ -5,15 +5,13 @@ from sqlalchemy.orm import Session
 
 from shared.id_generators import generator
 from telegram.config_reader import config
-from web.data_models import Trip, NewTrip, UserOptions
+from web.data_models import Trip, UserOptions
 from shared.database import get_db
-from shared.base_models import Trip as SQLTrip, User as SQLUser, TripPassenger, User, SubmissionQueue
+from shared.base_models import Trip as SQLTrip, User, SubmissionQueue
 
 router = APIRouter(
     prefix="/api/mediator",
 )
-
-bot = Bot(token=config.bot_token.get_secret_value())
 
 
 @router.post("/await_submission")
@@ -39,17 +37,18 @@ async def await_submission(
 
     node_id = generator(SubmissionQueue)
     callback_data = f'approve %s {node_id}'
-    msg = await bot.send_message(
-        chat_id=driver_id,
-        text=f"К вашей поездке хочет присоединиться *{rider.name}*. {options_text}",
-        reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="✅Принять", callback_data=callback_data % '1')],
-            [InlineKeyboardButton(text="❌Отклонить", callback_data=callback_data % '0')],
-            [InlineKeyboardButton(text=f"Профиль пользователя {rider.name}", url=f"tg://user?id={rider_id}",
-                                  callback_data="bye")]
-        ]),
-        parse_mode="Markdown"
-    )
+    async with Bot(token=config.bot_token.get_secret_value()) as bot:
+        msg = await bot.send_message(
+            chat_id=driver_id,
+            text=f"К вашей поездке хочет присоединиться *{rider.name}*. {options_text}",
+            reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="✅Принять", callback_data=callback_data % '1')],
+                [InlineKeyboardButton(text="❌Отклонить", callback_data=callback_data % '0')],
+                [InlineKeyboardButton(text=f"Профиль пользователя {rider.name}", url=f"tg://user?id={rider_id}",
+                                      callback_data="bye")]
+            ]),
+            parse_mode="Markdown"
+        )
     db.add(
         SubmissionQueue(
             user_id=rider_id,
@@ -72,11 +71,12 @@ async def reject_submission(
         trip_id: int = Query(..., alias="tripId")):
     submission = db.query(SubmissionQueue).filter(SubmissionQueue.trip_id == trip_id,
                                                   SubmissionQueue.user_id == rider_id).first()
-    trip = db.query(Trip).filter(Trip.id == trip_id).first()
+    trip = db.query(SQLTrip).filter(SQLTrip.id == trip_id).first()
     if submission is None:
         print("Submission approved and cannot be rejected")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    await bot.delete_message(message_id=submission.submission_message_id, chat_id=trip.driver_id)
+    async with Bot(token=config.bot_token.get_secret_value()) as bot:
+        await bot.delete_message(message_id=submission.submission_message_id, chat_id=trip.driver_id)
     db.delete(submission)
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
