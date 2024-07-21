@@ -33,7 +33,7 @@ export let data: NewTrip = {
     has_buster: false,
     allow_luggage: false,
     allow_pets: false,
-    available_seats: 1,
+    available_seats: null,
     add_info: null,
     price: 100,
 };
