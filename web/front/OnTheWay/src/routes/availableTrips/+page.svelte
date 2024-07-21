@@ -19,7 +19,7 @@
         ridersTrips = trips.filter((trip: Trip) => trip.is_request);
         appliedTrips = [
             ...appliedTrips,
-            ...await (await fetch(`${url}"/awaited/${window.Telegram.WebApp.initDataUnsafe.user.id}`, {
+            ...await (await fetch(`${url}/api/trips/awaited/${window.Telegram.WebApp.initDataUnsafe.user.id}`, {
                 method: "GET",
             })).json()
         ];
