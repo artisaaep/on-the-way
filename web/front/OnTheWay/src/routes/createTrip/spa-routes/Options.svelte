@@ -40,18 +40,21 @@
 
     <textarea id="add" class="com" placeholder="Дополнительные сведения о поездке..." bind:value={data.add_info}/>
 
-    <div class="nav-buttons">
-        <button class="next" on:click={()=>{
-            if (data.car_id!==0 && data.car_id!==1)
-                $step--
-            else
-                $step-=2
+    
+</div>
+<div class="nav-buttons">
+    <button class="next" on:click={()=>{
+        if (data.car_id >= 2)
+            $step--
+        else
+            $step-=2
+    }}>
+        Назад
+    </button>
+    <button class="next"
+        on:click={() => {
+            $step++;
         }}>
-            Назад
-        </button>
-        <button class="next"
-                on:click={()=>{$step++}}>
-            Далее
-        </button>
-    </div>
+        Далее
+    </button>
 </div>

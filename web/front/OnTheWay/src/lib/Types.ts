@@ -41,7 +41,6 @@ export interface BaseTrip {
     add_info: string | null
 }
 
-
 export interface Trip extends BaseTrip {
     id: number
     driver: User
@@ -59,4 +58,8 @@ export interface UserOptions {
     has_luggage: boolean
     has_kids: boolean
     has_pets: boolean
+}
+
+export interface CarType {
+    carType: string
 }
