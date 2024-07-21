@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends, Response, status
 from sqlalchemy.orm import Session
 from web.data_models import NewCar, Car
-from web.utils.id_generators import generator
+from shared.id_generators import generator
 from shared.database import get_db
 from shared.base_models import Car as SQLCar, User as SQLUser
 

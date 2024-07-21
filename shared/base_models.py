@@ -99,5 +99,15 @@ class FinishedTrip(Base):
     is_request = Column(Boolean, nullable=False)
 
 
-User.cars = relationship("Car", order_by=Car.id, back_populates="owner")
+class SubmissionQueue(Base):
+    __tablename__ = 'Awaiters'
+    user_id = Column(Integer, ForeignKey('users.id'))
+    trip_id = Column(Integer, ForeignKey('trips.id'))
+    submission_message_id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
+    has_luggage = Column(Boolean, nullable=True)
+    has_kids = Column(Boolean, nullable=True)
+    has_pets = Column(Boolean, nullable=True)
 
+
+User.cars = relationship("Car", order_by=Car.id, back_populates="owner")

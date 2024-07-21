@@ -1,10 +1,8 @@
 import asyncio
-from threading import Thread
-
 from telegram import form
 from telegram.handlers import start
 from telegram.bot_init import dp, bot
-from web.server import start as web_start
+from telegram.callback_handlers import process_callback
 
 
 async def main():
@@ -15,6 +13,6 @@ async def main():
     print("Tg appearing...")
     await dp.start_polling(bot)
 
+
 if __name__ == "__main__":
     asyncio.run(main())
-

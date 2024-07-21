@@ -4,14 +4,23 @@
     import './TripCard.css';
 
     export let trip: Trip;
+    export let isSubmitted: boolean;
 
-    let isAttached_: boolean =
+    let isApproved: boolean =
         trip.passengers
             .map(passenger => passenger.id)
             .includes(window.Telegram.WebApp.initDataUnsafe.user.id as number);
 
-    async function apply(trip_id: number) {
-        await fetch(url + "/api/mediator/await_submission?riderId=" + window.Telegram.WebApp.initDataUnsafe.user.id + "&driverId=" + trip.driver.id, {
+    // 0 - can apply
+    // 1 - await for submission
+    // 2 - participate
+    $: type = isApproved ? 2 : isSubmitted ? 1 : 0;
+
+    async function awaitSubmission(trip_id: number) {
+        let params: URLSearchParams = new URLSearchParams();
+        params.append("riderId", window.Telegram.WebApp.initDataUnsafe.user.id.toString())
+        params.append("tripId", trip.id.toString())
+        let response = await fetch(url + "/api/mediator/await_submission?" + params, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -22,30 +31,34 @@
                 "has_pets": false
             })
         });
-        let response = await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "has_luggage": false,
-                "has_kids": false,
-                "has_pets": false
-            })
-        });
         if (response.ok) {
-            isAttached_ = true;
+            isSubmitted = true;
         } else {
             window.Telegram.WebApp.showAlert("Something went wrong");
         }
     }
 
-    async function reject(trip_id: number) {
+    async function rejectApplication(trip_id: number) {
+        let params: URLSearchParams = new URLSearchParams();
+        params.append("riderId", window.Telegram.WebApp.initDataUnsafe.user.id.toString())
+        params.append("tripId", trip.id.toString())
+        let response = await fetch(url + "/api/mediator/await_submission?" + params, {
+            method: 'DELETE'
+        });
+        if (response.ok) {
+            isApproved = false;
+        } else {
+            window.Telegram.WebApp.showAlert("Something went wrong");
+        }
+    }
+
+    async function rejectSubmission(trip_id: number) {
         let response = await fetch(url + "/api/trips/" + trip_id + "/rider?riderID=" + window.Telegram.WebApp.initDataUnsafe.user.id, {
             method: "DELETE",
         });
         if (response.ok) {
-            isAttached_ = false;
+            isApproved = false;
+            isSubmitted = false;
         } else {
             window.Telegram.WebApp.showAlert("Something went wrong");
         }
@@ -72,10 +85,25 @@
     </div>
     <div class="pr-ch">
         <p class="price">{trip.price} руб.</p>
-        {#if isAttached_}
-            <button class="choose" on:click={() => reject(trip.id)} id="choose-not-ok-{trip.id}">Отменить</button>
+        {#if type === 2}
+            <button class="choose"
+                    on:click={() => rejectSubmission(trip.id)}
+                    id="choose-rej-ok-{trip.id}"
+                    style="background-color: #991B1BFF">
+                Отказаться
+            </button>
+        {:else if type === 1}
+            <button class="choose"
+                    on:click={() => rejectApplication(trip.id)}
+                    id="choose-not-ok-{trip.id}">
+                Отменить
+            </button>
         {:else}
-            <button class="choose" on:click={() => apply(trip.id)} id="choose-ok-{trip.id}">Выбрать</button>
+            <button class="choose"
+                    on:click={() => awaitSubmission(trip.id)}
+                    id="choose-ok-{trip.id}">
+                Выбрать
+            </button>
         {/if}
     </div>
     <div class="additional-info">

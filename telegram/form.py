@@ -36,8 +36,11 @@ async def num(message: types.Message, state: FSMContext):
         resize_keyboard=True,
         one_time_keyboard=True,
     )
-    await message.answer("Начинаем создание вашего профиля\nНажмите на кнопку ниже, чтобы предоставить ваш номер телефона", reply_markup=markup)
+    await message.answer(
+        "Начинаем создание вашего профиля\nНажмите на кнопку ниже, чтобы предоставить ваш номер телефона",
+        reply_markup=markup)
     await state.set_state(Form.name)
+
 
 @router.message(Form.name)
 async def create(message: types.Message, state: FSMContext):
@@ -118,11 +121,7 @@ async def set_photo(message: types.Message, state: FSMContext):
     await message.answer("Отлично!\U0001f973 Анкета создана, можете начать ваше чудесное путешествие\U0001f699",
                          reply_markup=builder.as_markup())
     await state.set_state(Form.cycle)
+
 @router.message(Form.cycle)
-async def accepting(message: types.Message, state: FSMContext):
-    if message.text.split()[0] != "Принять" or message.text.split()[0] != "Отклонить" or len(message.text.split()) != 3:
-        await state.set_state(Form.cycle)
-    else:
-        do = message.text.split()[0]
-        who = message.text.split()[1]
-        where = message.text.split()[2]
+async def accept_meta_transferring(message: types.Message, state: FSMContext):
+    pass

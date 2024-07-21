@@ -1,9 +1,12 @@
+from aiogram import Bot
 from fastapi import APIRouter, HTTPException, Depends, Query, Response, status
 from sqlalchemy.orm import Session
 from typing import List
+
+from telegram.config_reader import config
 from web.data_models import Trip, NewTrip, UserOptions
 from shared.database import get_db
-from shared.base_models import Trip as SQLTrip, User as SQLUser, TripPassenger
+from shared.base_models import Trip as SQLTrip, User as SQLUser, TripPassenger, SubmissionQueue
 
 router = APIRouter(
     prefix="/api/trips",
@@ -69,6 +72,47 @@ async def update_trip(_id: int,
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
-@router.get("/history/{user_id}", response_model=list[Trip])
-async def get_history(user_id: int, db: Session = Depends(get_db)):
-    pass
+@router.get("/awaited/{user_id}", response_model=List[int])
+async def join_trips_and_awaiters(user_id: int, db: Session = Depends(get_db)):
+    return [awaiter.trip_id for awaiter in db.query(SubmissionQueue).filter(SubmissionQueue.user_id == user_id).all()]
+
+
+@router.delete("/{_id}/rider")
+async def cansel_rider(
+        _id: int,
+        rider_id: int = Query(..., alias="riderID"),
+        db: Session = Depends(get_db)
+):
+    passengers, db_trip = __check_rider_properties(db, _id, rider_id)
+    if str(rider_id) in passengers:
+        passengers.remove(str(rider_id))
+        db_trip.passenger_ids = ' '.join(passengers)
+    else:
+        raise HTTPException(status_code=400, detail="Bad request. Rider is not attached to the ride")
+    db.delete(
+        db.query(TripPassenger).filter(TripPassenger.user_id == rider_id,
+                                       TripPassenger.trip_id == _id).first())
+    rider: SQLUser = db.query(SQLUser).filter(SQLUser.id == rider_id).first()
+    db.commit()
+    bot = Bot(token=config.bot_token.get_secret_value())
+    await bot.send_message(chat_id=db_trip.driver_id,
+                           text=f"""Пассажир @{rider.alias} отказался от поездки с вами 
+                           {db_trip.departure_date}, {db_trip.departure_time}""")
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+# TODO: transfer it to mediator/awaitSubmission
+def __check_rider_properties(db: Session, _id: int, rider_id: int) -> (List[str], SQLTrip):
+    db_trip = db.query(SQLTrip).filter(SQLTrip.id == _id).first()
+    if db_trip is None:
+        raise HTTPException(status_code=404, detail="Trip not found")
+    passenger = db.query(SQLUser).filter(SQLUser.id == rider_id).first()
+    if passenger is None:
+        raise HTTPException(status_code=404, detail="Rider have not authorized")
+    if db_trip.driver_id == rider_id:
+        raise HTTPException(status_code=400, detail="Bad request. Driver cannot be rider of his ride")
+    if db_trip.passenger_ids:
+        passengers = [*map(lambda s: s.strip(), db_trip.passenger_ids.split())]
+    else:
+        passengers = []
+    return passengers, db_trip

@@ -1,4 +1,3 @@
-from shared.base_models import Trip
 from shared.database import get_db
 
 

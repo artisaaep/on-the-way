@@ -1,13 +1,13 @@
 from pydantic import BaseModel
-from typing import List, Optional, Any
+from typing import List, Optional
 
 from pydantic.main import Model
 from sqlalchemy.orm import Session
 
 from shared.database import get_db
 from shared.base_models import Trip as SQLTrip, Car as SQLCar, TripPassenger, User as SQLUser, \
-    FinishedTrip as SQLFinishedTrip, FinishedTrip, PassengersHistory
-from web.utils.id_generators import generator
+    FinishedTrip, PassengersHistory
+from shared.id_generators import generator
 
 
 class NewCar(BaseModel):
