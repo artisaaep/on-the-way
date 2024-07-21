@@ -14,7 +14,7 @@
 <style>
     p {
         text-align: center;
-        color: var(--tg-theme-text-color);
+        color: black;
         font-family: 'Kreadon Regular';
     }
 
