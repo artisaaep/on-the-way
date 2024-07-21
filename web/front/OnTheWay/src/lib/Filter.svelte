@@ -63,7 +63,7 @@
                 >
                     <img src="{url}/static/images/location-pin-alt-svgrepo-com.svg" class="leftIcon" alt="Left Icon">
                     <br>
-                    <span class="leftButtonText">Из Инноплиса</span>
+                    <span class="leftButtonText">Из Иннополиса</span>
                 </button>
                 <button
                         class="rightButton"
@@ -85,7 +85,7 @@
                         Дата <br> поездки
                     </span>
                 </button>
-                <button class="rightButton">
+                <button class="rightButton2">
                     <input class="rightButtonText2" type="date" bind:value={filter.date}>
                 </button>
             </div>
