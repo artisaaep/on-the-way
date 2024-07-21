@@ -18,6 +18,7 @@
         }
     );
 </script>
+<br><br><br>
 {#key type}
     <DivisionHeader bind:type={type} default_label="Мои заявки" optional_label="Мои отклики"/>
     <div class="scrolling" id="main-scrolling-div" style="--owner-bg-col: red">

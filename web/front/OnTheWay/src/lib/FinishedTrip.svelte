@@ -6,29 +6,36 @@
     export let trip: Trip;
 </script>
 
-<button id="back" on:click={()=>{window.history.back();}}>Назад</button>
-<button id="hist" on:click={()=>{}}>
-    <img id="imghist" src="{url}/static/icons/travel-car-svgrepo-com.svg" alt="hzchto">
-    История поездок
-</button>
-<br><br>
 <div class="finished_trips">
     <div class="card">
-        <a class="name">{trip.driver.name}</a>
-        <div class="maininfa">
-            <a class="date">{trip.departure_date}<br></a>
-            <a class="from">{trip.start_location}</a>
-            <a class="strelka">&#8594;</a>
-            <a class="to">{trip.end_location}<br></a>
-            <a class="clari-from">{trip.clarify_from}</a>
-            <a class="time">{trip.departure_time}</a>
-            <a class="clari-to">{trip.clarify_to}</a>
+        <div class="verh">
+            <img class="avatar" alt="driver-avatar" src="{url}/api/users/{trip.driver.id}/photo">
+            <div class="verhtext">
+                <p class="owner_name">{trip.driver.name}</p>
+                <div class="main-info">
+                    <div class="from_main">
+                        <p class="from">{trip.start_location}</p>
+                        <p class="clari-from">{trip.clarify_from}</p>
+                    </div>
+                    <div class="bott">
+                        <p class="date">{trip.departure_date}</p>
+                        <p class="arrow">&#8594;</p>
+                        <p class="time">{trip.departure_time}</p>
+                    </div>
+                    <div class="to_main">
+                        <p class="to">{trip.end_location}</p>
+                        <p class="clari-to">{trip.clarify_to}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="pr-ch">
-            <a class="price">{trip.price}</a>
-        </div>
-        <div class="dopinfa">
-            <a class="free-places">Занятых мест: 3</a>
+        <div class="niz">
+            <div class="additional-info">
+                <p class="free-places">Занятых мест: {trip.available_seats}</p>
+            </div>
+            <div class="pr-ch">
+                <p class="price">{trip.price} руб.</p>
+            </div>
         </div>
     </div>
 </div>
