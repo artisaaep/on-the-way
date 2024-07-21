@@ -181,7 +181,7 @@ class NewTrip(BaseTrip):
         return Trip(
             passengers=[],
             id=generator(SQLTrip),
-            car=Car.from_orm(db.query(SQLCar).filter(SQLCar.id == self.car_id).first()) if self.car_id else 0,
+            car=Car.from_orm(db.query(SQLCar).filter(SQLCar.id == self.car_id).first()) if self.car_id is not None else None,
             driver=User.from_orm(db.query(SQLUser).filter(SQLUser.id == self.driver_id).first()),
             start_location=self.start_location,
             end_location=self.end_location,
