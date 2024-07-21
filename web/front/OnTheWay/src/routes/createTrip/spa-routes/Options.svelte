@@ -42,7 +42,7 @@
 
     <div class="nav-buttons">
         <button class="next" on:click={()=>{
-            if (data.car_id!==0 && data.car_id!==1)
+            if (!data.is_request && data.car_id!==0 && data.car_id!==1)
                 $step--
             else
                 $step-=2

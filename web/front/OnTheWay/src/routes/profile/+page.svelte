@@ -57,7 +57,7 @@
 
         </div>
     </div>
-    <AddCar>
+    <AddCar bind:carsDestination={cars}>
         <a id="addcar">Добавить машину</a>
     </AddCar>
     <button id="redt" on:click={()=>{window.location.href = 'profileInfo.html';}}>Редактировать</button>

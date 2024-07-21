@@ -7,6 +7,8 @@
         data.car_id = 0;
     } else if (carType === "carsh") {
         data.car_id = 1;
+    } else {
+        data.car_id = undefined;
     }
 
 </script>
@@ -64,5 +66,10 @@
 <div class="nav-buttons">
     <button class="next" on:click={() => { $step-- }}>Назад</button>
     <!--        TODO: validation over vehicle choice       -->
-    <button class="next" on:click={() => { (data.car_id!==0 && data.car_id!==1 && !data.is_request) ? $step++ : $step += 2; console.log(data) }}>Далее</button>
+    <button class="next" on:click={() => {
+        (!data.is_request && data.car_id!==0 && data.car_id!==1)
+        ? $step++
+        : $step += 2; console.log(data)
+    }}>Далее
+    </button>
 </div>

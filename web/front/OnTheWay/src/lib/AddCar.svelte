@@ -1,11 +1,13 @@
 <script lang="ts">
     import Modal from "$lib/modal/Modal.svelte";
-    import {NewCar} from "$lib/Types";
+    import {Car, NewCar} from "$lib/Types";
     import {onMount} from "svelte";
     import {url} from '../enviroment'
     import './assets/AddCar.css'
 
-    let modelOpen:boolean = false;
+    let modelOpen: boolean = false;
+
+    export let carsDestination: Car[] = [];
 
     function defaultCar(): NewCar {
         return {
@@ -36,6 +38,8 @@
         }).then(async response => {
             if (response.ok) {
                 modelOpen = false;
+                const carId = await response.json();
+                carsDestination = [...carsDestination, {id: carId, ...car}];
             } else {
                 window.Telegram.WebApp.showAlert("Something went wrong");
             }

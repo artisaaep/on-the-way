@@ -49,7 +49,7 @@
         {/if}
     </div>
 
-    <AddCar>
+    <AddCar bind:carsDestination={cars}>
         <u id="addcar">Добавить машину</u>
     </AddCar>
     
