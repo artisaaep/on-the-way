@@ -1,15 +1,17 @@
 <script lang="ts">
     import {onMount} from "svelte";
     import {Trip} from "$lib/Types";
+    import {p} from "../../../.svelte-kit/output/server/chunks/internal";
 
     let url = "https://d2fd-188-130-155-177.ngrok-free.app";
 
     let trip: Trip;
-    let sex: String;
-    let photo: String;
+    let sex: string;
+    let photo: string;
 
     async function main() {
         let trip_id = window.location.href.split('?')[1];
+        alert(trip_id);
 
         trip = await (await fetch(url + "/api/trips/" + trip_id, {
             method: "GET",
@@ -29,7 +31,7 @@
     <p id="name">{trip.driver.name}</p>
 
     <div class="bio">
-        <img src="" alt="Аватарка" id="avatar">
+        <img src={photo} alt="Аватарка" id="avatar">
         <div id="textt">
             <p id="age">Возраст: {trip.driver.age}</p>
             <p id="sex">Пол: {sex}</p>
