@@ -26,6 +26,9 @@
 
     async function submitTrip() {
         console.log(data)
+        if (data.available_seats===null){
+            data.available_seats = 4;
+        }
         await fetch(url + "/api/trips/", {
             method: 'POST',
             headers: {

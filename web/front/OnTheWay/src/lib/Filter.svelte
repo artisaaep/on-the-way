@@ -9,7 +9,7 @@
         allow_pets: false,
         child_seat: false,
         booster: false,
-        seats: 0,
+        seats: null,
         date: null,
         from: null,
     };
@@ -21,6 +21,9 @@
     let modalOpen = false;
 
     function applyFilter() {
+        if (filter.seats===null){
+            filter.seats = 0;
+        }
         tripShowCollection = tripShowCollection.filter((trip: Trip) => {
                 return [
                     trip.has_buster >= filter.booster,
@@ -116,6 +119,7 @@
                             Сколько требуется мест
                             <input id="check1"
                                    type="number"
+                                   placeholder="0"
                                    step="1"
                                    min="0"
                                    max="4"
