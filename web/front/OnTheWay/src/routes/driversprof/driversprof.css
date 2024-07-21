@@ -1,0 +1,259 @@
+@font-face { font-family: Kreadon_regular; src: url(fonts/Kreadon-Regular.ttf); } 
+@font-face { font-family: Kreadon_bold; src: url(fonts/Kreadon-Bold.ttf); } 
+@font-face { font-family: Kreadon_demi; src: url(fonts/Kreadon-Demi.ttf); } 
+@font-face { font-family: Kreadon_medium; src: url(fonts/Kreadon-Medium.ttf); } 
+
+body {
+    background-color: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
+    font-family: Kreadon_regular;
+}
+
+input:focus {
+    outline: none;
+}
+
+#imgprof {
+    height: 15%;
+    width: 15%;
+    float: left;
+    margin-right: 5%;
+    margin-left: -30px;
+}
+
+
+#back {
+    font-family: Kreadon_regular;
+    font-size: 15px;
+    margin-right: 4%;
+    padding: 1.5%;
+    background-color: #E3E1E1;
+    color: black;
+    border-radius: 10px;
+    border: 1px solid var(--tg-theme-text-color);
+    width: 25%;
+    float: right;
+}
+#verh {
+    width: 100%;
+    height: 6.5%;
+    background-color: white;
+    position: fixed;
+    top:0%;
+}
+
+#name {
+    margin-left: 4%;
+    margin-right: 5%;
+    font-family: Kreadon_regular;
+    text-align: center;
+    font-size: 26px;
+    padding: 1.5%;
+    width: 88%;
+    color: black;
+    border-radius: 30px;
+    margin-top: 11%;
+    
+    border: 5px solid #C2C2C2;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.bio {
+    width: 100%;
+    margin-top: 16%;
+}
+
+#avatar {
+    display: block;
+    margin-left: 10%;
+    width: 25%;
+    height: 25%;
+    border-radius: 50%;
+    border: solid 1px black;
+    margin-top: -10%
+}
+
+#textt {
+    margin-top: 18%;
+    width: 30%;
+    font-size: 15px;
+    margin-left: -3%;
+
+}
+
+#age {
+    font-family: Kreadon_regular;
+    position: absolute;
+    margin-left: 55%;
+    margin-right: 5%;
+    margin-top: -40%; 
+}
+
+#sex {
+    font-family: Kreadon_regular;
+    position: absolute;
+    margin-left: 55%;
+    margin-right: 5%;
+    margin-top: -33%; 
+}
+
+#rides {
+    font-family: Kreadon_regular;
+    position: absolute;
+    margin-left: 55%;
+    margin-right: 5%;
+    margin-top: -26%; 
+}
+
+.maininfa {
+    width: 100%;
+    text-align: center;
+    margin-top: -17%;
+}
+
+.date {
+    font-family: Kreadon_medium;
+    font-size: 15px;
+    width: 10%;
+    margin-left: 10%;
+}
+
+.from {
+    font-family: Kreadon_demi;
+    margin-left: -1%;
+    font-size: 21px;
+
+}
+
+.strelka {
+    font-family: Kreadon_demi;
+    font-size: 21px;
+    margin-left: 13%;
+    
+}
+
+.to {
+    font-family: Kreadon_demi;
+    font-size: 21px;
+    margin-left: 12%;
+}
+
+.clari-from {
+    font-family: Kreadon_regular;
+    margin-right: 1%;
+    margin-left: -6%;
+    font-size: 12px;
+}
+
+.time {
+    font-family: Kreadon_medium;
+    font-size: 15px;
+    margin-left: 16%;
+    margin-right: 7%;
+}
+
+.clari-to {
+    font-family: Kreadon_regular;
+    font-size: 10px;
+    margin-left: 9%;
+    margin-right: -7%;
+}
+
+.options {
+    margin-top: 1%;
+    display: flex;
+    text-align: center;
+    width: 100%;
+    gap: 9%;
+    padding: 5%;
+}
+.options a{
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 30%;
+    margin-left: 50%;
+}
+#kids {
+    margin-left: -2%;
+}
+#z1 {
+    margin-top: 24%;
+}
+#z3 {
+    margin-top: 40%;
+}
+#z4 {
+    margin-top: 45%;
+}
+#car {
+    min-height: 30%;
+    padding-bottom: 8%;
+}
+
+#mashina {
+    font-size: 20px;
+    margin-left: 3%;
+    width: 21%;
+    padding-top: 2%;
+    float: left;
+    border-bottom: 2px solid #C2C2C2;
+    padding-bottom: 1.5%;
+}
+
+#named {
+    font-size: 15px;
+    font-family: kreadon_medium;
+    float: right;
+    width: 55%;
+    border: 1.5px solid #999797;
+    border-radius: 10px;
+    padding: 2%;
+    padding-left: 3% ;
+
+}
+
+#info {
+    margin-top: 10%;
+    margin-left: 2%;
+    padding: 5%;
+    width: 85%;
+    background-color: #E3E1E1;
+    border: 0px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 1cqmax rgba(0, 0, 0, 0.3);
+}
+
+#choose {
+    font-family: Kreadon_regular;
+    font-size: 20px;
+    margin-top: 15%;
+    padding: 2%;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+    border-radius: 10px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    border: 0px;
+    background-color: #FBEA50;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+    bottom: 10%;
+    color: black;
+    float: right;
+    margin-right: 5%;
+}
+
+#price {
+    font-family: Kreadon_demi;
+    font-size: 20px;
+    bottom: 10%;
+    float: left;
+    margin-left: 5%;
+    margin-top: 2.5%;
+    border-bottom: 1px solid black;
+
+}

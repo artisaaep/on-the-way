@@ -20,6 +20,7 @@
     );
     let tripsToShow: Trip[] = [];
 </script>
+<br><br><br>
 {#key type}
     <DivisionHeader
             bind:type={type}
