@@ -2,19 +2,22 @@
     margin-bottom: 20%;
 }
 
-#filter {
-    position: fixed;
-    left: 70%;
+#imgprof {
     float: right;
-    width: 25%;
-    background-color: rgba(251, 234, 80, 0.85);
-    color: black;
-    border-radius: 10px;
-    border: 0 black;
-    font-size: calc(0.8em + 1vw);
-    font-family: Kreadon_medium;
-    padding: 1% 1% 1% 5%;
-    box-shadow: 1.5px 1.5px 2px rgb(0, 0, 0, 0.2);
+    height: 40%;
+    width: 40%;
+    position: absolute;
+    top: 35%;
+    right: 43%;
+}
+
+#imghist {
+    float: right;
+    height: 40%;
+    width: 40%;
+    position: absolute;
+    top: 35%;
+    right: -5%;
 }
 
 .tab {

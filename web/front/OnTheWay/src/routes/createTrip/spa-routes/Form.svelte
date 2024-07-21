@@ -26,6 +26,9 @@
 
     async function submitTrip() {
         console.log(data)
+        if (data.available_seats===null){
+            data.available_seats = 4;
+        }
         await fetch(url + "/api/trips/", {
             method: 'POST',
             headers: {
@@ -58,7 +61,6 @@
 
         let encodedText = encodeURIComponent(text);
         let encodedReplyMarkup = encodeURIComponent(JSON.stringify(kb));
-        console.log("aaa");
         await fetch(`https://api.telegram.org/bot6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown&reply_markup=${encodedReplyMarkup}`);
         // endTODO
         window.location.href = `${url}/static/tripcreated.html`;

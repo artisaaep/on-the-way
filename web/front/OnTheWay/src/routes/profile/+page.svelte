@@ -19,6 +19,12 @@
             await carFetcher(cars, $user);
             cars = [...cars];
         }
+        let BackButton = window.Telegram.WebApp.BackButton;
+        BackButton.show();
+        BackButton.onClick(function () {
+            window.location.href = "availabletrips.html";
+            BackButton.hide();
+        });
     });
 
 </script>

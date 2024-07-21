@@ -12,7 +12,7 @@
         {:else}
             <p class="dir-desc">Куда</p>
         {/if}
-        <img src="{url}/static/images/location-pin-alt-svgrepo-com.svg"
+        <img src="{url}/static/icons/location-pin-alt-svgrepo-com.svg"
              class="dir-image"
              alt="Location Pin"
         />
@@ -81,6 +81,6 @@
 </div>
 <div class="nav-buttons">
     <button class="next" on:click={() => $step--}>Назад</button>
-    <button class="next" on:click={() => {$step++; console.log(data)}}>Далее</button>
+    <button class="next" on:click={() => {$step++;}}>Далее</button>
 </div>
   
