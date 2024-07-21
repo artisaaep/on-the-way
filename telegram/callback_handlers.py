@@ -1,4 +1,5 @@
 from aiogram import types
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from shared.base_models import SubmissionQueue, Trip, TripPassenger
 from shared.database import get_db
@@ -41,11 +42,23 @@ async def attach_rider(rider: SubmissionQueue, callback_query, db):
     }
     trip_rider_attrs.pop('id')
     db.add(TripPassenger(**trip_rider_attrs))
-    await bot.send_message(chat_id=rider.user_id,
-                           text=f"""Вы приняты в поездку {trip.start_location} - {trip.end_location}.\n{trip.departure_date} {trip.departure_time}""")
-    await bot.edit_message_text(message_id=callback_query.message.message_id,
-                                chat_id=callback_query.from_user.id,
-                                text="Успешно!")
+    await bot.send_message(
+        chat_id=rider.user_id,
+        text=f"Вы приняты в поездку {trip.start_location} - {trip.end_location}."
+             + f"\n{trip.departure_date} {trip.departure_time}",
+        reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text=f"Профиль пользователя {trip.driver_id}", url=f"tg://user?id={trip.driver_id}")]
+        ])
+    )
+    await bot.edit_message_text(
+        message_id=callback_query.message.message_id,
+        chat_id=callback_query.from_user.id,
+        text="Успешно!",
+        reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text=f"Профиль пользователя",
+                                  url=f"tg://user?id={rider.user_id}")]
+        ])
+    )
     db.delete(rider)
     db.commit()
 
@@ -53,7 +66,8 @@ async def attach_rider(rider: SubmissionQueue, callback_query, db):
 async def drop_rider(rider: SubmissionQueue, callback_query, db):
     trip = db.query(Trip).get(rider.trip_id)
     await bot.send_message(chat_id=rider.user_id,
-                           text=f"""Вам отказано в поездке {trip.start_location} - {trip.end_location}.\n {trip.departure_date} {trip.departure_time}""")
+                           text=f"Вам отказано в поездке {trip.start_location} - {trip.end_location}."
+                                + f"\n {trip.departure_date} {trip.departure_time}")
     await bot.edit_message_text(message_id=callback_query.message.message_id,
                                 chat_id=callback_query.from_user.id,
                                 text="Успешно!")

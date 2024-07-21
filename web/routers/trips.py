@@ -33,7 +33,7 @@ async def create_trip(new_trip: NewTrip, db: Session = Depends(get_db)):
         await bot.send_message(
             chat_id=sql_trip.driver_id,
             text=f"""Ваша поездка *{sql_trip.start_location} - ${sql_trip.end_location}* успешно создана! 🚙
-\n\nНажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️""",
+\nНажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️""",
             reply_markup=InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(
                     text="Подробнее",
@@ -111,8 +111,8 @@ async def cansel_rider(
     db.commit()
     async with Bot(token=config.bot_token.get_secret_value()) as bot:
         await bot.send_message(chat_id=db_trip.driver_id,
-                               text=f"""Пассажир @{rider.alias} отказался от поездки с вами 
-                                    {db_trip.departure_date}, {db_trip.departure_time}""")
+                               text=f"Пассажир @{rider.alias} отказался от поездки с вами"
+                                    + f"{db_trip.departure_date}, {db_trip.departure_time}")
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
