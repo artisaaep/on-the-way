@@ -1,7 +1,6 @@
 <script lang="ts">
     import {onMount} from "svelte";
     import {Trip} from "$lib/Types";
-    import {p} from "../../../.svelte-kit/output/server/chunks/internal";
 
     let url = "https://d2fd-188-130-155-177.ngrok-free.app";
 
