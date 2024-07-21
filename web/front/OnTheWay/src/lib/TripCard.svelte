@@ -4,8 +4,8 @@
     import './assets/TripCard.css';
 
     export let trip: Trip;
-    export let isSubmitted: boolean;
-
+    export let appliedTrips: number[];
+    let isSubmitted: boolean = appliedTrips.includes(trip.id);
     function formatDate(date: Date): string {
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0');

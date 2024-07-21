@@ -49,7 +49,9 @@
     {#key tripsToShow}
         {#if tripsToShow && tripsToShow.length !== 0}
             {#each tripsToShow as trip}
-                <TripCard trip={trip} isApplied={appliedTrips.includes(trip.id)}/>
+                {#key appliedTrips}
+                    <TripCard trip={trip} appliedTrips={appliedTrips}/>
+                {/key}
             {/each}
         {:else}
             <p>Доступных поездок нет</p>
