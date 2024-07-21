@@ -6,6 +6,7 @@
     import {onMount} from "svelte";
     import DivisionHeader from "$lib/DivisionHeader.svelte";
 
+
     let trips: Trip[] = [];
     let tripsToShow: Trip[] = [];
     let driversTrips: Trip = [];
