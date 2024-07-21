@@ -29,38 +29,40 @@
 
 </script>
 {#if $user}
-    <div class="lala">
-        <p id="name">{$user.name}</p>
-    </div>
-
-    <img src="{userUrl}/photo" alt="Аватарка" id="avatar"/>
-    <div class="bio">
-        <p id="age">Возраст: {$user.age}</p>
-        <p id="sex">Пол: {$user.sex ? "Женский" : "Мужской"}</p>
-        <p id="rides">Поездок: {$user.rides_amount}</p>
-    </div>
-    <div class="PhotoCar">
-        <img id="carPhoto" src="{url}/static/icons/image-22.svg" alt="section-icon">
-    </div>
-    <div id="cars">
-        <p id="MyCars">Мои машины:</p>
-        <div class="mashini">
-            {#if !$user.car_ids}
-                <p>У вас ещё нет добавленных машин.</p>
-            {:else }
-                <ul id="cars-ul">
-                    {#each cars as car}
-                        <li><p class="car">{car.color} {car.brand} {car.number}</p></li>
-                    {/each}
-                </ul>
-            {/if}
-
+    {#key user}
+        <div class="lala">
+            <p id="name">{$user.name}</p>
         </div>
-    </div>
-    <AddCar bind:carsDestination={cars}>
-        <a id="addcar">Добавить машину</a>
-    </AddCar>
-    <button id="redt" on:click={()=>{window.location.href = 'profileInfo.html';}}>Редактировать</button>
+
+        <img src="{userUrl}/photo" alt="Аватарка" id="avatar"/>
+        <div class="bio">
+            <p id="age">Возраст: {$user.age}</p>
+            <p id="sex">Пол: {$user.sex ? "Женский" : "Мужской"}</p>
+            <p id="rides">Поездок: {$user.rides_amount}</p>
+        </div>
+        <div class="PhotoCar">
+            <img id="carPhoto" src="{url}/static/icons/image-22.svg" alt="section-icon">
+        </div>
+        <div id="cars">
+            <p id="MyCars">Мои машины:</p>
+            <div class="mashini">
+                {#if !$user.car_ids}
+                    <p>У вас ещё нет добавленных машин.</p>
+                {:else }
+                    <ul id="cars-ul">
+                        {#each cars as car}
+                            <li><p class="car">{car.color} {car.brand} {car.number}</p></li>
+                        {/each}
+                    </ul>
+                {/if}
+
+            </div>
+        </div>
+        <AddCar bind:carsDestination={cars}>
+            <a id="addcar">Добавить машину</a>
+        </AddCar>
+        <button id="redt" on:click={()=>{window.location.href = 'profileInfo.html';}}>Редактировать</button>
+    {/key}
 {:else}
     <p>nothing to render</p>
 {/if}

@@ -24,7 +24,10 @@
             })).json()
         ];
     };
-    onMount(fetcher)
+    onMount(()=>{
+        fetcher();
+        window.Telegram.WebApp.expand();
+    })
 
     let type: boolean = true;
     $: name_color = type ? "#fbea50ab" : "#d0cecee6";

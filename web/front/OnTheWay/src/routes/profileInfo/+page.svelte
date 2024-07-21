@@ -1,12 +1,12 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import { url } from "../../enviroment.js";
+    import {onMount} from "svelte";
+    import {url} from "../../enviroment.js";
     import './profileInfo.css';
-    import { carFetcher, userFetcher } from "../../lib/fetchers";
-    import type { Car, User } from "$lib/Types";
-    import { draw } from "svelte/transition";
-    import { data } from "../createTrip/Common";
-    import { user } from '../CurrentUser'
+    import {carFetcher, userFetcher} from "../../lib/fetchers";
+    import type {Car, User} from "$lib/Types";
+    import {draw} from "svelte/transition";
+    import {data} from "../createTrip/Common";
+    import {user} from '../CurrentUser'
 
     let cars: Car[] = [];
 
@@ -16,7 +16,7 @@
         })
         cars = [...cars.filter(car => car.id !== id)]
         $user.car_ids = [...$user.car_ids.filter(_id => _id !== id)];
-        $user = $user;
+        $user = {...$user};
     }
 
     async function main() {
@@ -41,8 +41,12 @@
             },
             body: JSON.stringify($user)
         })
-        $user = $user;
-        window.history.back();
+        if (response.ok) {
+            $user = $user;
+            window.history.back();
+        } else {
+            window.Telegram.WebApp.showAlert("Something went wrong!");
+        }
     }
 
     onMount(main);

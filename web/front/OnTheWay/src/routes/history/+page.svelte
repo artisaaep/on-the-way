@@ -15,6 +15,7 @@
             participatedTrips = await (await fetch(`${url}/api/finished/rider/${window.Telegram.WebApp.initDataUnsafe.user.id}`, {
                 method: "GET"
             })).json();
+            tripsToShow = [...ownTrips]
         }
     );
     let tripsToShow: Trip[] = [];
@@ -24,11 +25,12 @@
             bind:type={type}
             bind:tripShowLeftCollection={ownTrips}
             bind:tripShowRightCollection={participatedTrips}
+            bind:destinationCollection={tripsToShow}
 
             default_label="Мои заявки"
             optional_label="Мои отклики"/>
     <div class="scrolling" id="main-scrolling-div" style="--owner-bg-col: red">
-        {#if tripsToShow}
+        {#if tripsToShow && tripsToShow.length !== 0}
             {#each tripsToShow as trip}
                 <FinishedTrip trip={trip}/>
             {/each}
