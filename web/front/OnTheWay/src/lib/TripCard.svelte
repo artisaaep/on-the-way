@@ -51,7 +51,7 @@
         }
     }
     async function driversprof() {
-        window.location.href = "driversprof.html";
+        window.location.href = "driversprof.html?" + trip.id;
     }
 </script>
 <div class="centre">
