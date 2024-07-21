@@ -55,7 +55,7 @@
     }
 </script>
 <div class="centre">
-    <div class="card" on:click={driversprof}>
+    <button class="card" on:click={driversprof}>
         <div class="verh">
             <img class="avatar" alt="driver-avatar" src="{url}/api/users/{trip.driver.id}/photo">
             <div class="verhtext">
@@ -91,5 +91,5 @@
                 {/if}
             </div>
         </div>
-    </div>
+    </button>
 </div>
