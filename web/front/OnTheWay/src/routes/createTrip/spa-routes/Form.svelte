@@ -49,37 +49,13 @@
             body: JSON.stringify(data),
         }).then(async response => {
             if (response.ok) {
-                await finish()
+                window.location.href = `createTrip/tripCreated.html`;
             } else {
                 window.Telegram.WebApp.showAlert("Something went wrong");
                 console.log(response)
             }
         });
     }
-
-    async function finish() {
-        let id = window.Telegram.WebApp.initDataUnsafe.user.id;
-        // TODO: transfer it to the backend
-        const trips = await (await fetch(url + "/api/trips", {
-            method: "GET",
-        })).json();
-        let kb = {
-            inline_keyboard: [[{
-                text: 'Подробнее',
-                web_app: {url: `${url}/app/editTrip.html?${trips[trips.length - 1].id}`},
-            }]]
-        };
-        let text = `Ваша поездка *${data.start_location} - ${data.end_location}* успешно создана! 🚙
-
-Нажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️`;
-
-        let encodedText = encodeURIComponent(text);
-        let encodedReplyMarkup = encodeURIComponent(JSON.stringify(kb));
-        await fetch(`https://api.telegram.org/bot6658030178:AAF7JwKztrDvVQVlzR3lZlSebnf961JUocs/sendMessage?chat_id=${id}&text=${encodedText}&parse_mode=Markdown&reply_markup=${encodedReplyMarkup}`);
-        // endTODO
-        window.location.href = `createTrip/tripCreated.html`;
-    }
-
 
 </script>
 <div class="grey-rect">

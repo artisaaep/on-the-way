@@ -1,4 +1,5 @@
 from aiogram import Bot
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 from fastapi import APIRouter, HTTPException, Depends, Query, Response, status
 from sqlalchemy.orm import Session
 from typing import List
@@ -28,6 +29,20 @@ async def create_trip(new_trip: NewTrip, db: Session = Depends(get_db)):
     sql_trip = new_trip.to_full().to_orm()
 
     db.add(sql_trip)
+    async with Bot(token=config.bot_token.get_secret_value()) as bot:
+        await bot.send_message(
+            chat_id=sql_trip.driver_id,
+            text=f"""Ваша поездка *{sql_trip.start_location} - ${sql_trip.end_location}* успешно создана! 🚙
+\n\nНажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️""",
+            reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(
+                    text="Подробнее",
+                    web_app=WebAppInfo(
+                        url=f"{config.base_webapp_url.get_secret_value()}/app/editTrip.html?${sql_trip.id}"
+                    ))],
+            ]),
+            parse_mode="Markdown"
+        )
     db.commit()
     db.refresh(sql_trip)
     return sql_trip.id
