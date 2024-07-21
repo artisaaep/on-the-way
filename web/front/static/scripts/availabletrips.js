@@ -105,7 +105,7 @@ const applyDecorator = (trip_id) => {
 }
 
 async function wide(trip_id) {
-    window.location.href = "driversprof.html?" + trip_id;
+    window.location.href = "enhancedTrip.html?" + trip_id;
 }
 
 async function main() {

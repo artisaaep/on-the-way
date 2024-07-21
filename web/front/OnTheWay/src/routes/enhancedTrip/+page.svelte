@@ -1,7 +1,7 @@
 <script lang="ts">
     import {onMount} from "svelte";
     import {Trip} from "$lib/Types";
-    import "./driversprof.css"
+    import "./enhancedTrip.css"
     import {url} from "../../enviroment";
 
     let trip: Trip;
@@ -9,7 +9,7 @@
     let photo: string;
 
     async function main() {
-        var BackButton = window.Telegram.WebApp.BackButton;
+        let BackButton = window.Telegram.WebApp.BackButton;
         BackButton.show();
         BackButton.onClick(function () {
             window.history.back();

@@ -22,7 +22,7 @@
         let BackButton = window.Telegram.WebApp.BackButton;
         BackButton.show();
         BackButton.onClick(function () {
-            window.location.href = "availabletrips.html";
+            window.location.href = "availableTrips.html";
             BackButton.hide();
         });
     });
@@ -61,7 +61,7 @@
         <AddCar bind:carsDestination={cars}>
             <a id="addcar">Добавить машину</a>
         </AddCar>
-        <button id="redt" on:click={()=>{window.location.href = 'profileInfo.html';}}>Редактировать</button>
+        <button id="redt" on:click={()=>{window.location.href = 'editProfile.html';}}>Редактировать</button>
     {/key}
 {:else}
     <p>nothing to render</p>

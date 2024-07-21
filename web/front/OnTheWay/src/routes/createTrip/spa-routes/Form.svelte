@@ -67,7 +67,7 @@
         let kb = {
             inline_keyboard: [[{
                 text: 'Подробнее',
-                web_app: {url: `${url}/app/tripinfo.html?${trips[trips.length - 1].id}`},
+                web_app: {url: `${url}/app/editTrip.html?${trips[trips.length - 1].id}`},
             }]]
         };
         let text = `Ваша поездка *${data.start_location} - ${data.end_location}* успешно создана! 🚙

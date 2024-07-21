@@ -1,11 +1,9 @@
 <script lang="ts">
     import {onMount} from "svelte";
     import {url} from "../../enviroment.js";
-    import './profileInfo.css';
+    import './editProfile.css';
     import {carFetcher, userFetcher} from "../../lib/fetchers";
-    import type {Car, User} from "$lib/Types";
-    import {draw} from "svelte/transition";
-    import {data} from "../createTrip/Common";
+    import type {Car} from "$lib/Types";
     import {user} from '../CurrentUser'
 
     let cars: Car[] = [];

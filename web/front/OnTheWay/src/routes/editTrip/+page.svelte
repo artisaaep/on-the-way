@@ -2,7 +2,7 @@
     import {onMount} from "svelte";
     import {Trip} from "$lib/Types";
     import {url} from "../../enviroment";
-    import "./tripinfo.css"
+    import "./editTrip.css"
     import {user} from "../CurrentUser";
 
     let trip: Trip;

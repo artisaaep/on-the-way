@@ -16,9 +16,16 @@
                 method: "GET"
             })).json();
             tripsToShow = [...ownTrips]
+            let BackButton = window.Telegram.WebApp.BackButton;
+            BackButton.show();
+            BackButton.onClick(function () {
+                window.history.back();
+                BackButton.hide();
+            });
         }
     );
     let tripsToShow: Trip[] = [];
+    $: name_color = type ? "#fbea50ab" : "#d0cecee6";
 </script>
 <br><br><br>
 {#key type}
@@ -30,7 +37,7 @@
 
             default_label="Мои заявки"
             optional_label="Мои отклики"/>
-    <div class="scrolling" id="main-scrolling-div" style="--owner-bg-col: red">
+    <div class="scrolling" id="main-scrolling-div" style="--owner-bg-col: {name_color}">
         {#if tripsToShow && tripsToShow.length !== 0}
             {#each tripsToShow as trip}
                 <FinishedTrip trip={trip}/>

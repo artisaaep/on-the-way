@@ -1,7 +1,7 @@
 <script lang="ts">
     import type {Trip} from "./Types";
     import {url} from "../enviroment";
-    import './TripCard.css';
+    import './assets/TripCard.css';
 
     export let trip: Trip;
     export let isSubmitted: boolean;
@@ -117,5 +117,5 @@
             </div>
         </div>
     </div>
-    <a href="driversprof.html?{trip.id}">Посмотреть подробнее</a>
+    <a href="enhancedTrip.html?{trip.id}">Посмотреть подробнее</a>
 </div>
