@@ -3,7 +3,7 @@
     import type {Trip} from "$lib/Types";
     import {url} from "../../enviroment";
     import './availableTrips.css';
-    import {onMount} from "svelte";
+    import { onMount, onDestroy } from 'svelte';
     import DivisionHeader from "$lib/DivisionHeader.svelte";
 
 
@@ -13,6 +13,29 @@
     let ridersTrips: Trip = [];
     let appliedTrips: Trip[] = [];
     const fetcher = async () => {
+        let hrs = Number(new Date().toLocaleTimeString().split(':')[0]);
+        let min = Number(new Date().toLocaleTimeString().split(':')[1]);
+        let day = Number(new Date().toLocaleDateString().split('/')[0]);
+        let mon = Number(new Date().toLocaleDateString().split('/')[1]);
+        trips = [...trips, ...await (await fetch(url + "/api/trips", {
+            method: "GET",
+        })).json()];
+        for (let trip of trips) {
+            let triphrs = Number(trip.departure_time.split("-")[1].split(':')[0]);
+            let tripmin = Number(trip.departure_time.split("-")[1].split(':')[1]);
+            let tripday = Number(trip.departure_date.split("-")[0]);
+            let tripmon = Number(trip.departure_date.split("-")[1]);
+            let cond1 = day > tripday && mon == tripmon || mon > tripmon;
+            let cond2 = day == tripday && mon == tripmon && (hrs > triphrs || min > tripmin && hrs == triphrs);
+            if (cond1 || cond2) {
+                let response = await fetch(`${url}/api/trips/` + trip.id, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+            }
+        }
         trips = [...trips, ...await (await fetch(url + "/api/trips", {
             method: "GET",
         })).json()];
