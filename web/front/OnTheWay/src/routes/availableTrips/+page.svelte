@@ -3,7 +3,7 @@
     import type {Trip} from "$lib/Types";
     import {url} from "../../enviroment";
     import './availableTrips.css';
-    import {onMount, onDestroy} from 'svelte';
+    import {onMount} from 'svelte';
     import DivisionHeader from "$lib/DivisionHeader.svelte";
 
 
@@ -12,14 +12,13 @@
     let driversTrips: Trip = [];
     let ridersTrips: Trip = [];
     let appliedTrips: Trip[] = [];
-    const fetcher = async () => {
+
+
+    async function filterTripsSideEffect(): Promise<void> {
         let hrs = Number(new Date().toLocaleTimeString().split(':')[0]);
         let min = Number(new Date().toLocaleTimeString().split(':')[1]);
         let day = Number(new Date().toLocaleDateString().split('/')[0]);
         let mon = Number(new Date().toLocaleDateString().split('/')[1]);
-        trips = [...trips, ...await (await fetch(url + "/api/trips", {
-            method: "GET",
-        })).json()];
         {
             let toDelete: number[] = [];
             for (let trip of trips) {
@@ -30,19 +29,27 @@
                 let cond1 = day > tripday && mon == tripmon || mon > tripmon;
                 let cond2 = day == tripday && mon == tripmon && (hrs > tripHrs || min > tripmin && hrs == tripHrs);
                 if (cond1 || cond2) {
-                    let response = await fetch(`${url}/api/trips/` + trip.id, {
+                    await fetch(`${url}/api/trips/` + trip.id, {
                         method: "DELETE",
                         headers: {
                             "Content-Type": "application/json"
                         }
                     })
-                    if (response.ok) {
-                        toDelete.push(trip.id)
-                    }
+                    toDelete.push(trip.id)
                 }
             }
-            trips = trips.filter(trip => {return !toDelete.includes(trip.id)})
+            trips = trips.filter(trip => {
+                return !toDelete.includes(trip.id)
+            })
         }
+    }
+
+
+    async function fetcher() {
+        trips = [...trips, ...await (await fetch(url + "/api/trips", {
+            method: "GET",
+        })).json()];
+        await filterTripsSideEffect();
         driversTrips = trips.filter((trip: Trip) => !trip.is_request);
         ridersTrips = trips.filter((trip: Trip) => trip.is_request);
         appliedTrips = [
@@ -51,7 +58,9 @@
                 method: "GET",
             })).json()
         ];
-    };
+    }
+
+
     onMount(() => {
         fetcher();
         window.Telegram.WebApp.expand();
