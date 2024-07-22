@@ -4,6 +4,7 @@ from fastapi import APIRouter, HTTPException, Depends, Query, Response, status
 from sqlalchemy.orm import Session
 from typing import List
 
+from shared.id_generators import generator
 from telegram.config_reader import config
 from web.data_models import Trip, NewTrip, UserOptions
 from shared.database import get_db
@@ -33,13 +34,13 @@ async def create_trip(new_trip: NewTrip, db: Session = Depends(get_db)):
     async with Bot(token=config.bot_token.get_secret_value()) as bot:
         await bot.send_message(
             chat_id=sql_trip.driver_id,
-            text=f"""Ваша поездка *{sql_trip.start_location} - ${sql_trip.end_location}* успешно создана! 🚙
+            text=f"""Ваша поездка *{sql_trip.start_location} - {sql_trip.end_location}* успешно создана! 🚙
 \nНажмите на кнопку ниже, чтобы посмотреть подробную информацию о поездке или отредактировать ее ☺️""",
             reply_markup=InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(
                     text="Подробнее",
                     web_app=WebAppInfo(
-                        url=f"{config.base_webapp_url.get_secret_value()}/app/editTrip.html?${sql_trip.id}"
+                        url=f"{config.base_webapp_url.get_secret_value()}/app/editTrip.html?{sql_trip.id}"
                     ))],
             ]),
             parse_mode="Markdown"
@@ -67,6 +68,7 @@ async def delete_trip(_id: int, db: Session = Depends(get_db), is_canceled: bool
         attr: value for attr, value in vars(trip).items() if
         not attr.startswith('_') and attr != 'metadata'
     }
+    trip_attrs['id'] = generator(SQLFinishedTrip)
     finished = SQLFinishedTrip(**trip_attrs)
     for trip_passenger in db.query(TripPassenger).filter(TripPassenger.trip_id == _id).all():
         history_item_attrs = {

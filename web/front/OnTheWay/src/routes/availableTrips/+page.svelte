@@ -3,7 +3,7 @@
     import type {Trip} from "$lib/Types";
     import {url} from "../../enviroment";
     import './availableTrips.css';
-    import {onMount} from 'svelte';
+    import { onMount } from 'svelte';
     import DivisionHeader from "$lib/DivisionHeader.svelte";
 
 
