@@ -36,4 +36,4 @@ def start():
     app.include_router(cars.router)
     app.include_router(finished.router)
     app.include_router(mediator.router)
-    run(app)
+    run(app,host='0.0.0.0', port=8080)
