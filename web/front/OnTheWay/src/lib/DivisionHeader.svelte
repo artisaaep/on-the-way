@@ -13,7 +13,7 @@
 
     export let destinationCollection: Trip[];
 
-    destinationCollection = type ? tripShowLeftCollection : tripShowRightCollection;
+    $: destinationCollection = type ? tripShowLeftCollection : tripShowRightCollection;
 </script>
 
 <div id="zakrep">
