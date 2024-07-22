@@ -7,7 +7,8 @@ from typing import List
 from telegram.config_reader import config
 from web.data_models import Trip, NewTrip, UserOptions
 from shared.database import get_db
-from shared.base_models import Trip as SQLTrip, User as SQLUser, TripPassenger, SubmissionQueue, FinishedTrip as SQLFinishedTrip
+from shared.base_models import Trip as SQLTrip, User as SQLUser, TripPassenger, SubmissionQueue, \
+    FinishedTrip as SQLFinishedTrip, PassengersHistory
 
 router = APIRouter(
     prefix="/api/trips",
@@ -67,6 +68,15 @@ async def delete_trip(_id: int, db: Session = Depends(get_db), is_canceled: bool
         not attr.startswith('_') and attr != 'metadata'
     }
     finished = SQLFinishedTrip(**trip_attrs)
+    for trip_passenger in db.query(TripPassenger).filter(TripPassenger.trip_id == _id).all():
+        history_item_attrs = {
+            attr: value for attr, value in vars(trip_passenger).items() if
+            not attr.startswith('_') and attr != 'metadata'
+        }
+        history_item_attrs.pop('submission_message_id')
+        history_item = PassengersHistory(**history_item_attrs)
+        db.add(history_item)
+        db.delete(trip_passenger)
     db.add(finished)
     db.delete(trip)
     db.commit()

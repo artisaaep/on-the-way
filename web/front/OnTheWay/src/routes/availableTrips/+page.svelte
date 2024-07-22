@@ -3,7 +3,7 @@
     import type {Trip} from "$lib/Types";
     import {url} from "../../enviroment";
     import './availableTrips.css';
-    import { onMount, onDestroy } from 'svelte';
+    import {onMount, onDestroy} from 'svelte';
     import DivisionHeader from "$lib/DivisionHeader.svelte";
 
 
@@ -20,25 +20,29 @@
         trips = [...trips, ...await (await fetch(url + "/api/trips", {
             method: "GET",
         })).json()];
-        for (let trip of trips) {
-            let triphrs = Number(trip.departure_time.split("-")[1].split(':')[0]);
-            let tripmin = Number(trip.departure_time.split("-")[1].split(':')[1]);
-            let tripday = Number(trip.departure_date.split("-")[0]);
-            let tripmon = Number(trip.departure_date.split("-")[1]);
-            let cond1 = day > tripday && mon == tripmon || mon > tripmon;
-            let cond2 = day == tripday && mon == tripmon && (hrs > triphrs || min > tripmin && hrs == triphrs);
-            if (cond1 || cond2) {
-                let response = await fetch(`${url}/api/trips/` + trip.id, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json"
+        {
+            let toDelete: number[] = [];
+            for (let trip of trips) {
+                let tripHrs = Number(trip.departure_time.split("-")[1].split(':')[0]);
+                let tripmin = Number(trip.departure_time.split("-")[1].split(':')[1]);
+                let tripday = Number(trip.departure_date.split("-")[0]);
+                let tripmon = Number(trip.departure_date.split("-")[1]);
+                let cond1 = day > tripday && mon == tripmon || mon > tripmon;
+                let cond2 = day == tripday && mon == tripmon && (hrs > tripHrs || min > tripmin && hrs == tripHrs);
+                if (cond1 || cond2) {
+                    let response = await fetch(`${url}/api/trips/` + trip.id, {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    if (response.ok) {
+                        toDelete.push(trip.id)
                     }
-                })
+                }
             }
+            trips = trips.filter(trip => {return !toDelete.includes(trip.id)})
         }
-        trips = [...trips, ...await (await fetch(url + "/api/trips", {
-            method: "GET",
-        })).json()];
         driversTrips = trips.filter((trip: Trip) => !trip.is_request);
         ridersTrips = trips.filter((trip: Trip) => trip.is_request);
         appliedTrips = [
