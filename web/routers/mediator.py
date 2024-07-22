@@ -24,6 +24,8 @@ async def await_submission(
     # TODO: check if users are exists
     rider: User = db.query(User).filter(User.id == rider_id).first()
     trip: SQLTrip = db.query(SQLTrip).filter(SQLTrip.id == trip_id).first()
+    if rider_id == trip.driver_id:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Driver cannot join to his trip")
     driver_id = trip.driver_id
     options_text = ""
     if rider_options.has_kids == 1:

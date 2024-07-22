@@ -108,7 +108,6 @@ async def cansel_rider(
         db.query(TripPassenger).filter(TripPassenger.user_id == rider_id,
                                        TripPassenger.trip_id == _id).first())
     db_trip.seats_available += 1
-    db.refresh(db_trip)
     db.commit()
     async with Bot(token=config.bot_token.get_secret_value()) as bot:
         await bot.send_message(chat_id=db_trip.driver_id,

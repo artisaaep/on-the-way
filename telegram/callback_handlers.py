@@ -48,20 +48,19 @@ async def attach_rider(rider: SubmissionQueue, callback_query, db):
         text=f"Вы приняты в поездку {trip.start_location} - {trip.end_location}."
              + f"\n{trip.departure_date} {trip.departure_time}",
         reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text=f"Профиль пользователя {trip.driver_id}", url=f"tg://user?id={trip.driver_id}")]
+            [InlineKeyboardButton(text=f"Профиль подавшего заявку", url=f"tg://user?id={trip.driver_id}")]
         ])
     )
     await bot.edit_message_text(
         message_id=callback_query.message.message_id,
         chat_id=callback_query.from_user.id,
-        text=f"Успешно! Новый попутчик добавлен. Осталось {trip.seats_available} свободных мест."
+        text=f"Успешно! Новый попутчик добавлен. Свободных мест осталось :{trip.seats_available}."
              + f"\n Удачной поездки {trip.departure_date}",
         reply_markup=InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text=f"Профиль пользователя",
                                   url=f"tg://user?id={rider.user_id}")]
         ])
     )
-    db.refresh(trip)
     db.delete(rider)
     db.commit()
 
