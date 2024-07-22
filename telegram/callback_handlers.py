@@ -42,6 +42,7 @@ async def attach_rider(rider: SubmissionQueue, callback_query, db):
     }
     trip_rider_attrs.pop('id')
     db.add(TripPassenger(**trip_rider_attrs))
+    trip.seats_available -= 1
     await bot.send_message(
         chat_id=rider.user_id,
         text=f"Вы приняты в поездку {trip.start_location} - {trip.end_location}."
@@ -53,12 +54,14 @@ async def attach_rider(rider: SubmissionQueue, callback_query, db):
     await bot.edit_message_text(
         message_id=callback_query.message.message_id,
         chat_id=callback_query.from_user.id,
-        text="Успешно!",
+        text=f"Успешно! Новый попутчик добавлен. Осталось {trip.seats_available} свободных мест."
+             + f"\n Удачной поездки {trip.departure_date}",
         reply_markup=InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text=f"Профиль пользователя",
                                   url=f"tg://user?id={rider.user_id}")]
         ])
     )
+    db.refresh(trip)
     db.delete(rider)
     db.commit()
 
@@ -70,6 +73,11 @@ async def drop_rider(rider: SubmissionQueue, callback_query, db):
                                 + f"\n {trip.departure_date} {trip.departure_time}")
     await bot.edit_message_text(message_id=callback_query.message.message_id,
                                 chat_id=callback_query.from_user.id,
-                                text="Успешно!")
+                                text="Успешно! Вы отклонили входящую заявку",
+                                reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+                                    [InlineKeyboardButton(text=f"Пользователь",
+                                                          url=f"tg://user?id={rider.user_id}")]
+                                ])
+                                )
     db.delete(rider)
     db.commit()

@@ -107,12 +107,19 @@ async def cansel_rider(
     db.delete(
         db.query(TripPassenger).filter(TripPassenger.user_id == rider_id,
                                        TripPassenger.trip_id == _id).first())
-    rider: SQLUser = db.query(SQLUser).filter(SQLUser.id == rider_id).first()
+    db_trip.seats_available += 1
+    db.refresh(db_trip)
     db.commit()
     async with Bot(token=config.bot_token.get_secret_value()) as bot:
         await bot.send_message(chat_id=db_trip.driver_id,
-                               text=f"Пассажир @{rider.alias} отказался от поездки с вами"
-                                    + f"{db_trip.departure_date}, {db_trip.departure_time}")
+                               text=f"Пользователь отказался от поездки с вами."
+                                    + f"\nСвободных мест осталось: {db_trip.seats_available}"
+                                    + f"\n{db_trip.departure_date}, {db_trip.departure_time}",
+                               reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+                                   [InlineKeyboardButton(text=f"Профиль пользователя",
+                                                         url=f"tg://user?id={rider_id}")]
+                               ])
+                               )
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
