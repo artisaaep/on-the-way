@@ -3,8 +3,23 @@ variables:
   APP: "my-app"
 
 stages:
+  - lint
   - build
   - test
+
+lint:
+  stage: lint
+  image: node:20
+  before_script:
+    - npm install
+  script:
+    - npm run lint
+    - npm run format:check
+  artifacts:
+    reports:
+      codequality: gl-code-quality-report.json
+  tags:
+    - docker
 
 build:
   stage: build
